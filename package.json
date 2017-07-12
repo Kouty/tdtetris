@@ -1,0 +1,21 @@
+{
+  "name": "tdtetris",
+  "version": "1.0.0",
+  "description": "Test Driven Developed Tetris",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Kouty79@bitbucket.org/Kouty79/tdtetris.git"
+  },
+  "keywords": [
+    "TDD",
+    "Tetris",
+    "JavaScript"
+  ],
+  "author": "Andrea Koutifaris",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/Kouty79/tdtetris#readme"
+}
