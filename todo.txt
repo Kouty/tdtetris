@@ -1,0 +1,4 @@
+OK, this is the file that will help us to develop this TDD Tetris.
+
+TODO:
+- add testing environment
