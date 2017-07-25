@@ -4,7 +4,7 @@
   "description": "Test Driven Developed Tetris",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,12 @@
   ],
   "author": "Andrea Koutifaris",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/Kouty79/tdtetris#readme"
+  "homepage": "https://bitbucket.org/Kouty79/tdtetris#readme",
+  "devDependencies": {
+    "jasmine-core": "^2.6.4",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4"
+  }
 }

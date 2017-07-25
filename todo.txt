@@ -1,4 +1,7 @@
 OK, this is the file that will help us to develop this TDD Tetris.
 
 TODO:
+- change setup test so it does not fail.
+
+DONE:
 - add testing environment
