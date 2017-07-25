@@ -1,4 +1,4 @@
-So, we have now some concepts, for now let's just note down some of them:
+Some concepts:
 - Tetromino
 - Playfield
 - Rotation
@@ -7,12 +7,15 @@ So, we have now some concepts, for now let's just note down some of them:
 - Row clear
 - Locking
 
-One way to approach the problem of the first test, is to reduce the requirements, we may thing of one column Tetris.
-It may not be a good game to play, but it has almost every feature: there is the "I" tetronimo, it can be moved downward,
-thet etronimo can be locked when touching the playfield base, also the line tetronimo should be cleared when it touches down,
-since it fills every column (row clear algorithm).
+One Column Tetris
 
-One column Tetris
+OK, I don't known jet what's the first test, but with one column tetris, I am nearer to find out the what the first test should be.
+Since TDD should be called BDD (Behavior-driven development), let's thing about the behaviours we need to implement One Column Tetris.
+
+There is only "I" tetronimo, it starts at the top of the playfield, user can push it down with arrow down key, it slowly goes
+downwards without any user interaction, when it reaches the bottom of the playfield, it should be locked, cleared and a new "I"
+tetronimo enters the playfield.
+
 TODO:
 
 
