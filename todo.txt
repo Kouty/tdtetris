@@ -1,24 +1,3 @@
-Setup environment OK, let's go further.
-
-So, what's the first test? Hard to say. I cannot figure out where to start.
-I found out this site: http://tetris.wikia.com/wiki/Tetris_Wiki, which is a good point where to start.
-The web site explains what tetris is:
-
-"The action of Tetris happens within a machine called a tetrion.
-The largest part of the tetrion consists of the playfield measuring ten spaces across by twenty spaces down. It has other parts explained below.
-
-Randomly selected tetrominoes, or shapes consisting of four square blocks, fall from the top of the playfield one at a time. Each tetromino enters the playfield with a given orientation and color depending on its shape. Part of the tetrion, called the piece preview, shows the next pieces that will enter the playfield.
-
-The player can rotate the falling tetromino ninety degrees at a time within the plane of the playfield by pressing the counterclockwise or clockwise rotation buttons, provided the piece has room to rotate. Some versions of the game nudge the tetromino away from the wall or other blocks in order to make room.
-
-The player can shift the falling tetromino sideways one space at a time by pressing the left or right arrow or holding it for quicker movement, provided the piece has room to move. Pieces cannot shift through walls or other blocks.
-
-Each tetromino moves downward slowly by itself. Generally a player can use some method to "drop" the tetromino, or make it move downward faster. Once the tetromino lands on the floor or other blocks, the piece will delay shortly before locking in which time the player can move it. After locking, a player can no longer move the tetromino.
-
-When a tetromino locks and by doing so fills all empty spaces within one or more rows of the playfield, those full rows will clear. Remaining blocks above will move down by as many rows removed.
-
-If the playfield has not filled up with blocks, the next piece enters."
-
 So, we have now some concepts, for now let's just note down some of them:
 - Tetromino
 - Playfield
@@ -28,6 +7,12 @@ So, we have now some concepts, for now let's just note down some of them:
 - Row clear
 - Locking
 
+One way to approach the problem of the first test, is to reduce the requirements, we may thing of one column Tetris.
+It may not be a good game to play, but it has almost every feature: there is the "I" tetronimo, it can be moved downward,
+thet etronimo can be locked when touching the playfield base, also the line tetronimo should be cleared when it touches down,
+since it fills every column (row clear algorithm).
+
+One column Tetris
 TODO:
 
 
