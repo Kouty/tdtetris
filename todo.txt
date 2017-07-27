@@ -16,8 +16,16 @@ There is only "I" tetronimo, it starts at the top of the playfield, user can pus
 downwards without any user interaction, when it reaches the bottom of the playfield, it should be locked, cleared and a new "I"
 tetronimo enters the playfield.
 
+So, let's start from the Tetrominoes spawm: each tetromino has a spawn position in the playfield. This means thinking of
+a coordinate system. For now it's just the I tetronimo, and, since we have only one column, it will start at the top
+of the playfield with 2 squares visible.
+So let's say the bottom position is 0, the top is N, "I" tetronimo will occupy N,..., N-3 squares.
+
 TODO:
+- tetromino spawn position*
 
+- spawn is influenced by the rotation system
+- there are 2 hidden rows at the top of the playfield
+- given the tetronimo mask (square containing the piece rotations), it spawns in the center and at the top of the 2 hidden rows.
 
-DONE:
 
