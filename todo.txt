@@ -29,3 +29,5 @@ TODO:
 - given the tetronimo mask (square containing the piece rotations), it spawns in the center and at the top of the 2 hidden rows.
 
 
+DONE:
+- Use typescript

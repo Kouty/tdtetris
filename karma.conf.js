@@ -10,12 +10,13 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'karma-typescript'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'test/**/*.spec.js'
+      'test/**/*.spec.js',
+      'test/**/*.spec.ts'
     ],
 
 
@@ -27,6 +28,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      "**/*.ts": ["karma-typescript"]
     },
 
 
@@ -55,7 +57,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],//'Chrome',
+    browsers: ['Chrome'],//'PhantomJS',
 
 
     // Continuous Integration mode
@@ -66,4 +68,4 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity
   })
-}
+};
