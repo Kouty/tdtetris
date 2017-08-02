@@ -19,6 +19,7 @@
   "license": "MIT",
   "homepage": "https://bitbucket.org/Kouty79/tdtetris#readme",
   "devDependencies": {
+    "@types/jasmine": "^2.5.53",
     "eslint": "^4.3.0",
     "jasmine-core": "^2.6.4",
     "karma": "^1.7.0",

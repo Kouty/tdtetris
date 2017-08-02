@@ -24,6 +24,9 @@ So let's say the bottom position is 0, the top is N, "I" tetronimo will occupy N
 TODO:
 - tetromino spawn position*
 
+- Each Tetronimo has a minimum containing rectangle.
+- Coordinate system will refer to the top left tetronimo square.
+- Tetronimo should tell which squares of the containing rectangle it occupies (useful also when introducing rotation=
 - spawn is influenced by the rotation system
 - there are 2 hidden rows at the top of the playfield
 - given the tetronimo mask (square containing the piece rotations), it spawns in the center and at the top of the 2 hidden rows.
