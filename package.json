@@ -4,7 +4,9 @@
   "description": "Test Driven Developed Tetris",
   "main": "index.js",
   "scripts": {
-    "test": "karma start"
+    "test": "karma start",
+    "lint": "npm run tslint \"src/**/*.ts\" \"test/**/*.ts\"",
+    "tslint": "tslint"
   },
   "repository": {
     "type": "git",
