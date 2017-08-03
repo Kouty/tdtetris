@@ -8,6 +8,7 @@ export interface IPosition {
 export interface IPlacedTetromino extends IPosition, ITetromino {
     moveLeft(): void;
     moveRight(): void;
+    moveDown(): void;
 }
 
 export class PlayField {
@@ -64,5 +65,9 @@ class PlacedTetromino implements IPlacedTetromino {
 
     public moveRight() {
         this.position.col++;
+    }
+
+    public moveDown() {
+        this.position.row--;
     }
 }

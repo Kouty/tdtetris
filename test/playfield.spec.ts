@@ -44,4 +44,13 @@ describe('Playfield', function () {
 
         expect(playField.tetromino.col).toBe(2);
     });
+
+    it('should let the player move down the current moving tetromino', function () {
+        const playField = new PlayField(20, 3);
+
+        playField.spawn(oneSquareTetromino);
+        playField.tetromino.moveDown();
+
+        expect(playField.tetromino.row).toBe(18);
+    });
 });
