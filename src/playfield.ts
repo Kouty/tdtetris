@@ -6,6 +6,7 @@ export interface IPosition {
 }
 
 export interface IPlacedTetromino extends IPosition, ITetromino {
+    moveLeft(): void;
 }
 
 export class PlayField {
@@ -23,10 +24,17 @@ export class PlayField {
     get tetromino(): IPlacedTetromino {
         return this.placedTetromino;
     }
+
 }
 
 class PlacedTetromino implements IPlacedTetromino {
-    constructor(private tetromino: ITetromino, private position: IPosition) {
+    private position: IPosition;
+
+    constructor(private tetromino: ITetromino, position: IPosition) {
+        this.position = {
+            col: position.col,
+            row: position.row,
+        };
     }
 
     get row(): number {
@@ -47,5 +55,9 @@ class PlacedTetromino implements IPlacedTetromino {
 
     public fills(row, col) {
         return this.tetromino.fills(row, col);
+    }
+
+    public moveLeft() {
+        this.position.col--;
     }
 }

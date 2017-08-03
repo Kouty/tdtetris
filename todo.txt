@@ -17,15 +17,14 @@ New behaviour:
 - Game ends when a tetromino cannot spawn without colliding with locked tetronimo pieces
 
 TODO:
-- Given the tetromino mask (square containing the piece rotations),
-    it spawns in the center and at the top of the playfield*
+- Tetromino can be moved down, left and right*
 
-- Tetromino can be moved down, left and right
 - Tetromino cannot move outside the playfield
 
 
 DONE:
-
+- Given the tetromino mask (square containing the piece rotations),
+    it spawns in the center and at the top of the playfield
 - Tetromino should tell which squares of the containing rectangle it occupies (useful also when introducing rotation)
 - Each tetromino has a minimum containing rectangle
 - tetromino spawn position

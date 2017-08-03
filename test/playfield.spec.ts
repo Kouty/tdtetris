@@ -20,10 +20,19 @@ describe('Playfield', function () {
     it('should consider tetromino width when spawning it', function () {
         const NUM_ROWS = 20;
         const playField = new PlayField(NUM_ROWS, 5);
-        const threeSquaresTetromino = Object.assign({}, oneSquareTetromino, {width: 3});
+        const threeSquaresTetromino = (Object as any).assign({}, oneSquareTetromino, {width: 3});
 
         playField.spawn(threeSquaresTetromino);
 
         expect(playField.tetromino.col).toBe(1);
+    });
+
+    it('should let the player move left the current moving tetromino', function () {
+        const playField = new PlayField(20, 3);
+
+        playField.spawn(oneSquareTetromino);
+        playField.tetromino.moveLeft();
+
+        expect(playField.tetromino.col).toBe(0);
     });
 });
