@@ -7,14 +7,6 @@ Some concepts:
 - Row clear
 - Locking
 
-
-OK, by focusing on the first test, and get it green (passed), I found out that positioning a tetromino in the Playfield
-is one key point to develop the game.
-So I feel that, more than continuing tests on the Playfield and 1 column tetris, it is worth now to focus on what
-positioning a tetromino in the playfield means.
-
-So, let's change the requirements from 1 column, to N column, but without rotation and only "I" tetromino exists.
-
 "I" Tetromino Tetris
 New behaviour:
 - "I" tetromino spawns at the top of the playfield, in the middle column
@@ -33,6 +25,7 @@ TODO:
 
 
 DONE:
+
 - Tetromino should tell which squares of the containing rectangle it occupies (useful also when introducing rotation)
 - Each tetromino has a minimum containing rectangle
 - tetromino spawn position

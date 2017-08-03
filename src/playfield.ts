@@ -16,7 +16,7 @@ export class PlayField {
 
     public spawn(tetromino: ITetromino) {
         const row: number = this.numRows - 1;
-        const col: number = Math.floor((this.numCols - tetromino.width) / 2) - 1;
+        const col: number = Math.floor((this.numCols - tetromino.width) / 2);
         this.placedTetromino = new PlacedTetromino(tetromino, {row, col});
     }
 
