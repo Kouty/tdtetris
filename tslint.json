@@ -1,16 +1,18 @@
 {
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint:recommended"
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape"
     ],
-    "jsRules": {},
-    "rules": {
-        "quotemark": [
-            true,
-            "single",
-            "avoid-escape"
-        ],
-        "only-arrow-functions": false
-    },
-    "rulesDirectory": []
+    "only-arrow-functions": false,
+    "max-classes-per-file": [false],
+    "space-before-function-paren": [true, {"anonymous": "always", "named": "never", "asyncArrow": "always"}]
+  },
+  "rulesDirectory": []
 }

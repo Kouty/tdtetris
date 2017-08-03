@@ -1,14 +1,14 @@
 import {PlayField} from '../src/playfield';
 
-describe('Playfield', function() {
+describe('Playfield', function () {
 
-    it('should spawn tetrominoes', function() {
+    it('should spawn tetrominoes', function () {
         const NUM_ROWS = 10;
         const playField = new PlayField(NUM_ROWS);
 
-        playField.spawn({});
+        playField.spawn({width: 0, height: 0});
 
-        expect(playField.tetronimo.row).toBe(NUM_ROWS - 1);
+        expect(playField.tetromino.row).toBe(NUM_ROWS - 1);
     });
 
 });
