@@ -17,7 +17,7 @@ New behaviour:
 - Game ends when a tetromino cannot spawn without colliding with locked tetronimo pieces
 
 TODO:
-- Tetromino cannot move outside the playfield
+- Tetromino cannot move outside the playfield*
 
 
 DONE:

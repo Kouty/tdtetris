@@ -53,4 +53,25 @@ describe('Playfield', function () {
 
         expect(playField.tetromino.row).toBe(18);
     });
+
+    describe('Playfield bounds', function () {
+        // ----
+        // -oo-
+        // -oo-
+        // ----
+        let testTetronimo;
+        beforeEach(function () {
+            testTetronimo = {
+                height: 4,
+                width: 4,
+                fills(row, col) {
+                    return (1 <= row && row >= 2) && (1 <= col && col >= 2);
+                },
+            };
+        });
+
+        it('should not move the tetromino outside the left playfield edge', function () {
+
+        });
+    });
 });
