@@ -2,6 +2,7 @@ import {ITetromino} from './tetromino';
 
 export interface IPosition {
     row: number;
+    col: number;
 }
 
 export interface IPlacedTetromino extends IPosition, ITetromino {
@@ -10,12 +11,13 @@ export interface IPlacedTetromino extends IPosition, ITetromino {
 export class PlayField {
     private placedTetromino: PlacedTetromino;
 
-    constructor(private numRows: number) {
+    constructor(private numRows: number, private numCols: number) {
     }
 
     public spawn(tetromino: ITetromino) {
         const row: number = this.numRows - 1;
-        this.placedTetromino = new PlacedTetromino(tetromino, {row});
+        const col: number = Math.floor((this.numCols - tetromino.width) / 2) - 1;
+        this.placedTetromino = new PlacedTetromino(tetromino, {row, col});
     }
 
     get tetromino(): IPlacedTetromino {
@@ -29,6 +31,10 @@ class PlacedTetromino implements IPlacedTetromino {
 
     get row(): number {
         return this.position.row;
+    }
+
+    get col(): number {
+        return this.position.col;
     }
 
     get width() {
