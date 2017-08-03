@@ -7,30 +7,36 @@ Some concepts:
 - Row clear
 - Locking
 
-One Column Tetris
 
-OK, I don't known jet what's the first test, but with one column tetris, I am nearer to find out the what the first test should be.
-Since TDD should be called BDD (Behavior-driven development), let's thing about the behaviours we need to implement One Column Tetris.
+OK, by focusing on the first test, and get it green (passed), I found out that positioning a tetromino in the Playfield
+is one key point to develop the game.
+So I feel that, more than continuing tests on the Playfield and 1 column tetris, it is worth now to focus on what
+positioning a tetromino in the playfield means.
 
-There is only "I" tetronimo, it starts at the top of the playfield, user can push it down with arrow down key, it slowly goes
-downwards without any user interaction, when it reaches the bottom of the playfield, it should be locked, cleared and a new "I"
-tetronimo enters the playfield.
+So, let's change the requirements from 1 column, to N column, but without rotation and only "I" tetromino exists.
 
-So, let's start from the Tetrominoes spawm: each tetromino has a spawn position in the playfield. This means thinking of
-a coordinate system. For now it's just the I tetronimo, and, since we have only one column, it will start at the top
-of the playfield with 2 squares visible.
-So let's say the bottom position is 0, the top is N, "I" tetronimo will occupy N,..., N-3 squares.
+"I" Tetromino Tetris
+New behaviour:
+- "I" tetromino spawns at the top of the playfield, in the middle column
+- The upper most 2 rows are not visible to the player
+- "I" tetromino cannot rotate jet, but it can move down, left and right
+- When "I" tetromino reaches the bottom it is locked, and a new "I" tetromino spawns
+- When a row is filled of pieces of locked tetrominoes, it gets deleted
+- Game ends when a tetromino cannot spawn without colliding with locked tetronimo pieces
 
 TODO:
-- tetromino spawn position*
-
-- Each Tetronimo has a minimum containing rectangle.
-- Coordinate system will refer to the top left tetronimo square.
-- Tetronimo should tell which squares of the containing rectangle it occupies (useful also when introducing rotation=
-- spawn is influenced by the rotation system
-- there are 2 hidden rows at the top of the playfield
-- given the tetronimo mask (square containing the piece rotations), it spawns in the center and at the top of the 2 hidden rows.
+- Each tetromino has a minimum containing rectangle.
+- Tetromino should tell which squares of the containing rectangle it occupies (useful also when introducing rotation)
+- Given the tetromino mask (square containing the piece rotations), it spawns in the center and at the top of the 2 hidden rows.
+- Tetromino can be moved down, left and right
+- Tetromino cannot move outside the playfield
 
 
 DONE:
+- tetromino spawn position
 - Use typescript
+
+CONSIDERATIONS:
+- Coordinate system will refer to the top left tetromino square.
+- spawn is influenced by the rotation system
+- there are 2 hidden rows at the top of the playfield
