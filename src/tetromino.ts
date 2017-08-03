@@ -1,6 +1,8 @@
 export interface ITetromino {
     width: number ;
     height: number;
+
+    fills(row: number, col: number): boolean;
 }
 
 class I implements ITetromino {
@@ -11,6 +13,10 @@ class I implements ITetromino {
 
     public readonly width = 4;
     public readonly height = 4;
+
+    public fills(row, col) {
+        return row === 2;
+    }
 
 }
 

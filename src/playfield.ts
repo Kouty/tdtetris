@@ -38,4 +38,8 @@ class PlacedTetromino implements IPlacedTetromino {
     get height() {
         return this.tetromino.height;
     }
+
+    public fills(row, col) {
+        return this.tetromino.fills(row, col);
+    }
 }
