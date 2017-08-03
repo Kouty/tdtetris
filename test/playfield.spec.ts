@@ -1,8 +1,8 @@
 import {PlayField} from '../src/playfield';
 
-describe('Playfield', function () {
+describe('Playfield', function() {
 
-    it('should spawn tetrominoes', function () {
+    it('should spawn tetrominoes', function() {
         const NUM_ROWS = 10;
         const playField = new PlayField(NUM_ROWS);
 

@@ -3,7 +3,7 @@ describe('Karma, Jasmine and Typeascript conf', () => {
         expect(tautology()).toBe(true);
     });
 
-    function tautology() : boolean {
+    function tautology(): boolean {
         return true;
     }
 });
