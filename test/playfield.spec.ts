@@ -91,5 +91,15 @@ describe('Playfield', function () {
 
             expect(playField.tetromino.col).toBe(1);
         });
+
+        it('should not move the tetromino outside the bottom bound', function () {
+            const playField = new PlayField(4, 4);
+
+            playField.spawn(testTetromino);
+            playField.tetromino.moveDown();
+            playField.tetromino.moveDown();
+
+            expect(playField.tetromino.row).toBe(2);
+        });
     });
 });

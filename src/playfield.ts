@@ -66,6 +66,9 @@ class PlacedTetromino implements IPlacedTetromino {
 
     public moveDown() {
         this.position.row--;
+        if (this.outsideBottomBound()) {
+            this.position.row++;
+        }
     }
 
     private outsideLeftBound(): boolean {
@@ -80,4 +83,9 @@ class PlacedTetromino implements IPlacedTetromino {
         });
     }
 
+    private outsideBottomBound(): boolean {
+        return this.tetromino.filledSquares().some((square) => {
+            return -square.row + this.position.row < 0;
+        });
+    }
 }
