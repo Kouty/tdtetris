@@ -14,10 +14,11 @@ New behaviour:
 - "I" tetromino cannot rotate jet, but it can move down, left and right
 - When "I" tetromino reaches the bottom it is locked, and a new "I" tetromino spawns
 - When a row is filled of pieces of locked tetrominoes, it gets deleted
-- Game ends when a tetromino cannot spawn without colliding with locked tetronimo pieces
+- Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
 - Tetromino cannot move outside the playfield*
+-- More than fills(row, col) method, it is better to have a filledSquares() method
 
 
 DONE:

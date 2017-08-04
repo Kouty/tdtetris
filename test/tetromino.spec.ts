@@ -13,12 +13,11 @@ describe('Tetromino', function () {
         it('should fill the 3rd row', function () {
             const tetrominoI = Tetrominoes.I.create();
 
-            for (let row = 0; row < 4; row++) {
-                for (let col = 0; col < 4; col++) {
-                    const shouldFill = row === 2;
-                    expect(shouldFill).toBe(tetrominoI.fills(row, col));
-                }
-            }
+            const allIn3rdRow = tetrominoI.filledSquares().every((square) => {
+                return square.col === 2;
+            });
+
+            expect(allIn3rdRow).toBe(true);
         });
     });
 

@@ -1,15 +1,6 @@
 import {ITetromino} from './tetromino';
-
-export interface IPosition {
-    row: number;
-    col: number;
-}
-
-export interface IPlacedTetromino extends IPosition, ITetromino {
-    moveLeft(): void;
-    moveRight(): void;
-    moveDown(): void;
-}
+import {IPosition} from './tetromino';
+import {IPlacedTetromino} from './tetromino';
 
 export class PlayField {
     private placedTetromino: PlacedTetromino;
@@ -55,12 +46,14 @@ class PlacedTetromino implements IPlacedTetromino {
         return this.tetromino.height;
     }
 
-    public fills(row, col) {
-        return this.tetromino.fills(row, col);
+    public filledSquares() {
+        return this.tetromino.filledSquares();
     }
 
     public moveLeft() {
-        this.position.col--;
+        // if (!this.outsideLeftBound()) {
+            this.position.col--;
+        // }
     }
 
     public moveRight() {
@@ -69,5 +62,11 @@ class PlacedTetromino implements IPlacedTetromino {
 
     public moveDown() {
         this.position.row--;
+    }
+
+    private outsideLeftBound() {
+        return this.tetromino.filledSquares().some((square) => {
+            return square.col + this.col < 0;
+        });
     }
 }

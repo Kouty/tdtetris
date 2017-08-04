@@ -2,7 +2,20 @@ export interface ITetromino {
     width: number ;
     height: number;
 
-    fills(row: number, col: number): boolean;
+    filledSquares(): IPosition[];
+}
+
+export interface IPosition {
+    row: number;
+    col: number;
+}
+
+export interface IPlacedTetromino extends IPosition, ITetromino {
+    moveLeft(): void;
+
+    moveRight(): void;
+
+    moveDown(): void;
 }
 
 class I implements ITetromino {
@@ -14,8 +27,8 @@ class I implements ITetromino {
     public readonly width = 4;
     public readonly height = 4;
 
-    public fills(row, col) {
-        return row === 2;
+    public filledSquares() {
+        return [{row: 0, col: 2}, {row: 1, col: 2}, {row: 2, col: 2}, {row: 3, col: 2}];
     }
 
 }
