@@ -20,7 +20,7 @@ describe('Playfield locking ', function () {
         expect(moved).toBe(false);
     });
 
-    xit(' should not move down when overlapping locked cells', function () {
+    it(' should not move down when overlapping locked cells', function () {
         const playField = new PlayField(2, 5);
 
         // |     |
