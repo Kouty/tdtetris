@@ -17,20 +17,13 @@ New behaviour:
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- Tetromino cannot move outside the playfield*
--- More than fills(row, col) method, it is better to have a filledSquares() method
+- When "I" tetromino reaches the bottom it is locked and a new "I" tetromino spawns*
 
 
 DONE:
-- Tetromino can be moved down, left and right
-- Given the tetromino mask (square containing the piece rotations),
-    it spawns in the center and at the top of the playfield
-- Tetromino should tell which squares of the containing rectangle it occupies (useful also when introducing rotation)
-- Each tetromino has a minimum containing rectangle
-- tetromino spawn position
-- Use typescript
+- Tetromino cannot move outside the playfield*
+-- More than fills(row, col) method, it is better to have a filledSquares() method
 
 CONSIDERATIONS:
-- Coordinate system will refer to the top left tetromino square.
 - spawn is influenced by the rotation system
 - there are 2 hidden rows at the top of the playfield

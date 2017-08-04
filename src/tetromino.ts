@@ -15,7 +15,7 @@ export interface IPlacedTetromino extends IPosition, ITetromino {
 
     moveRight(): void;
 
-    moveDown(): void;
+    moveDown(): boolean;
 }
 
 class I implements ITetromino {

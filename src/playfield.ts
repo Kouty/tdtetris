@@ -64,11 +64,15 @@ class PlacedTetromino implements IPlacedTetromino {
         }
     }
 
-    public moveDown() {
+    public moveDown(): boolean {
         this.position.row--;
+        let moved = true;
         if (this.outsideBottomBound()) {
             this.position.row++;
+            moved = false;
         }
+
+        return moved;
     }
 
     private outsideLeftBound(): boolean {
