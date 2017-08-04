@@ -9,18 +9,19 @@ Some concepts:
 
 "I" Tetromino Tetris
 New behaviour:
-- "I" tetromino spawns at the top of the playfield, in the middle column
+- "I" tetromino spawns at the top of the playfield, in the middle column DONE
 - The upper most 2 rows are not visible to the player
-- "I" tetromino cannot rotate jet, but it can move down, left and right
-- When "I" tetromino reaches the bottom it is locked, and a new "I" tetromino spawns
-- When a row is filled of pieces of locked tetrominoes, it gets deleted
+- "I" tetromino cannot rotate jet, but it can move down, left and right DONE
+- When "I" tetromino reaches the bottom it is locked, and a new "I" tetromino spawns DONE
+- When a row is filled of pieces of locked tetrominoes, it gets deleted*
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- Tetromino cannto move over garbage cells (remains of the locked tetrominoes)
+- When a row is filled of pieces of locked tetrominoes, it gets deleted*
 
 
 DONE:
+- Tetromino cannot move over garbage cells (remains of the locked tetrominoes)
 - When "I" tetromino reaches the bottom it is locked and a new "I" tetromino spawns
 - Tetromino cannot move outside the playfield*
 -- More than fills(row, col) method, it is better to have a filledSquares() method
