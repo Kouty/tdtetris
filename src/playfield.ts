@@ -11,7 +11,7 @@ export class PlayField {
     public spawn(tetromino: ITetromino) {
         const row: number = this.numRows - 1;
         const col: number = Math.floor((this.numCols - tetromino.width) / 2);
-        this.placedTetromino = new PlacedTetromino(tetromino, {row, col});
+        this.placedTetromino = new PlacedTetromino(tetromino, {row, col}, this.numCols);
     }
 
     get tetromino(): IPlacedTetromino {
@@ -23,7 +23,7 @@ export class PlayField {
 class PlacedTetromino implements IPlacedTetromino {
     private position: IPosition;
 
-    constructor(private tetromino: ITetromino, position: IPosition) {
+    constructor(private tetromino: ITetromino, position: IPosition, private numCols: number) {
         this.position = {
             col: position.col,
             row: position.row,
@@ -46,7 +46,7 @@ class PlacedTetromino implements IPlacedTetromino {
         return this.tetromino.height;
     }
 
-    public filledSquares() {
+    public filledSquares(): IPosition[] {
         return this.tetromino.filledSquares();
     }
 
@@ -59,15 +59,25 @@ class PlacedTetromino implements IPlacedTetromino {
 
     public moveRight() {
         this.position.col++;
+        if (this.outsideRightBound()) {
+            this.position.col--;
+        }
     }
 
     public moveDown() {
         this.position.row--;
     }
 
-    private outsideLeftBound() {
+    private outsideLeftBound(): boolean {
         return this.tetromino.filledSquares().some((square) => {
             return square.col + this.position.col < 0;
         });
     }
+
+    private outsideRightBound(): boolean {
+        return this.tetromino.filledSquares().some((square) => {
+            return square.col + this.position.col >= this.numCols;
+        });
+    }
+
 }

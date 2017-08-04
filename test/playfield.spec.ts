@@ -81,5 +81,15 @@ describe('Playfield', function () {
             // Min col is -1, since test tetromino fills the area between 1 and 2 squares in the center
             expect(playField.tetromino.col).toBe(-1);
         });
+
+        it('should not move the tetromino outside the right playfield bound', function () {
+            const playField = new PlayField(20, 4);
+
+            playField.spawn(testTetromino);
+            playField.tetromino.moveRight();
+            playField.tetromino.moveRight();
+
+            expect(playField.tetromino.col).toBe(1);
+        });
     });
 });
