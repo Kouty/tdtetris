@@ -56,4 +56,23 @@ describe('Playfield locking ', function () {
         expect(playField.tetromino.col).toBe(1);
     });
 
+    it(' should not move right if it causes overlapping with garbage cells', function () {
+        const playField = new PlayField(2, 3);
+
+        // |   |
+        // |  O|
+        playField.spawn(oneSquareTetromino);
+        playField.tetromino.moveRight();
+        playField.tetromino.moveDown();
+        playField.tetromino.moveDown(); // Tetromino gets locked
+
+        // |   |
+        // | OO|
+        playField.spawn(oneSquareTetromino);
+        playField.tetromino.moveDown();
+        playField.tetromino.moveRight();
+
+        expect(playField.tetromino.col).toBe(1);
+    });
+
 });
