@@ -58,7 +58,6 @@ class GarbageArea {
 
             if (counter === this.numCols) {
                 this.clearRow(row);
-                this.area.splice(row * this.numCols, this.numCols);
                 row--;
             }
         }
@@ -69,6 +68,7 @@ class GarbageArea {
         for (let col = 0; col < this.numCols; col++) {
             this.fill({row, col}, undefined);
         }
+        this.area.splice(row * this.numCols, this.numCols);
     }
 
     private toIndex(position: IPosition): number {
