@@ -4,10 +4,10 @@ import {IPlacedTetromino} from './tetromino';
 
 export class PlayField {
     private placedTetromino: PlacedTetromino;
-    private garbageArea: GarbageArea;
+    private garbageAreaImpl: GarbageArea;
 
     constructor(private numRows: number, private numCols: number) {
-        this.garbageArea = new GarbageArea(this.numCols);
+        this.garbageAreaImpl = new GarbageArea(this.numCols);
     }
 
     public spawn(tetromino: ITetromino) {
@@ -15,13 +15,21 @@ export class PlayField {
         const col: number = Math.floor((this.numCols - tetromino.width) / 2);
         this.placedTetromino = new PlacedTetromino(tetromino, {row, col},
             this.numCols,
-            this.garbageArea);
+            this.garbageAreaImpl);
     }
 
-    get tetromino(): IPlacedTetromino {
+    public get tetromino(): IPlacedTetromino {
         return this.placedTetromino;
     }
 
+    get garbageArea(): IGarbageArea {
+        return this.garbageAreaImpl;
+    }
+
+}
+
+export interface IGarbageArea {
+    filled(position: IPosition): ITetromino;
 }
 
 class GarbageArea {
@@ -32,11 +40,39 @@ class GarbageArea {
     }
 
     public fill(position: IPosition, tetromino: ITetromino): void {
-        this.area[position.row * this.numCols + position.col] = tetromino;
+        this.area[this.toIndex(position)] = tetromino;
     }
 
     public filled(position: IPosition) {
-        return this.area[position.row * this.numCols + position.col];
+        return this.area[this.toIndex(position)];
+    }
+
+    public clearFilledRows(): void {
+        for (let row = 0; row < Math.ceil(this.area.length / this.numCols); row++) {
+            let counter = 0;
+            for (let col = 0; col < this.numCols; col++) {
+                if (this.filled({row, col})) {
+                    counter++;
+                }
+            }
+
+            if (counter === this.numCols) {
+                this.clearRow(row);
+                this.area.splice(row * this.numCols, this.numCols);
+                row--;
+            }
+        }
+
+    }
+
+    private clearRow(row: number) {
+        for (let col = 0; col < this.numCols; col++) {
+            this.fill({row, col}, undefined);
+        }
+    }
+
+    private toIndex(position: IPosition): number {
+        return position.row * this.numCols + position.col;
     }
 }
 
@@ -90,10 +126,7 @@ class PlacedTetromino implements IPlacedTetromino {
     public moveDown(): boolean {
         this.position.row--;
         let moved = true;
-        if (this.garbageAreaContainsTetromino()) {
-            this.position.row++;
-            moved = false;
-        } else if (this.outsideBottomBound()) {
+        if (this.outsideBottomBound() || this.garbageAreaContainsTetromino()) {
             this.position.row++;
             moved = false;
             this.addTetrominoToGarbageArea();
@@ -108,6 +141,8 @@ class PlacedTetromino implements IPlacedTetromino {
                 {row: this.position.row - square.row, col: square.col + this.position.col},
                 this.tetromino);
         });
+
+        this.garbageArea.clearFilledRows();
     }
 
     private garbageAreaContainsTetromino() {
