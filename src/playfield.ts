@@ -74,7 +74,8 @@ class PlacedTetromino implements IPlacedTetromino {
 
     public moveLeft() {
         this.position.col--;
-        if (this.outsideLeftBound()) {
+
+        if (this.outsideLeftBound() || this.garbageAreaContainsTetromino()) {
             this.position.col++;
         }
     }

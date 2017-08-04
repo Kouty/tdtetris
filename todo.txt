@@ -17,10 +17,11 @@ New behaviour:
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- When "I" tetromino reaches the bottom it is locked and a new "I" tetromino spawns*
+- Tetromino cannto move over garbage cells (remains of the locked tetrominoes)
 
 
 DONE:
+- When "I" tetromino reaches the bottom it is locked and a new "I" tetromino spawns
 - Tetromino cannot move outside the playfield*
 -- More than fills(row, col) method, it is better to have a filledSquares() method
 

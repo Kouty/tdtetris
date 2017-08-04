@@ -20,7 +20,7 @@ describe('Playfield locking ', function () {
         expect(moved).toBe(false);
     });
 
-    it(' should not move down when overlapping locked cells', function () {
+    it(' should not move down if it causes overlapping with garbage cells', function () {
         const playField = new PlayField(2, 5);
 
         // |     |
@@ -33,7 +33,27 @@ describe('Playfield locking ', function () {
         // |  O  |
         playField.spawn(oneSquareTetromino);
         const moved = playField.tetromino.moveDown();
+
         expect(moved).toBe(false);
+    });
+
+    it(' should not move left if it causes overlapping with garbage cells', function () {
+        const playField = new PlayField(2, 3);
+
+        // |   |
+        // |O  |
+        playField.spawn(oneSquareTetromino);
+        playField.tetromino.moveLeft();
+        playField.tetromino.moveDown();
+        playField.tetromino.moveDown(); // Tetromino gets locked
+
+        // |   |
+        // |OO |
+        playField.spawn(oneSquareTetromino);
+        playField.tetromino.moveDown();
+        playField.tetromino.moveLeft();
+
+        expect(playField.tetromino.col).toBe(1);
     });
 
 });
