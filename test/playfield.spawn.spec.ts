@@ -54,5 +54,4 @@ describe('Playfield', function () {
         expect(playField.tetromino.row).toBe(18);
     });
 
-
 });
