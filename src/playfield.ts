@@ -51,9 +51,10 @@ class PlacedTetromino implements IPlacedTetromino {
     }
 
     public moveLeft() {
-        // if (!this.outsideLeftBound()) {
-            this.position.col--;
-        // }
+        this.position.col--;
+        if (this.outsideLeftBound()) {
+            this.position.col++;
+        }
     }
 
     public moveRight() {
@@ -66,7 +67,7 @@ class PlacedTetromino implements IPlacedTetromino {
 
     private outsideLeftBound() {
         return this.tetromino.filledSquares().some((square) => {
-            return square.col + this.col < 0;
+            return square.col + this.position.col < 0;
         });
     }
 }

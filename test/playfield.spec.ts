@@ -4,7 +4,7 @@ describe('Playfield', function () {
     let oneSquareTetromino;
 
     beforeEach(function () {
-        oneSquareTetromino = {width: 1, height: 1, fills: () => false};
+        oneSquareTetromino = {width: 1, height: 1, filledSquares: () => [{row: 0, col: 0}]};
     });
 
     it('should spawn a tetromino at the top row and in the middle column, rounding left', function () {
@@ -71,7 +71,7 @@ describe('Playfield', function () {
             };
         });
 
-        xit('should not move the tetromino outside the left playfield edge', function () {
+        it('should not move the tetromino outside the left playfield bound', function () {
             const playField = new PlayField(20, 4);
 
             playField.spawn(testTetromino);
