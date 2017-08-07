@@ -32,15 +32,39 @@ describe('Garbage area', function () {
     });
 
     it('should move down garbage cells, after one or more rows has been cleared', function () {
-        // |O  |
+        // | O |
         // |OOO|
         garbageArea.fill({row: 0, col: 0}, oneSquareTetromino);
         garbageArea.fill({row: 0, col: 1}, oneSquareTetromino);
         garbageArea.fill({row: 0, col: 2}, oneSquareTetromino);
         garbageArea.fill({row: 1, col: 1}, oneSquareTetromino);
+        garbageArea.clearFilledRows();
 
         // |   |
-        // |O  |
-        expect(garbageArea.filled({row: 0, col: 0})).not.toBe(undefined);
+        // | O |
+        expect(garbageArea.filled({row: 0, col: 0})).toBe(undefined);
+        expect(garbageArea.filled({row: 0, col: 1})).not.toBe(undefined);
+        expect(garbageArea.filled({row: 0, col: 0})).toBe(undefined);
     });
+
+    xit('should move down garbage cells according to the cleared rows', function () {
+        // | B |
+        // |OOO|
+        // |A  |
+        // |OOO|
+        garbageArea.fill({row: 0, col: 0}, oneSquareTetromino);
+        garbageArea.fill({row: 0, col: 1}, oneSquareTetromino);
+        garbageArea.fill({row: 0, col: 2}, oneSquareTetromino);
+        garbageArea.fill({row: 1, col: 0}, oneSquareTetromino);
+        garbageArea.fill({row: 2, col: 0}, oneSquareTetromino);
+        garbageArea.fill({row: 2, col: 1}, oneSquareTetromino);
+        garbageArea.fill({row: 2, col: 2}, oneSquareTetromino);
+        garbageArea.fill({row: 3, col: 1}, oneSquareTetromino);
+
+        // |   |
+        // |AB |
+        expect(garbageArea.filled({row: 0, col: 0})).not.toBe(undefined);
+        expect(garbageArea.filled({row: 1, col: 0})).not.toBe(undefined);
+    });
+
 });
