@@ -47,24 +47,34 @@ describe('Garbage area', function () {
         expect(garbageArea.filled({row: 0, col: 0})).toBe(undefined);
     });
 
-    xit('should move down garbage cells according to the cleared rows', function () {
+    it('should use naive clear gravity', function () {
+        const A = {width: 1, height: 1, filledSquares: () => [{row: 0, col: 0}], debug: 'A'};
+        const B = {width: 1, height: 1, filledSquares: () => [{row: 0, col: 0}], debug: 'B'};
+        const C = {
+            debug: 'C',
+            filledSquares: () => [{row: 0, col: 0}, {row: 1, col: 0}, {row: 2, col: 0}],
+            height: 3, width: 1,
+        };
         // | B |
-        // |OOO|
-        // |A  |
-        // |OOO|
+        // |OOC|
+        // |A C|
+        // |OOC|
         garbageArea.fill({row: 0, col: 0}, oneSquareTetromino);
         garbageArea.fill({row: 0, col: 1}, oneSquareTetromino);
-        garbageArea.fill({row: 0, col: 2}, oneSquareTetromino);
-        garbageArea.fill({row: 1, col: 0}, oneSquareTetromino);
+        garbageArea.fill({row: 0, col: 2}, C);
+        garbageArea.fill({row: 1, col: 0}, A);
+        garbageArea.fill({row: 1, col: 2}, C);
         garbageArea.fill({row: 2, col: 0}, oneSquareTetromino);
         garbageArea.fill({row: 2, col: 1}, oneSquareTetromino);
-        garbageArea.fill({row: 2, col: 2}, oneSquareTetromino);
-        garbageArea.fill({row: 3, col: 1}, oneSquareTetromino);
+        garbageArea.fill({row: 2, col: 2}, C);
+        garbageArea.fill({row: 3, col: 1}, B);
+        garbageArea.clearFilledRows();
 
-        // |   |
-        // |AB |
-        expect(garbageArea.filled({row: 0, col: 0})).not.toBe(undefined);
-        expect(garbageArea.filled({row: 1, col: 0})).not.toBe(undefined);
+        // | B |
+        // |A C|
+        expect(garbageArea.filled({row: 0, col: 0})).toBe(A);
+        expect(garbageArea.filled({row: 1, col: 1})).toBe(B);
+        expect(garbageArea.filled({row: 0, col: 2})).toBe(C);
     });
 
 });
