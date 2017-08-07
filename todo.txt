@@ -18,6 +18,8 @@ New behaviour:
 
 TODO:
 - When a row is filled of pieces of locked tetrominoes, it gets deleted*
+-- since to implement garbage collection of tetrominoes cells a GarbageArea has been created, we can move tests of that
+    inside its file.
 
 
 DONE:
