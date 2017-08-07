@@ -1,7 +1,7 @@
 import {ITetromino} from './tetromino';
 import {IPosition} from './tetromino';
 
-export interface IGarbageArea {
+export interface IGarbageAreaReadOnly {
     filled(position: IPosition): ITetromino;
 }
 

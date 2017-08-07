@@ -1,4 +1,4 @@
-import {GarbageArea, IGarbageArea} from './garbageArea';
+import {GarbageArea, IGarbageAreaReadOnly} from './garbageArea';
 import {ITetromino} from './tetromino';
 import {IPosition} from './tetromino';
 import {IPlacedTetromino} from './tetromino';
@@ -23,7 +23,7 @@ export class PlayField {
         return this.placedTetromino;
     }
 
-    get garbageArea(): IGarbageArea {
+    get garbageArea(): IGarbageAreaReadOnly {
         return this.garbageAreaImpl;
     }
 
