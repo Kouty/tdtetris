@@ -2,9 +2,7 @@ import {ITetromino} from './tetromino';
 import {IPosition} from './tetromino';
 
 export interface IGarbageArea {
-    fill(position: IPosition, tetromino: ITetromino): void;
     filled(position: IPosition): ITetromino;
-    clearFilledRows(): void;
 }
 
 export class GarbageArea {
