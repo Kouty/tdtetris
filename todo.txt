@@ -17,15 +17,15 @@ New behaviour:
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- When a row is filled of pieces of locked tetrominoes, it gets deleted*
+- Check that a locked tetromino will fill all its area*
+
+
+DONE:
+- When a row is filled of pieces of locked tetrominoes, it gets deleted
 -- since to implement garbage collection of tetrominoes cells a GarbageArea has been created, we can move tests of that
     inside its file.
 -- There is naive gravity, and sticky gravity, for now we choose naive gravity
     (see http://tetris.wikia.com/wiki/Recursive_gravity)
-- Check that a locked tetromino will fill all its area
-
-
-DONE:
 - Tetromino cannot move over garbage cells (remains of the locked tetrominoes)
 - When "I" tetromino reaches the bottom it is locked and a new "I" tetromino spawns
 - Tetromino cannot move outside the playfield*

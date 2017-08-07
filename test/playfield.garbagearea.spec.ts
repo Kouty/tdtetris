@@ -76,21 +76,30 @@ describe('Playfield locking', function () {
     });
 
     it('should lock a tetromino if it touches a garbage cell', function () {
-        const playField = new PlayField(2, 3);
+        const playField = new PlayField(3, 3);
+        const I = {
+            debug: 'I',
+            filledSquares: () => [{row: 0, col: 0}, {row: 1, col: 0}],
+            height: 2, width: 1,
+        };
 
+        // |   |
         // |   |
         // |O  |
         playField.spawn(oneSquareTetromino);
         playField.tetromino.moveLeft();
         playField.tetromino.moveDown();
         playField.tetromino.moveDown();
+        playField.tetromino.moveDown(); // Locked
 
+        // |I  |
+        // |I  |
         // |O  |
-        // |O  |
-        playField.spawn(oneSquareTetromino);
+        playField.spawn(I);
         playField.tetromino.moveLeft();
         playField.tetromino.moveDown();
 
         expect(playField.garbageArea.filled({row: 1, col: 0})).not.toBe(undefined);
+        expect(playField.garbageArea.filled({row: 2, col: 0})).not.toBe(undefined);
     });
 });
