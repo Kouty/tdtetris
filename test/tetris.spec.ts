@@ -21,7 +21,7 @@ describe('Tetris', function () {
     });
 
     it('should spawn a new tetromino, when current tetromino locks', function () {
-        const controller = new Tetris(1, 3);
+        const tetris = new Tetris(1, 3);
         let counter = 0;
         const tetrominoes = [
             (Object as any).assign({}, oneSquareTetromino),
@@ -31,9 +31,19 @@ describe('Tetris', function () {
         });
         spyOn(PlayField.prototype, 'spawn').and.callThrough();
 
-        controller.start();
-        controller.moveDown();
+        tetris.start();
+        tetris.moveDown();
 
         expect(PlayField.prototype.spawn).toHaveBeenCalledWith(tetrominoes[1]);
+    });
+
+    it('should tell when game is over', function () {
+        const tetris = new Tetris(1, 3);
+        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneSquareTetromino);
+
+        tetris.start();
+        tetris.moveDown();
+
+        expect(tetris.gameOver()).toBe(true);
     });
 });
