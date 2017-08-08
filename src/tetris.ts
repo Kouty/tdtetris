@@ -11,16 +11,18 @@ export class Tetris {
     }
 
     public start(): void {
-        const tetromino = this.generator.next();
-        this.playField.spawn(tetromino);
+        this.spawnNext();
     }
 
     public moveDown() {
         const moved = this.playField.tetromino.moveDown();
 
         if (!moved) {
-            const tetromino = this.generator.next();
-            this.playField.spawn(tetromino);
+            this.spawnNext();
         }
+    }
+
+    private spawnNext() {
+        this.playField.spawn(this.generator.next());
     }
 }
