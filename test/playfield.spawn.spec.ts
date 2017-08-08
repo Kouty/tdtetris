@@ -54,4 +54,21 @@ describe('Playfield', function () {
         expect(playField.tetromino.row).toBe(18);
     });
 
+    it('should return false if a new tetromino cannot spawn', function() {
+        const playField = new PlayField(1, 3);
+
+        playField.spawn(oneSquareTetromino);
+        playField.tetromino.moveDown();
+        const spawned = playField.spawn(oneSquareTetromino);
+
+        expect(spawned).toBe(false);
+    });
+
+    it('should return true if a new tetromino can spawn', function() {
+        const playField = new PlayField(1, 3);
+
+        const spawned = playField.spawn(oneSquareTetromino);
+
+        expect(spawned).toBe(true);
+    });
 });

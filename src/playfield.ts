@@ -17,6 +17,8 @@ export class PlayField {
         this.placedTetromino = new PlacedTetromino(tetromino, {row, col},
             this.numCols,
             this.garbageAreaImpl);
+
+        return !this.placedTetromino.garbageAreaContainsTetromino();
     }
 
     public get tetromino(): IPlacedTetromino {
@@ -88,6 +90,13 @@ class PlacedTetromino implements IPlacedTetromino {
         return moved;
     }
 
+    public garbageAreaContainsTetromino() {
+        return this.tetromino.filledSquares().some((square) => {
+            return this.garbageArea.filled(
+                {row: this.position.row - square.row, col: square.col + this.position.col}) !== undefined;
+        });
+    }
+
     private addTetrominoToGarbageArea() {
         this.tetromino.filledSquares().forEach((square) => {
             this.garbageArea.fill(
@@ -96,13 +105,6 @@ class PlacedTetromino implements IPlacedTetromino {
         });
 
         this.garbageArea.clearFilledRows();
-    }
-
-    private garbageAreaContainsTetromino() {
-        return this.tetromino.filledSquares().some((square) => {
-            return this.garbageArea.filled(
-                {row: this.position.row - square.row, col: square.col + this.position.col}) !== undefined;
-        });
     }
 
     private outsideLeftBound(): boolean {
