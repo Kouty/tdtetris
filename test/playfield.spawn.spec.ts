@@ -54,7 +54,7 @@ describe('Playfield', function () {
         expect(playField.tetromino.row).toBe(18);
     });
 
-    it('should return false if a new tetromino cannot spawn', function() {
+    it('should return false if a new tetromino cannot spawn', function () {
         const playField = new PlayField(1, 3);
 
         playField.spawn(oneSquareTetromino);
@@ -64,7 +64,7 @@ describe('Playfield', function () {
         expect(spawned).toBe(false);
     });
 
-    it('should return true if a new tetromino can spawn', function() {
+    it('should return true if a new tetromino can spawn', function () {
         const playField = new PlayField(1, 3);
 
         const spawned = playField.spawn(oneSquareTetromino);

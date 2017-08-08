@@ -1,4 +1,4 @@
-describe('Karma, Jasmine and Typeascript conf', () => {
+describe('Karma, Jasmine and Typescript conf', () => {
     it('should run this test', () => {
         expect(tautology()).toBe(true);
     });

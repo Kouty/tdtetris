@@ -17,11 +17,12 @@ New behaviour:
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces*
 
 TODO:
-- Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces*
--- Actually there are other optional game over conditions. Let's implement just this one, and note down the other conditions
+- Controller to play a match*
+- Add an MVC framework to render playfield
 
 DONE:
-
+- Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
+-- Actually there are other optional game over conditions. Let's implement just this one, and note down the other conditions
 
 CONSIDERATIONS:
 - spawn is influenced by the rotation system
@@ -32,4 +33,3 @@ CONSIDERATIONS:
 - Other tetrominoes
 - Random tetromino spawn
 - Tetromino preview box
-- Add an MVC framework to render playfield
