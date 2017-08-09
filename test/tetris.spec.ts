@@ -1,5 +1,5 @@
-import {Tetris} from '../src/tetris';
 import {PlayField} from '../src/playfield';
+import {Tetris} from '../src/tetris';
 import {TetrominoGenerator} from '../src/tetrominoGenerator';
 
 describe('Tetris', function () {
@@ -9,12 +9,12 @@ describe('Tetris', function () {
     });
 
     it('should spawn first tetromino on start', function () {
-        const controller = new Tetris(20, 10);
+        const tetris = new Tetris(20, 10);
         const firstTetromino = {};
         spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(firstTetromino);
         spyOn(PlayField.prototype, 'spawn').and.returnValue(firstTetromino);
 
-        controller.start();
+        tetris.start();
 
         expect(TetrominoGenerator.prototype.next).toHaveBeenCalled();
         expect(PlayField.prototype.spawn).toHaveBeenCalledWith(firstTetromino);
