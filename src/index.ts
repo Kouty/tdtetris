@@ -1,13 +1,15 @@
 import Vue from 'vue';
+import {PlayFieldComponent} from './playfield.vue';
 import {Tetris} from './tetris';
 
 const app = new Vue({
     created() {
-        console.log(new Tetris(20, 10));
+        // NO-OP for now
     },
+    components: {'play-field': PlayFieldComponent},
     data: {
-        message: 'Hello Vue!',
+        tetris: new Tetris(20, 10),
     },
     el: '#app',
-    template: '<div>{{message}}</div>',
+    template: '<div><play-field></play-field></div>',
 });
