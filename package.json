@@ -37,5 +37,8 @@
     "typescript": "^2.4.2",
     "webpack": "^3.5.1",
     "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "vue": "^2.4.2"
   }
 }
