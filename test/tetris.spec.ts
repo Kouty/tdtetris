@@ -46,4 +46,5 @@ describe('Tetris', function () {
 
         expect(tetris.gameOver()).toBe(true);
     });
+
 });

@@ -10,11 +10,11 @@ describe('Tetromino', function () {
             expect(tetrominoI.height).toBe(4);
         });
 
-        it('should fill the 3rd row', function () {
+        it('should fill the 2rd row', function () {
             const tetrominoI = Tetrominoes.I.create();
 
             const allIn3rdRow = tetrominoI.filledSquares().every((square) => {
-                return square.col === 2;
+                return square.col === 1;
             });
 
             expect(allIn3rdRow).toBe(true);

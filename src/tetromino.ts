@@ -28,7 +28,7 @@ class I implements ITetromino {
     public readonly height = 4;
 
     public filledSquares() {
-        return [{row: 0, col: 2}, {row: 1, col: 2}, {row: 2, col: 2}, {row: 3, col: 2}];
+        return [{row: 0, col: 1}, {row: 1, col: 1}, {row: 2, col: 1}, {row: 3, col: 1}];
     }
 
 }

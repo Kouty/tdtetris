@@ -1,25 +1,31 @@
 import Vue, {ComponentOptions} from 'vue';
-import {PlayField} from './playfield';
 import './tetris.css';
 
 /* tslint:disable no-trailing-whitespace*/
-const template = `
+const template = `<div>
 <table class="play-field">
   <tbody>
-    <tr v-for="row in playField.numRows">
-      <td v-for="col in playField.numCols">
+    <tr v-for="row in area.numRows">
+      <td v-for="col in area.numCols">
         <div class="cell" :class="{'garbage-cell': garbageCell(row,col), 'tetromino-cell':tetrominoCell(row,col)}">
         </div>
       </td>  
     </tr>
   </tbody>
-</table>
+</table></div>
 `;
 
 /* tslint:enable no-trailing-whitespace*/
 
+export interface IArea {
+    numRows: number;
+    numCols: number;
+    colors: number[];
+
+}
+
 interface IPlayFieldVue extends Vue {
-    playField: PlayField;
+    area: IArea;
 }
 
 const PlayFieldVue = {
@@ -28,18 +34,21 @@ const PlayFieldVue = {
     },
     methods: {
         tetrominoCell(row, col) {
-            row = this.playField.numRows - row - 1;
-            const tetromino = this.playField.tetromino;
-            return tetromino.filledSquares().some((cell) => {
-                return tetromino.row - cell.row === row && cell.col + tetromino.col === col;
-            });
+            row--;
+            col--;
+            const numCols = this.area.numCols;
+            const cell = this.area.colors[numCols * row + col];
+            return cell === 1;
         },
         garbageCell(row, col): boolean {
-            const garbageArea = this.playField.garbageArea;
-            return garbageArea.filled({row, col}) !== undefined;
+            row--;
+            col--;
+            const numCols = this.area.numCols;
+            const cell = this.area.colors[numCols * row + col];
+            return cell === 0;
         },
     },
-    props: ['playField'],
+    props: ['area'],
     template,
 } as ComponentOptions<IPlayFieldVue>;
 
