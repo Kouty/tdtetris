@@ -10,14 +10,16 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".ts", ".js", ".html"],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
   module: {
     loaders: [
-      {test: /\.ts$/, loader: "ts-loader"}
+      {test: /\.ts$/, loader: "ts-loader"},
+      {test: /\.html$/, loader: "html-loader"},
+      {test: /\.css$/, use: ['style-loader', 'css-loader']}
     ]
   },
   plugins: [

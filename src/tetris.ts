@@ -2,8 +2,8 @@ import {PlayField} from './playfield';
 import {TetrominoGenerator} from './tetrominoGenerator';
 
 export class Tetris {
+    public readonly playField: PlayField;
     private generator: TetrominoGenerator;
-    private playField: PlayField;
     private gameOverDetected: boolean;
 
     constructor(numRows: number, numCols: number) {

@@ -7,7 +7,7 @@ export class PlayField {
     private placedTetromino: PlacedTetromino;
     private garbageAreaImpl: GarbageArea;
 
-    constructor(private numRows: number, private numCols: number) {
+    constructor(public readonly numRows: number, public readonly numCols: number) {
         this.garbageAreaImpl = new GarbageArea(this.numCols);
     }
 
