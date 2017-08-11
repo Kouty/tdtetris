@@ -94,9 +94,9 @@ const tetrisVue = {
         restartTimer() {
             clearTimeout(this.timerId);
             const moveDown = () => {
-                this.moveDown();
                 this.area = this.calcArea();
                 this.timerId = setTimeout(moveDown, 1500);
+                this.moveDown();
             };
             this.timerId = setTimeout(moveDown, 1500);
         },
