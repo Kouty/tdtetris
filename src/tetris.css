@@ -2,10 +2,13 @@
   border-collapse: collapse;
 }
 
-.garbage-cell {
+.cell {
   display: inline-block;
   width: 20px;
   height: 20px;
+}
+
+.garbage-cell {
   background-color: grey;
 }
 

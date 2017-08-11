@@ -8,7 +8,9 @@ const template = `
   <tbody>
     <tr v-for="row in playField.numRows">
       <td v-for="col in playField.numCols">
-        <div :class="{'garbage-cell': garbageCell(row,col), 'tetromino-cell':tetrominoCell(row,col)}"></div></td>  
+        <div class="cell" :class="{'garbage-cell': garbageCell(row,col), 'tetromino-cell':tetrominoCell(row,col)}">
+        </div>
+      </td>  
     </tr>
   </tbody>
 </table>
@@ -21,16 +23,16 @@ interface IPlayFieldVue extends Vue {
 }
 
 const PlayFieldVue = {
-    created() {
-    },
     data() {
-        return {
-            message: 'Hello!',
-        };
+        return {};
     },
     methods: {
         tetrominoCell(row, col) {
-            return false;
+            row = this.playField.numRows - row - 1;
+            const tetromino = this.playField.tetromino;
+            return tetromino.filledSquares().some((cell) => {
+                return tetromino.row - cell.row === row && cell.col + tetromino.col === col;
+            });
         },
         garbageCell(row, col): boolean {
             return Math.random() >= 0.5;

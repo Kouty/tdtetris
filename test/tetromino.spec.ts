@@ -19,6 +19,7 @@ describe('Tetromino', function () {
 
             expect(allIn3rdRow).toBe(true);
         });
+
     });
 
 });

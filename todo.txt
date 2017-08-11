@@ -23,6 +23,8 @@ DONE:
 - Tetris object, that will be used by a controller to let the user play tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 -- Actually there are other optional game over conditions. Let's implement just this one, and note down the other conditions
+-- IPlacedTetromino should consider its coordinates when returning filled cells
+-- IPlacedTetromino should have a convenient method to tell if a cell is filled
 
 CONSIDERATIONS:
 - spawn is influenced by the rotation system

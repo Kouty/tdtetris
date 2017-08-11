@@ -16,6 +16,6 @@ const tetrisVue = {
     },
     el: '#app',
     template: '<div><play-field :play-field="tetris.playField"></play-field></div>',
-} as ComponentOptions<ITetrisVue>
+} as ComponentOptions<ITetrisVue>;
 
 const app = new Vue(tetrisVue);
