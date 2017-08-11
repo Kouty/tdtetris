@@ -1,8 +1,7 @@
-import {ITetromino} from './tetromino';
+import {ITetromino, Tetrominoes} from './tetromino';
 
 export class TetrominoGenerator {
     public next(): ITetromino {
-        // TO be implemented
-        return null;
+        return Tetrominoes.I.create();
     }
 }
