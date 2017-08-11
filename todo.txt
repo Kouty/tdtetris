@@ -18,6 +18,7 @@ New behaviour:
 
 TODO:
 - IPlacedTetromino should consider its coordinates when returning filled cells*
+- Don't use square word, use cell instead*
 
 - Index.ts needs refactor, long pieces of code are not under test
 - IPlacedTetromino should have a convenient method to tell if a cell is filled

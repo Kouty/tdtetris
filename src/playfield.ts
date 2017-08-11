@@ -103,30 +103,28 @@ class PlacedTetromino implements IPlacedTetromino {
     }
 
     private addTetrominoToGarbageArea() {
-        this.tetromino.filledSquares().forEach((square) => {
-            this.garbageArea.fill(
-                {row: this.position.row - square.row, col: square.col + this.position.col},
-                this.tetromino);
+        this.filledSquaresInField().forEach((square) => {
+            this.garbageArea.fill(square, this.tetromino);
         });
 
         this.garbageArea.clearFilledRows();
     }
 
     private outsideLeftBound(): boolean {
-        return this.tetromino.filledSquares().some((square) => {
-            return square.col + this.position.col < 0;
+        return this.filledSquaresInField().some((square) => {
+            return square.col < 0;
         });
     }
 
     private outsideRightBound(): boolean {
-        return this.tetromino.filledSquares().some((square) => {
-            return square.col + this.position.col >= this.numCols;
+        return this.filledSquaresInField().some((square) => {
+            return square.col >= this.numCols;
         });
     }
 
     private outsideBottomBound(): boolean {
-        return this.tetromino.filledSquares().some((square) => {
-            return -square.row + this.position.row < 0;
+        return this.filledSquaresInField().some((square) => {
+            return square.row < 0;
         });
     }
 }
