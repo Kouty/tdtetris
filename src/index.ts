@@ -5,8 +5,17 @@ import {Tetris} from './tetris';
 interface ITetrisVue extends Vue {
     tetris: Tetris;
     area: IArea;
+    timerId: any;
 
     calcArea(): IArea;
+
+    onRight(): void;
+
+    onLeft(): void;
+
+    onDown(): void;
+
+    restartTimer(): void;
 }
 
 const keyMap = {
@@ -20,11 +29,13 @@ const tetrisVue = {
     created() {
         this.tetris.start();
         this.area = this.calcArea();
+        this.restartTimer();
     },
     components: {'play-field': PlayFieldVue},
     data: {
         area: null,
         tetris: new Tetris(20, 10),
+        timerId: null,
     },
     el: '#app',
     methods: {
@@ -68,10 +79,20 @@ const tetrisVue = {
             this.tetris.moveLeft();
         },
         onDown() {
+            this.restartTimer();
             this.tetris.moveDown();
             if (this.tetris.gameOver()) {
                 alert('Game over!');
             }
+        },
+        restartTimer() {
+            clearTimeout(this.timerId);
+            const moveDown = () => {
+                this.onDown();
+                this.area = this.calcArea();
+                setTimeout(moveDown, 1500);
+            };
+            this.timerId = setTimeout(moveDown, 1500);
         },
     },
     template: '<div tabindex="1" autofocus @keydown="onKeyDown($event)">' +
