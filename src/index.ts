@@ -15,6 +15,8 @@ interface ITetrisVue extends Vue {
 
     onDown(): void;
 
+    moveDown(): void;
+
     restartTimer(): void;
 }
 
@@ -80,17 +82,21 @@ const tetrisVue = {
         },
         onDown() {
             this.restartTimer();
+            this.moveDown();
+        },
+        moveDown() {
             this.tetris.moveDown();
             if (this.tetris.gameOver()) {
+                clearTimeout(this.timerId);
                 alert('Game over!');
             }
         },
         restartTimer() {
             clearTimeout(this.timerId);
             const moveDown = () => {
-                this.onDown();
+                this.moveDown();
                 this.area = this.calcArea();
-                setTimeout(moveDown, 1500);
+                this.timerId = setTimeout(moveDown, 1500);
             };
             this.timerId = setTimeout(moveDown, 1500);
         },
