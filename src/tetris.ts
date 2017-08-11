@@ -24,6 +24,14 @@ export class Tetris {
         }
     }
 
+    public moveRight(): void {
+        this.playField.tetromino.moveRight();
+    }
+
+    public moveLeft(): void {
+        this.playField.tetromino.moveLeft();
+    }
+
     public gameOver(): boolean {
         return this.gameOverDetected;
     }

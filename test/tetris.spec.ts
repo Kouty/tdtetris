@@ -47,4 +47,25 @@ describe('Tetris', function () {
         expect(tetris.gameOver()).toBe(true);
     });
 
+    it('should move right', function () {
+        const tetris = new Tetris(10, 3);
+        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneSquareTetromino);
+
+        tetris.start();
+        spyOn(tetris.playField.tetromino, 'moveRight');
+        tetris.moveRight();
+
+        expect(tetris.playField.tetromino.moveRight).toHaveBeenCalled();
+    });
+
+    it('should move left', function () {
+        const tetris = new Tetris(10, 3);
+        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneSquareTetromino);
+
+        tetris.start();
+        spyOn(tetris.playField.tetromino, 'moveLeft');
+        tetris.moveLeft();
+
+        expect(tetris.playField.tetromino.moveLeft).toHaveBeenCalled();
+    });
 });
