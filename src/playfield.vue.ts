@@ -35,7 +35,8 @@ const PlayFieldVue = {
             });
         },
         garbageCell(row, col): boolean {
-            return Math.random() >= 0.5;
+            const garbageArea = this.playField.garbageArea;
+            return garbageArea.filled({row, col}) !== undefined;
         },
     },
     props: ['playField'],
