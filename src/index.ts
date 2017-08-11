@@ -56,16 +56,16 @@ const tetrisVue = {
                 numRows: this.tetris.playField.numRows,
             };
         },
-        onKeyUp(evt) {
+        onKeyDown(evt) {
             const key = evt.which || evt.keyCode;
             (this[keyMap[key]] || NULL_FUNCT)();
             this.area = this.calcArea();
         },
         onRight() {
-            console.log('onRight');
+            this.tetris.moveRight();
         },
         onLeft() {
-            console.log('onLeft');
+            this.tetris.moveLeft();
         },
         onDown() {
             this.tetris.moveDown();
@@ -74,7 +74,7 @@ const tetrisVue = {
             }
         },
     },
-    template: '<div tabindex="1" autofocus @keyup="onKeyUp($event)">' +
+    template: '<div tabindex="1" autofocus @keydown="onKeyDown($event)">' +
     '<play-field :area="area"></play-field>' +
     '</div>',
 } as ComponentOptions<ITetrisVue>;
