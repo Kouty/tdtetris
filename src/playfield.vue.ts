@@ -4,10 +4,11 @@ import './tetris.css';
 
 /* tslint:disable no-trailing-whitespace*/
 const template = `
-<table>
+<table class="play-field">
   <tbody>
     <tr v-for="row in playField.numRows">
-      <td v-for="col in playField.numCols"><div :class="{garbageCell: garbageCellFilled(row,col)}"></div></td>  
+      <td v-for="col in playField.numCols">
+        <div :class="{'garbage-cell': garbageCell(row,col), 'tetromino-cell':tetrominoCell(row,col)}"></div></td>  
     </tr>
   </tbody>
 </table>
@@ -16,15 +17,11 @@ const template = `
 /* tslint:enable no-trailing-whitespace*/
 
 interface IPlayFieldVue extends Vue {
-    message: string;
     playField: PlayField;
-
-    onClick (): void;
 }
 
 const PlayFieldVue = {
     created() {
-        console.log(this.playField);
     },
     data() {
         return {
@@ -32,10 +29,10 @@ const PlayFieldVue = {
         };
     },
     methods: {
-        garbageCellClass(row, col) {
-            // AAA
+        tetrominoCell(row, col) {
+            return false;
         },
-        garbageCellFilled(row, col): boolean {
+        garbageCell(row, col): boolean {
             return Math.random() >= 0.5;
         },
     },

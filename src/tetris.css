@@ -1,6 +1,14 @@
-.garbageCell {
+.play-field {
+  border-collapse: collapse;
+}
+
+.garbage-cell {
   display: inline-block;
   width: 20px;
   height: 20px;
   background-color: grey;
+}
+
+.tetromino-cell {
+  background-color: red;
 }

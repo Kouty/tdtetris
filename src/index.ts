@@ -1,10 +1,14 @@
-import Vue from 'vue';
+import Vue, {ComponentOptions} from 'vue';
 import {PlayFieldVue} from './playfield.vue';
 import {Tetris} from './tetris';
 
-const app = new Vue({
+interface ITetrisVue extends Vue {
+    tetris: Tetris;
+}
+
+const tetrisVue = {
     created() {
-        // NO-OP for now
+        this.tetris.start();
     },
     components: {'play-field': PlayFieldVue},
     data: {
@@ -12,4 +16,6 @@ const app = new Vue({
     },
     el: '#app',
     template: '<div><play-field :play-field="tetris.playField"></play-field></div>',
-});
+} as ComponentOptions<ITetrisVue>
+
+const app = new Vue(tetrisVue);
