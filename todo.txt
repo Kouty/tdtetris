@@ -17,8 +17,9 @@ New behaviour:
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
+- IPlacedTetromino should consider its coordinates when returning filled cells*
+
 - Index.ts needs refactor, long pieces of code are not under test
-- IPlacedTetromino should consider its coordinates when returning filled cells
 - IPlacedTetromino should have a convenient method to tell if a cell is filled
 - Add other tetrominoes
 - Add rotation system

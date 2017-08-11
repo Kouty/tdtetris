@@ -63,6 +63,12 @@ class PlacedTetromino implements IPlacedTetromino {
         return this.tetromino.filledSquares();
     }
 
+    public filledSquaresInField(): IPosition[] {
+        return this.tetromino.filledSquares().map((cell) => {
+            return {row: this.position.row - cell.row, col: cell.col + this.position.col};
+        });
+    }
+
     public moveLeft() {
         this.position.col--;
 
@@ -91,9 +97,8 @@ class PlacedTetromino implements IPlacedTetromino {
     }
 
     public garbageAreaContainsTetromino() {
-        return this.tetromino.filledSquares().some((square) => {
-            return this.garbageArea.filled(
-                {row: this.position.row - square.row, col: square.col + this.position.col}) !== undefined;
+        return this.filledSquaresInField().some((square) => {
+            return this.garbageArea.filled(square) !== undefined;
         });
     }
 

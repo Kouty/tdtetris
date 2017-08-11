@@ -16,6 +16,8 @@ export interface IPlacedTetromino extends IPosition, ITetromino {
     moveRight(): void;
 
     moveDown(): boolean;
+
+    filledSquaresInField(): IPosition[];
 }
 
 class I implements ITetromino {
@@ -30,7 +32,6 @@ class I implements ITetromino {
     public filledSquares() {
         return [{row: 0, col: 1}, {row: 1, col: 1}, {row: 2, col: 1}, {row: 3, col: 1}];
     }
-
 }
 
 const Tetrominoes = {
