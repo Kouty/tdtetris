@@ -1,5 +1,7 @@
+import {IGarbageAreaReadOnly} from '../src/garbageArea';
 import {PlayField} from '../src/playfield';
 import {Tetris} from '../src/tetris';
+import {IPlacedTetromino, IPosition} from '../src/tetromino';
 import {TetrominoGenerator} from '../src/tetrominoGenerator';
 
 describe('Tetris', function () {
@@ -67,5 +69,48 @@ describe('Tetris', function () {
         tetris.moveLeft();
 
         expect(tetris.playField.tetromino.moveLeft).toHaveBeenCalled();
+    });
+
+    it('should return the PlayField view model', function () {
+        const garbageTetromino = oneCellTetromino;
+        const garbageArea: IGarbageAreaReadOnly = {
+            filled({row, col}) {
+                if (row === 0 && col === 0) {
+                    return garbageTetromino;
+                }
+                return undefined;
+            },
+        };
+        const nullLambda = () => null;
+        const tetromino: IPlacedTetromino = {
+            col: 1,
+            height: 1,
+            moveDown: nullLambda,
+            moveLeft: nullLambda,
+            moveRight: nullLambda,
+            row: 1,
+            width: 1,
+            filledCells(): IPosition[] {
+                return [{row: 1, col: 1}];
+            },
+        };
+        const playFieldMock = {
+            garbageArea,
+            numCols: 3,
+            numRows: 2,
+            tetromino,
+        } as PlayField;
+
+        const model = Tetris.playFieldModel(playFieldMock);
+
+        expect(model.numCols).toBe(playFieldMock.numCols);
+        expect(model.numRows).toBe(playFieldMock.numRows);
+
+        // | T |
+        // |g  |
+        model.cells.length = 6; // Changing the size to be exactly 2 rows
+        expect(model.cells).toEqual([
+            undefined, tetromino, undefined,
+            garbageTetromino, undefined, undefined]);
     });
 });

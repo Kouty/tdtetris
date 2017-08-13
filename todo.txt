@@ -7,10 +7,9 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- Don't use square word, use cell instead*
-
-- Index.ts needs refactor, long pieces of code are not under test
+- Index.ts needs refactor, long pieces of code are not under test*
 -- IArea could be computed by tetris class (or playfield), and put under tests.
+
 - IPlacedTetromino should have a convenient method to tell if a cell is filled
 - Add other tetrominoes
 - Add rotation system
@@ -18,6 +17,7 @@ TODO:
 - Garbage area should use tetromino color, instead of grey
 
 DONE:
+- Don't use square word, use cell instead
 - IPlacedTetromino should consider its coordinates when returning filled cells
 - Add timed down movement
 
