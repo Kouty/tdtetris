@@ -57,10 +57,9 @@ const tetrisVue = {
                 }
             }
 
-            tetromino.filledSquares().forEach((cell) => {
-                const row = numRows - 1 - (tetromino.row - cell.row);
-                const col = tetromino.col + cell.col;
-                colors[row * numCols + col] = 1;
+            tetromino.filledSquaresInField().forEach((cell) => {
+                const row = numRows - 1 - cell.row;
+                colors[row * numCols + cell.col] = 1;
             });
 
             return {
