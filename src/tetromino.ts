@@ -17,7 +17,11 @@ export interface IPlacedTetromino extends IPosition, ITetromino {
 
     moveDown(): boolean;
 
-    filledSquaresInField(): IPosition[];
+    /**
+     * Overrides ITetromino filledSquares to consider its own position
+     * @returns {IPosition[]}
+     */
+    filledSquares(): IPosition[];
 }
 
 class I implements ITetromino {

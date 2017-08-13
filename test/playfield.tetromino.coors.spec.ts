@@ -12,7 +12,7 @@ describe('Playfield placed tetromino', function () {
         const playField = new PlayField(NUM_ROWS, 5);
 
         playField.spawn(oneSquareTetromino);
-        const cell = playField.tetromino.filledSquaresInField()[0];
+        const cell = playField.tetromino.filledSquares()[0];
 
         expect(cell.row).toBe(NUM_ROWS - 1);
         expect(cell.col).toBe(2);
