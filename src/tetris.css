@@ -1,14 +1,18 @@
 .play-field {
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
 
 .cell {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background-color: #E8E8EE;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #E8E8EE;
 }
 
-.i-tetromino {
-  background-color: red;
+.I {
+    background-color: red;
+}
+
+.O {
+    background-color: blue;
 }
