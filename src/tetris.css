@@ -9,10 +9,6 @@
   background-color: #E8E8EE;
 }
 
-.garbage-cell {
-  background-color: grey;
-}
-
-.tetromino-cell {
+.i-tetromino {
   background-color: red;
 }

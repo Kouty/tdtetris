@@ -9,7 +9,8 @@ const template = `<div>
   <tbody>
     <tr v-for="row in area.numRows">
       <td v-for="col in area.numCols">
-        <div class="cell" :class="{'garbage-cell': garbageCell(row,col), 'tetromino-cell':tetrominoCell(row,col)}">
+        <div class="cell"
+          :class="{'i-tetromino':iCell(row,col)}">
         </div>
       </td>  
     </tr>
@@ -21,6 +22,12 @@ const template = `<div>
 
 interface IPlayFieldVue extends Vue {
     area: IPlayFieldModel;
+
+    iCell(row: number, col: number): boolean;
+
+    tetrominoCell(row: number, col: number, type: TetrominoType): boolean;
+
+    garbageCell(row: number, col: number, type: TetrominoType): boolean;
 }
 
 const PlayFieldVue = {
@@ -28,19 +35,23 @@ const PlayFieldVue = {
         return {};
     },
     methods: {
-        tetrominoCell(row, col) {
-            row--;
-            col--;
-            const numCols = this.area.numCols;
-            const cell = this.area.cells[numCols * row + col];
-            return cell && cell.type === TetrominoType.I;
+        iCell(row, col) {
+            return this.tetrominoCell(row, col, TetrominoType.I)
+                || this.garbageCell(row, col, TetrominoType.I);
         },
-        garbageCell(row, col): boolean {
+        tetrominoCell(row, col, type) {
             row--;
             col--;
             const numCols = this.area.numCols;
             const cell = this.area.cells[numCols * row + col];
-            return cell && cell.type === TetrominoType.I;
+            return cell !== undefined && cell.type === type;
+        },
+        garbageCell(row, col, type): boolean {
+            row--;
+            col--;
+            const numCols = this.area.numCols;
+            const cell = this.area.cells[numCols * row + col];
+            return cell !== undefined && cell.type === type;
         },
     },
     props: ['area'],
