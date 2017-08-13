@@ -4,7 +4,7 @@ describe('Playfield locking', function () {
     let oneSquareTetromino;
 
     beforeEach(function () {
-        oneSquareTetromino = {width: 1, height: 1, filledSquares: () => [{row: 0, col: 0}]};
+        oneSquareTetromino = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}]};
     });
 
     it('should return false when tetromino has not been moved down', function () {
@@ -79,7 +79,7 @@ describe('Playfield locking', function () {
         const playField = new PlayField(3, 3);
         const I = {
             debug: 'I',
-            filledSquares: () => [{row: 0, col: 0}, {row: 1, col: 0}],
+            filledCells: () => [{row: 0, col: 0}, {row: 1, col: 0}],
             height: 2, width: 1,
         };
 

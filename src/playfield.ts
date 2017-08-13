@@ -59,8 +59,8 @@ class PlacedTetromino implements IPlacedTetromino {
         return this.tetromino.height;
     }
 
-    public filledSquares(): IPosition[] {
-        return this.tetromino.filledSquares().map((cell) => {
+    public filledCells(): IPosition[] {
+        return this.tetromino.filledCells().map((cell) => {
             return {row: this.position.row - cell.row, col: cell.col + this.position.col};
         });
     }
@@ -93,13 +93,13 @@ class PlacedTetromino implements IPlacedTetromino {
     }
 
     public garbageAreaContainsTetromino() {
-        return this.filledSquares().some((square) => {
+        return this.filledCells().some((square) => {
             return this.garbageArea.filled(square) !== undefined;
         });
     }
 
     private addTetrominoToGarbageArea() {
-        this.filledSquares().forEach((square) => {
+        this.filledCells().forEach((square) => {
             this.garbageArea.fill(square, this.tetromino);
         });
 
@@ -107,19 +107,19 @@ class PlacedTetromino implements IPlacedTetromino {
     }
 
     private outsideLeftBound(): boolean {
-        return this.filledSquares().some((square) => {
+        return this.filledCells().some((square) => {
             return square.col < 0;
         });
     }
 
     private outsideRightBound(): boolean {
-        return this.filledSquares().some((square) => {
+        return this.filledCells().some((square) => {
             return square.col >= this.numCols;
         });
     }
 
     private outsideBottomBound(): boolean {
-        return this.filledSquares().some((square) => {
+        return this.filledCells().some((square) => {
             return square.row < 0;
         });
     }

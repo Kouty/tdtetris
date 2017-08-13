@@ -5,7 +5,7 @@ import {TetrominoGenerator} from '../src/tetrominoGenerator';
 describe('Tetris', function () {
     let oneSquareTetromino;
     beforeEach(function () {
-        oneSquareTetromino = {width: 1, height: 1, filledSquares: () => [{row: 0, col: 0}]};
+        oneSquareTetromino = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}]};
     });
 
     it('should spawn first tetromino on start', function () {

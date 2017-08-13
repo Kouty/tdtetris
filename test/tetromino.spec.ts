@@ -13,7 +13,7 @@ describe('Tetromino', function () {
         it('should fill the 2rd row', function () {
             const tetrominoI = Tetrominoes.I.create();
 
-            const allIn3rdRow = tetrominoI.filledSquares().every((square) => {
+            const allIn3rdRow = tetrominoI.filledCells().every((square) => {
                 return square.col === 1;
             });
 

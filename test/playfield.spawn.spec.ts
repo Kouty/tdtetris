@@ -4,7 +4,7 @@ describe('Playfield', function () {
     let oneSquareTetromino;
 
     beforeEach(function () {
-        oneSquareTetromino = {width: 1, height: 1, filledSquares: () => [{row: 0, col: 0}]};
+        oneSquareTetromino = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}]};
     });
 
     it('should spawn a tetromino at the top row and in the middle column, rounding left', function () {
