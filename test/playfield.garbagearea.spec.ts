@@ -1,17 +1,17 @@
 import {PlayField} from '../src/playfield';
 
 describe('Playfield locking', function () {
-    let oneSquareTetromino;
+    let oneCellTetromino;
 
     beforeEach(function () {
-        oneSquareTetromino = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}]};
+        oneCellTetromino = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}]};
     });
 
     it('should return false when tetromino has not been moved down', function () {
         const playField = new PlayField(2, 5);
         let moved;
 
-        playField.spawn(oneSquareTetromino);
+        playField.spawn(oneCellTetromino);
 
         moved = playField.tetromino.moveDown();
         expect(moved).toBe(true);
@@ -25,13 +25,13 @@ describe('Playfield locking', function () {
 
         // |     |
         // |  O  |
-        playField.spawn(oneSquareTetromino);
+        playField.spawn(oneCellTetromino);
         playField.tetromino.moveDown();
         playField.tetromino.moveDown(); // Tetromino gets locked
 
         // |  O  |
         // |  O  |
-        playField.spawn(oneSquareTetromino);
+        playField.spawn(oneCellTetromino);
         const moved = playField.tetromino.moveDown();
 
         expect(moved).toBe(false);
@@ -42,14 +42,14 @@ describe('Playfield locking', function () {
 
         // |   |
         // |O  |
-        playField.spawn(oneSquareTetromino);
+        playField.spawn(oneCellTetromino);
         playField.tetromino.moveLeft();
         playField.tetromino.moveDown();
         playField.tetromino.moveDown(); // Tetromino gets locked
 
         // |   |
         // |OO |
-        playField.spawn(oneSquareTetromino);
+        playField.spawn(oneCellTetromino);
         playField.tetromino.moveDown();
         playField.tetromino.moveLeft();
 
@@ -61,14 +61,14 @@ describe('Playfield locking', function () {
 
         // |   |
         // |  O|
-        playField.spawn(oneSquareTetromino);
+        playField.spawn(oneCellTetromino);
         playField.tetromino.moveRight();
         playField.tetromino.moveDown();
         playField.tetromino.moveDown(); // Tetromino gets locked
 
         // |   |
         // | OO|
-        playField.spawn(oneSquareTetromino);
+        playField.spawn(oneCellTetromino);
         playField.tetromino.moveDown();
         playField.tetromino.moveRight();
 
@@ -86,7 +86,7 @@ describe('Playfield locking', function () {
         // |   |
         // |   |
         // |O  |
-        playField.spawn(oneSquareTetromino);
+        playField.spawn(oneCellTetromino);
         playField.tetromino.moveLeft();
         playField.tetromino.moveDown();
         playField.tetromino.moveDown();

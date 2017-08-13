@@ -1,11 +1,11 @@
 import {GarbageArea} from '../src/garbageArea';
 
 describe('Garbage area', function () {
-    let oneSquareTetromino;
+    let oneCellTetromino;
     let garbageArea;
 
     beforeEach(function () {
-        oneSquareTetromino = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}]};
+        oneCellTetromino = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}]};
         const NUM_COLS = 3;
         garbageArea = new GarbageArea(NUM_COLS);
     });
@@ -13,9 +13,9 @@ describe('Garbage area', function () {
     it('should clear out rows completely filled with garbage cells', function () {
         // |   |
         // |OOO|
-        garbageArea.fill({row: 0, col: 0}, oneSquareTetromino);
-        garbageArea.fill({row: 0, col: 1}, oneSquareTetromino);
-        garbageArea.fill({row: 0, col: 2}, oneSquareTetromino);
+        garbageArea.fill({row: 0, col: 0}, oneCellTetromino);
+        garbageArea.fill({row: 0, col: 1}, oneCellTetromino);
+        garbageArea.fill({row: 0, col: 2}, oneCellTetromino);
         garbageArea.clearFilledRows();
 
         expect(garbageArea.filled({row: 0, col: 1})).toBe(undefined);
@@ -24,9 +24,9 @@ describe('Garbage area', function () {
     it('should NOT clear out rows completely filled with garbage cells', function () {
         // |   |
         // |OOO|
-        garbageArea.fill({row: 0, col: 0}, oneSquareTetromino);
-        garbageArea.fill({row: 0, col: 1}, oneSquareTetromino);
-        garbageArea.fill({row: 0, col: 2}, oneSquareTetromino);
+        garbageArea.fill({row: 0, col: 0}, oneCellTetromino);
+        garbageArea.fill({row: 0, col: 1}, oneCellTetromino);
+        garbageArea.fill({row: 0, col: 2}, oneCellTetromino);
 
         expect(garbageArea.filled({row: 0, col: 1})).not.toBe(undefined);
     });
@@ -34,10 +34,10 @@ describe('Garbage area', function () {
     it('should move down garbage cells, after one or more rows has been cleared', function () {
         // | O |
         // |OOO|
-        garbageArea.fill({row: 0, col: 0}, oneSquareTetromino);
-        garbageArea.fill({row: 0, col: 1}, oneSquareTetromino);
-        garbageArea.fill({row: 0, col: 2}, oneSquareTetromino);
-        garbageArea.fill({row: 1, col: 1}, oneSquareTetromino);
+        garbageArea.fill({row: 0, col: 0}, oneCellTetromino);
+        garbageArea.fill({row: 0, col: 1}, oneCellTetromino);
+        garbageArea.fill({row: 0, col: 2}, oneCellTetromino);
+        garbageArea.fill({row: 1, col: 1}, oneCellTetromino);
         garbageArea.clearFilledRows();
 
         // |   |
@@ -59,13 +59,13 @@ describe('Garbage area', function () {
         // |OOC|
         // |A C|
         // |OOC|
-        garbageArea.fill({row: 0, col: 0}, oneSquareTetromino);
-        garbageArea.fill({row: 0, col: 1}, oneSquareTetromino);
+        garbageArea.fill({row: 0, col: 0}, oneCellTetromino);
+        garbageArea.fill({row: 0, col: 1}, oneCellTetromino);
         garbageArea.fill({row: 0, col: 2}, C);
         garbageArea.fill({row: 1, col: 0}, A);
         garbageArea.fill({row: 1, col: 2}, C);
-        garbageArea.fill({row: 2, col: 0}, oneSquareTetromino);
-        garbageArea.fill({row: 2, col: 1}, oneSquareTetromino);
+        garbageArea.fill({row: 2, col: 0}, oneCellTetromino);
+        garbageArea.fill({row: 2, col: 1}, oneCellTetromino);
         garbageArea.fill({row: 2, col: 2}, C);
         garbageArea.fill({row: 3, col: 1}, B);
         garbageArea.clearFilledRows();

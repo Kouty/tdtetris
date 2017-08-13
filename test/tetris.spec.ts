@@ -3,9 +3,9 @@ import {Tetris} from '../src/tetris';
 import {TetrominoGenerator} from '../src/tetrominoGenerator';
 
 describe('Tetris', function () {
-    let oneSquareTetromino;
+    let oneCellTetromino;
     beforeEach(function () {
-        oneSquareTetromino = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}]};
+        oneCellTetromino = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}]};
     });
 
     it('should spawn first tetromino on start', function () {
@@ -24,8 +24,8 @@ describe('Tetris', function () {
         const tetris = new Tetris(1, 3);
         let counter = 0;
         const tetrominoes = [
-            (Object as any).assign({}, oneSquareTetromino),
-            (Object as any).assign({}, oneSquareTetromino)];
+            (Object as any).assign({}, oneCellTetromino),
+            (Object as any).assign({}, oneCellTetromino)];
         spyOn(TetrominoGenerator.prototype, 'next').and.callFake(function () {
             return tetrominoes[counter++];
         });
@@ -39,7 +39,7 @@ describe('Tetris', function () {
 
     it('should tell when game is over', function () {
         const tetris = new Tetris(1, 3);
-        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneSquareTetromino);
+        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneCellTetromino);
 
         tetris.start();
         tetris.moveDown();
@@ -49,7 +49,7 @@ describe('Tetris', function () {
 
     it('should move right', function () {
         const tetris = new Tetris(10, 3);
-        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneSquareTetromino);
+        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneCellTetromino);
 
         tetris.start();
         spyOn(tetris.playField.tetromino, 'moveRight');
@@ -60,7 +60,7 @@ describe('Tetris', function () {
 
     it('should move left', function () {
         const tetris = new Tetris(10, 3);
-        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneSquareTetromino);
+        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneCellTetromino);
 
         tetris.start();
         spyOn(tetris.playField.tetromino, 'moveLeft');

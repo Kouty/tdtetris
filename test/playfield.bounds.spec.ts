@@ -24,7 +24,7 @@ describe('Playfield bounds', function () {
         playField.tetromino.moveLeft();
         playField.tetromino.moveLeft();
 
-        // Min col is -1, since test tetromino fills the area between 1 and 2 squares in the center
+        // Min col is -1, since test tetromino fills the area between 1 and 2 cells in the center
         expect(playField.tetromino.col).toBe(-1);
     });
 
