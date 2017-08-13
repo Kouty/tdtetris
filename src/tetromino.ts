@@ -1,6 +1,11 @@
+export enum TetrominoType {
+    I,
+}
+
 export interface ITetromino {
-    width: number ;
+    width: number;
     height: number;
+    type: TetrominoType;
 
     filledCells(): IPosition[];
 }
@@ -11,6 +16,7 @@ export interface IPosition {
 }
 
 export interface IPlacedTetromino extends IPosition, ITetromino {
+
     moveLeft(): void;
 
     moveRight(): void;
@@ -32,6 +38,7 @@ class I implements ITetromino {
 
     public readonly width = 4;
     public readonly height = 4;
+    public readonly type = TetrominoType.I;
 
     public filledCells() {
         return [{row: 0, col: 1}, {row: 1, col: 1}, {row: 2, col: 1}, {row: 3, col: 1}];

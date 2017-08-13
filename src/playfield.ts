@@ -59,6 +59,10 @@ class PlacedTetromino implements IPlacedTetromino {
         return this.tetromino.height;
     }
 
+    get type() {
+        return this.tetromino.type;
+    }
+
     public filledCells(): IPosition[] {
         return this.tetromino.filledCells().map((cell) => {
             return {row: this.position.row - cell.row, col: cell.col + this.position.col};

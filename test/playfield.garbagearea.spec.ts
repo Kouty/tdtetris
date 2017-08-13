@@ -80,7 +80,9 @@ describe('Playfield locking', function () {
         const I = {
             debug: 'I',
             filledCells: () => [{row: 0, col: 0}, {row: 1, col: 0}],
-            height: 2, width: 1,
+            height: 2,
+            type: null,
+            width: 1,
         };
 
         // |   |

@@ -43,7 +43,7 @@ export class Tetris {
         return this.gameOverDetected;
     }
 
-    public playFieldModel() {
+    public playFieldModel(): IPlayFieldModel {
         return Tetris.playFieldModel(this.playField);
     }
 

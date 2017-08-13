@@ -1,13 +1,13 @@
 import Vue, {ComponentOptions} from 'vue';
-import {IArea, PlayFieldVue} from './playfield.vue';
-import {Tetris} from './tetris';
+import {PlayFieldVue} from './playfield.vue';
+import {IPlayFieldModel, Tetris} from './tetris';
 
 interface ITetrisVue extends Vue {
     tetris: Tetris;
-    area: IArea;
+    area: IPlayFieldModel;
     timerId: any;
 
-    calcArea(): IArea;
+    calcArea(): IPlayFieldModel;
 
     onRight(): void;
 
@@ -41,32 +41,8 @@ const tetrisVue = {
     },
     el: '#app',
     methods: {
-        calcArea(): IArea {
-            const colors: number[] = [];
-            const tetromino = this.tetris.playField.tetromino;
-            const numCols = this.tetris.playField.numCols;
-            const numRows = this.tetris.playField.numRows;
-
-            const garbageArea = this.tetris.playField.garbageArea;
-            for (let row = 0; row < numRows; row++) {
-                for (let col = 0; col < numCols; col++) {
-                    if (garbageArea.filled({row, col}) !== undefined) {
-                        const rowInPlayField = numRows - 1 - row;
-                        colors[rowInPlayField * numCols + col] = 0;
-                    }
-                }
-            }
-
-            tetromino.filledCells().forEach((cell) => {
-                const row = numRows - 1 - cell.row;
-                colors[row * numCols + cell.col] = 1;
-            });
-
-            return {
-                colors,
-                numCols: this.tetris.playField.numCols,
-                numRows: this.tetris.playField.numRows,
-            };
+        calcArea(): IPlayFieldModel {
+            return this.tetris.playFieldModel();
         },
         onKeyDown(evt) {
             const key = evt.which || evt.keyCode;

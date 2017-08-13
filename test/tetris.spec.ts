@@ -82,13 +82,14 @@ describe('Tetris', function () {
             },
         };
         const nullLambda = () => null;
-        const tetromino: IPlacedTetromino = {
+        const placedTetromino: IPlacedTetromino = {
             col: 1,
             height: 1,
             moveDown: nullLambda,
             moveLeft: nullLambda,
             moveRight: nullLambda,
             row: 1,
+            type: null,
             width: 1,
             filledCells(): IPosition[] {
                 return [{row: 1, col: 1}];
@@ -98,7 +99,7 @@ describe('Tetris', function () {
             garbageArea,
             numCols: 3,
             numRows: 2,
-            tetromino,
+            tetromino: placedTetromino,
         } as PlayField;
 
         const model = Tetris.playFieldModel(playFieldMock);
@@ -110,7 +111,7 @@ describe('Tetris', function () {
         // |g  |
         model.cells.length = 6; // Changing the size to be exactly 2 rows
         expect(model.cells).toEqual([
-            undefined, tetromino, undefined,
+            undefined, placedTetromino, undefined,
             garbageTetromino, undefined, undefined]);
     });
 });

@@ -1,5 +1,7 @@
 import Vue, {ComponentOptions} from 'vue';
+import {IPlayFieldModel} from './tetris';
 import './tetris.css';
+import {TetrominoType} from './tetromino';
 
 /* tslint:disable no-trailing-whitespace*/
 const template = `<div>
@@ -17,15 +19,8 @@ const template = `<div>
 
 /* tslint:enable no-trailing-whitespace*/
 
-export interface IArea {
-    numRows: number;
-    numCols: number;
-    colors: number[];
-
-}
-
 interface IPlayFieldVue extends Vue {
-    area: IArea;
+    area: IPlayFieldModel;
 }
 
 const PlayFieldVue = {
@@ -37,15 +32,15 @@ const PlayFieldVue = {
             row--;
             col--;
             const numCols = this.area.numCols;
-            const cell = this.area.colors[numCols * row + col];
-            return cell === 1;
+            const cell = this.area.cells[numCols * row + col];
+            return cell && cell.type === TetrominoType.I;
         },
         garbageCell(row, col): boolean {
             row--;
             col--;
             const numCols = this.area.numCols;
-            const cell = this.area.colors[numCols * row + col];
-            return cell === 0;
+            const cell = this.area.cells[numCols * row + col];
+            return cell && cell.type === TetrominoType.I;
         },
     },
     props: ['area'],
