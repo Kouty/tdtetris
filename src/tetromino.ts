@@ -1,5 +1,6 @@
 export enum TetrominoType {
     I,
+    O,
 }
 
 export interface ITetromino {
@@ -45,7 +46,23 @@ class I implements ITetromino {
     }
 }
 
+class O implements ITetromino {
+
+    public static create() {
+        return new O();
+    }
+
+    public readonly width = 2;
+    public readonly height = 2;
+    public readonly type = TetrominoType.O;
+
+    public filledCells() {
+        return [{row: 0, col: 0}, {row: 0, col: 1}, {row: 1, col: 0}, {row: 1, col: 1}];
+    }
+}
+
 const Tetrominoes = {
     I,
+    O,
 };
 export {Tetrominoes};
