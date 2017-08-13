@@ -1,14 +1,4 @@
-Some concepts:
-- Tetromino
-- Playfield
-- Rotation
-- Orientation
-- Piece preview
-- Row clear
-- Locking
-
-Tetromino Tetris
-New behaviour:
+Tetris
 - A tetromino spawns at the top of the playfield, in the middle column
 - The upper most 2 rows are not visible to the player
 - Tetromino can rotate, and it can move down, left and right
@@ -18,12 +8,13 @@ New behaviour:
 
 TODO:
 - IPlacedTetromino should consider its coordinates when returning filled cells*
-- Don't use square word, use cell instead*
 
+- Don't use square word, use cell instead
 - Index.ts needs refactor, long pieces of code are not under test
 - IPlacedTetromino should have a convenient method to tell if a cell is filled
 - Add other tetrominoes
 - Add rotation system
+- Get rid of test warnings
 
 DONE:
 - Add timed down movement
