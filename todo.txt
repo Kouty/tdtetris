@@ -8,20 +8,13 @@ Tetris
 
 TODO:
 - Add other tetrominoes
--- Add "O"
-- Add rotation system
+-- Add "O" Done
 
-- Get rid of test warnings*
+- Add rotation system*
+
 
 DONE:
-- IPlacedTetromino should have a convenient method to tell if a cell is filled
--- not needed anymore
-- Index.ts needs refactor, long pieces of code are not under test
--- IArea could be computed by tetris class (or playfield), and put under tests.
-- Don't use square word, use cell instead
-- Garbage area should use tetromino color, instead of grey
-- IPlacedTetromino should consider its coordinates when returning filled cells
-- Add timed down movement
+- Get rid of test warnings
 
 CONSIDERATIONS:
 - spawn is influenced by the rotation system
