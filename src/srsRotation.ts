@@ -3,6 +3,7 @@ import {IPosition} from './tetromino';
 export interface IRotation {
     filledCells(): IPosition[];
     rotateClockwise(): void;
+    rotateCounterClockwise(): void;
 }
 
 export class IRotation implements IRotation {
@@ -23,6 +24,10 @@ export class IRotation implements IRotation {
 
     public rotateClockwise() {
         this.matrix = this.rotate90(this.matrix);
+    }
+
+    public rotateCounterClockwise() {
+        this.matrix = this.rotate90(this.rotate90(this.rotate90(this.matrix)));
     }
 
     private toCoordinates(matrix) {
