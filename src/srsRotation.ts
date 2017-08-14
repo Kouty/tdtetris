@@ -2,7 +2,9 @@ import {IPosition} from './tetromino';
 
 export interface IRotation {
     filledCells(): IPosition[];
+
     rotateClockwise(): void;
+
     rotateCounterClockwise(): void;
 }
 
@@ -23,11 +25,11 @@ export class IRotation implements IRotation {
     }
 
     public rotateClockwise() {
-        this.matrix = this.rotate90(this.matrix);
+        this.matrix = this.rotate90(this.matrix, -1);
     }
 
     public rotateCounterClockwise() {
-        this.matrix = this.rotate90(this.rotate90(this.rotate90(this.matrix)));
+        this.matrix = this.rotate90(this.matrix, +1);
     }
 
     private toCoordinates(matrix) {
@@ -43,7 +45,7 @@ export class IRotation implements IRotation {
         return newMatrix;
     }
 
-    private rotate90(grid): number[] {
+    private rotate90(grid, direction): number[] {
         const newGrid = [];
         const rowLength = Math.sqrt(grid.length);
         newGrid.length = grid.length;
@@ -51,7 +53,7 @@ export class IRotation implements IRotation {
         for (let i = 0; i < grid.length; i++) {
             const x = i % rowLength;
             const y = Math.floor(i / rowLength);
-            const newX = rowLength - y - 1;
+            const newX = (rowLength - 1  + direction * y) % (rowLength - 1);
             const newY = x;
             const newPosition = newY * rowLength + newX;
             newGrid[newPosition] = grid[i];
