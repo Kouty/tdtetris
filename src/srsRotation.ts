@@ -2,10 +2,11 @@ import {IPosition} from './tetromino';
 
 export interface IRotation {
     filledCells(): IPosition[];
+    rotateClockwise(): void;
 }
 
 export class IRotation implements IRotation {
-    private readonly matrix: number[];
+    private matrix: number[];
     private readonly width: number = 4;
 
     constructor() {
@@ -20,6 +21,10 @@ export class IRotation implements IRotation {
         return this.toCoordinates(this.matrix);
     }
 
+    public rotateClockwise() {
+        this.matrix = this.rotate90(this.matrix);
+    }
+
     private toCoordinates(matrix) {
         const newMatrix: IPosition[] = [];
         this.matrix.forEach((filled, index) => {
@@ -32,20 +37,21 @@ export class IRotation implements IRotation {
 
         return newMatrix;
     }
-}
-/*
-function rotate90(grid) {
-    const newGrid = [];
-    const rowLength = Math.sqrt(grid.length);
-    newGrid.length = grid.length;
 
-    for (let i = 0; i < grid.length; i++) {
-        const x = i % rowLength;
-        const y = Math.floor(i / rowLength);
-        const newX = rowLength - y - 1;
-        const newY = x;
-        const newPosition = newY * rowLength + newX;
-        newGrid[newPosition] = grid[i];
+    private rotate90(grid): number[] {
+        const newGrid = [];
+        const rowLength = Math.sqrt(grid.length);
+        newGrid.length = grid.length;
+
+        for (let i = 0; i < grid.length; i++) {
+            const x = i % rowLength;
+            const y = Math.floor(i / rowLength);
+            const newX = rowLength - y - 1;
+            const newY = x;
+            const newPosition = newY * rowLength + newX;
+            newGrid[newPosition] = grid[i];
+        }
+
+        return newGrid;
     }
 }
-*/
