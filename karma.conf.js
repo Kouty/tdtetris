@@ -23,6 +23,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
+      'src/index.ts'
     ],
 
 
@@ -30,6 +31,10 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       "**/*.ts": ["karma-typescript"]
+    },
+
+    karmaTypescriptConfig: {
+      tsconfig: "./tsconfig.test.json"
     },
 
 

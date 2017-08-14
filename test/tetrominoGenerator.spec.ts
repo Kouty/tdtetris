@@ -8,7 +8,7 @@ describe('TetrominoGenerator', function () {
     });
 
     it('should generate I tetromino ', function () {
-        Math.random.and.returnValue(0);
+        (Math.random as any).and.returnValue(0);
         const tetrominoGenerator = new TetrominoGenerator();
         spyOn(Tetrominoes.I, 'create');
 
@@ -19,7 +19,7 @@ describe('TetrominoGenerator', function () {
 
     it('should generate O tetromino ', function () {
         const tetrominoGenerator = new TetrominoGenerator();
-        Math.random.and.returnValue(0.5);
+        (Math.random as any).and.returnValue(0.5);
         spyOn(Tetrominoes.O, 'create');
 
         tetrominoGenerator.next();

@@ -34,7 +34,6 @@ export class GarbageArea {
                 row--;
             }
         }
-
     }
 
     private clearRow(row: number) {
