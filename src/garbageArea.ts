@@ -1,5 +1,5 @@
+import {IPosition} from './srsRotation';
 import {ITetromino} from './tetromino';
-import {IPosition} from './tetromino';
 
 export interface IGarbageAreaReadOnly {
     filled(position: IPosition): ITetromino;

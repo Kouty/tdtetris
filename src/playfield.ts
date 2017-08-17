@@ -1,6 +1,6 @@
 import {GarbageArea, IGarbageAreaReadOnly} from './garbageArea';
 import {ITetromino} from './tetromino';
-import {IPosition} from './tetromino';
+import {IPosition} from './srsRotation';
 import {IPlacedTetromino} from './tetromino';
 
 export class PlayField {
@@ -100,6 +100,14 @@ class PlacedTetromino implements IPlacedTetromino {
         return this.filledCells().some((cell) => {
             return this.garbageArea.filled(cell) !== undefined;
         });
+    }
+
+    public rotateClockwise() {
+        this.tetromino.rotateClockwise();
+    }
+
+    public rotateCounterClockwise() {
+        this.tetromino.rotateCounterClockwise();
     }
 
     private addTetrominoToGarbageArea() {

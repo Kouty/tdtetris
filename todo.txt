@@ -11,6 +11,7 @@ TODO:
 -- Add "O" Done
 
 - Add rotation system*
+-- IPlacedTetromino should have rotate functions
 
 
 DONE:

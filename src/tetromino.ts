@@ -1,19 +1,14 @@
+import {InterfaceRotation, IPosition, IRotation, ORotation} from './srsRotation';
+
 export enum TetrominoType {
     I,
     O,
 }
 
-export interface ITetromino {
+export interface ITetromino extends InterfaceRotation {
     width: number;
     height: number;
     type: TetrominoType;
-
-    filledCells(): IPosition[];
-}
-
-export interface IPosition {
-    row: number;
-    col: number;
 }
 
 export interface IPlacedTetromino extends IPosition, ITetromino {
@@ -31,7 +26,7 @@ export interface IPlacedTetromino extends IPosition, ITetromino {
     filledCells(): IPosition[];
 }
 
-class I implements ITetromino {
+class I extends IRotation implements ITetromino {
 
     public static create() {
         return new I();
@@ -41,12 +36,9 @@ class I implements ITetromino {
     public readonly height = 4;
     public readonly type = TetrominoType.I;
 
-    public filledCells() {
-        return [{row: 0, col: 1}, {row: 1, col: 1}, {row: 2, col: 1}, {row: 3, col: 1}];
-    }
 }
 
-class O implements ITetromino {
+class O extends ORotation implements ITetromino {
 
     public static create() {
         return new O();
@@ -55,10 +47,6 @@ class O implements ITetromino {
     public readonly width = 2;
     public readonly height = 2;
     public readonly type = TetrominoType.O;
-
-    public filledCells() {
-        return [{row: 0, col: 0}, {row: 0, col: 1}, {row: 1, col: 0}, {row: 1, col: 1}];
-    }
 }
 
 const Tetrominoes = {

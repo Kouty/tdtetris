@@ -1,7 +1,8 @@
 import {IGarbageAreaReadOnly} from '../src/garbageArea';
 import {PlayField} from '../src/playfield';
+import {IPosition} from '../src/srsRotation';
 import {Tetris} from '../src/tetris';
-import {IPlacedTetromino, IPosition} from '../src/tetromino';
+import {IPlacedTetromino} from '../src/tetromino';
 import {TetrominoGenerator} from '../src/tetrominoGenerator';
 
 describe('Tetris', function () {
@@ -88,6 +89,8 @@ describe('Tetris', function () {
             moveDown: nullLambda,
             moveLeft: nullLambda,
             moveRight: nullLambda,
+            rotateClockwise: nullLambda,
+            rotateCounterClockwise: nullLambda,
             row: 1,
             type: null,
             width: 1,

@@ -1,4 +1,5 @@
 import {PlayField} from '../src/playfield';
+import {ITetromino} from '../src/tetromino';
 
 describe('Playfield locking', function () {
     let oneCellTetromino;
@@ -77,10 +78,11 @@ describe('Playfield locking', function () {
 
     it('should lock a tetromino if it touches a garbage cell', function () {
         const playField = new PlayField(3, 3);
-        const I = {
-            debug: 'I',
+        const I: ITetromino = {
             filledCells: () => [{row: 0, col: 0}, {row: 1, col: 0}],
             height: 2,
+            rotateClockwise: () => null,
+            rotateCounterClockwise: () => null,
             type: null,
             width: 1,
         };

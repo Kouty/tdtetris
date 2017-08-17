@@ -1,4 +1,7 @@
-import {IPosition} from './tetromino';
+export interface IPosition {
+    row: number;
+    col: number;
+}
 
 export interface InterfaceRotation {
     filledCells(): IPosition[];
@@ -13,7 +16,7 @@ class AbstractRotation implements InterfaceRotation {
     }
 
     public filledCells() {
-        return this.toCoordinates(this.matrix);
+        return this.toCoordinates();
     }
 
     public rotateClockwise() {
@@ -24,7 +27,7 @@ class AbstractRotation implements InterfaceRotation {
         this.matrix = this.rotate90(this.matrix, +1);
     }
 
-    private toCoordinates(matrix) {
+    private toCoordinates() {
         const newMatrix: IPosition[] = [];
         this.matrix.forEach((filled, index) => {
             if (filled) {

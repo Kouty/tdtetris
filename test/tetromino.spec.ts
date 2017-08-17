@@ -16,15 +16,6 @@ describe('Tetromino', function () {
             expect(tetrominoI.type).toBe(TetrominoType.I);
         });
 
-        it('should fill the 2rd row', function () {
-            const tetrominoI = Tetrominoes.I.create();
-
-            const allIn3rdRow = tetrominoI.filledCells().every((cell) => {
-                return cell.col === 1;
-            });
-
-            expect(allIn3rdRow).toBe(true);
-        });
     });
 
     describe('O', function () {
