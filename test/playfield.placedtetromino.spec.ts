@@ -1,10 +1,18 @@
 import {PlayField} from '../src/playfield';
+import {ITetromino} from '../src/tetromino';
 
 describe('Playfield', function () {
-    let oneCellTetromino;
+    let oneCellTetromino: ITetromino;
 
     beforeEach(function () {
-        oneCellTetromino = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}]};
+        oneCellTetromino = {
+            filledCells: () => [{row: 0, col: 0}],
+            height: 1,
+            rotateClockwise: jasmine.createSpy('rotateClockwise'),
+            rotateCounterClockwise: jasmine.createSpy('rotateCounterClockwise'),
+            type: null,
+            width: 1,
+        };
     });
 
     it('should spawn a tetromino at the top row and in the middle column, rounding left', function () {
@@ -25,6 +33,17 @@ describe('Playfield', function () {
         playField.spawn(threeCellsTetromino);
 
         expect(playField.tetromino.col).toBe(1);
+    });
+
+    it('should return filled cells considering its own position', function () {
+        const NUM_ROWS = 20;
+        const playField = new PlayField(NUM_ROWS, 5);
+
+        playField.spawn(oneCellTetromino);
+        const cell = playField.tetromino.filledCells()[0];
+
+        expect(cell.row).toBe(NUM_ROWS - 1);
+        expect(cell.col).toBe(2);
     });
 
     it('should let the player move left the current moving tetromino', function () {
@@ -70,5 +89,23 @@ describe('Playfield', function () {
         const spawned = playField.spawn(oneCellTetromino);
 
         expect(spawned).toBe(true);
+    });
+
+    it('should rotate clockwise', function () {
+        const playField = new PlayField(10, 3);
+
+        playField.spawn(oneCellTetromino);
+        playField.tetromino.rotateClockwise();
+
+        expect(oneCellTetromino.rotateClockwise).toHaveBeenCalled();
+    });
+
+    it('should rotate counter clockwise', function () {
+        const playField = new PlayField(10, 3);
+
+        playField.spawn(oneCellTetromino);
+        playField.tetromino.rotateCounterClockwise();
+
+        expect(oneCellTetromino.rotateCounterClockwise).toHaveBeenCalled();
     });
 });
