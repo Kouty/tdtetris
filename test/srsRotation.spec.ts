@@ -57,8 +57,20 @@ describe('SRS Rotation system', function () {
     });
 
     describe('"O" rotation', function () {
-        it('should spawn occupying a square', function () {
+        it('should spawn filling a square 2x2', function () {
             const oRotation = new ORotation();
+
+            expect(oRotation.filledCells().length).toBe(4);
+            expect(oRotation.filledCells()).toContain({col: 0, row: 0});
+            expect(oRotation.filledCells()).toContain({col: 1, row: 0});
+            expect(oRotation.filledCells()).toContain({col: 0, row: 1});
+            expect(oRotation.filledCells()).toContain({col: 1, row: 1});
+        });
+
+        it('should not change filled cells when rotations', function () {
+            const oRotation = new ORotation();
+
+            oRotation.rotateClockwise();
 
             expect(oRotation.filledCells().length).toBe(4);
             expect(oRotation.filledCells()).toContain({col: 0, row: 0});
