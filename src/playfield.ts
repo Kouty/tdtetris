@@ -1,6 +1,6 @@
 import {GarbageArea, IGarbageAreaReadOnly} from './garbageArea';
-import {ITetromino} from './tetromino';
 import {IPosition} from './srsRotation';
+import {ITetromino} from './tetromino';
 import {IPlacedTetromino} from './tetromino';
 
 export class PlayField {
