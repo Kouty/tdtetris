@@ -1,4 +1,4 @@
-import {IRotation} from '../src/srsRotation';
+import {IRotation, ORotation} from '../src/srsRotation';
 
 describe('SRS Rotation system', function () {
 
@@ -54,6 +54,18 @@ describe('SRS Rotation system', function () {
             expect(allIn3rdCol).toBe(true);
         });
 
+    });
+
+    describe('"O" rotation', function () {
+        it('should spawn occupying a square', function () {
+            const oRotation = new ORotation();
+
+            expect(oRotation.filledCells().length).toBe(4);
+            expect(oRotation.filledCells()).toContain({col: 0, row: 0});
+            expect(oRotation.filledCells()).toContain({col: 1, row: 0});
+            expect(oRotation.filledCells()).toContain({col: 0, row: 1});
+            expect(oRotation.filledCells()).toContain({col: 1, row: 1});
+        });
     });
 
 });

@@ -1,6 +1,6 @@
 import {IPosition} from './tetromino';
 
-export interface IRotation {
+export interface InterfaceRotation {
     filledCells(): IPosition[];
 
     rotateClockwise(): void;
@@ -8,16 +8,8 @@ export interface IRotation {
     rotateCounterClockwise(): void;
 }
 
-export class IRotation implements IRotation {
-    private matrix: number[];
-    private readonly width: number = 4;
-
-    constructor() {
-        this.matrix = [
-            0, 0, 0, 0,
-            0, 0, 0, 0,
-            1, 1, 1, 1,
-            0, 0, 0, 0];
+class AbstractRotation implements InterfaceRotation {
+    constructor(private matrix: number[], readonly width: number) {
     }
 
     public filledCells() {
@@ -53,12 +45,35 @@ export class IRotation implements IRotation {
         for (let i = 0; i < grid.length; i++) {
             const x = i % rowLength;
             const y = Math.floor(i / rowLength);
-            const newX = (rowLength - 1  + direction * y) % (rowLength - 1);
+            const newX = (rowLength - 1 + direction * y) % (rowLength - 1);
             const newY = x;
             const newPosition = newY * rowLength + newX;
             newGrid[newPosition] = grid[i];
         }
 
         return newGrid;
+    }
+}
+
+export class IRotation extends AbstractRotation {
+    private static readonly width: number = 4;
+
+    constructor() {
+        super([
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+            1, 1, 1, 1,
+            0, 0, 0, 0], IRotation.width);
+    }
+
+}
+
+export class ORotation extends AbstractRotation {
+    private static readonly width: number = 2;
+
+    constructor() {
+        super([
+            1, 1,
+            1, 1], ORotation.width);
     }
 }
