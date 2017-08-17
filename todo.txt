@@ -11,7 +11,9 @@ TODO:
 -- Add "O" Done
 
 - Add rotation system*
--- IPlacedTetromino should have rotate functions
+-- IPlacedTetromino should have rotate functions Done
+-- Keyboard events to rotate
+-- Rotation bounds
 
 
 DONE:
