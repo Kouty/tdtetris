@@ -10,7 +10,7 @@ const template = `<div>
     <tr v-for="row in area.numRows" v-show="row > 1">
       <td v-for="col in area.numCols">
         <div class="cell"
-          :class="{'I':iCell(row,col),'O':oCell(row,col),'T':tCell(row,col),'S':sCell(row,col),'Z':zCell(row,col)}">
+          :class="{'I':i(row,col),'O':o(row,col),'T':t(row,col),'S':s(row,col),'Z':z(row,col), 'J':j(row,col)}">
         </div>
       </td>  
     </tr>
@@ -23,15 +23,15 @@ const template = `<div>
 interface IPlayFieldVue extends Vue {
     area: IPlayFieldModel;
 
-    iCell(row: number, col: number): boolean;
+    i(row: number, col: number): boolean;
 
-    oCell(row: number, col: number): boolean;
+    o(row: number, col: number): boolean;
 
-    tCell(row: number, col: number): boolean;
+    t(row: number, col: number): boolean;
 
-    sCell(row: number, col: number): boolean;
+    s(row: number, col: number): boolean;
 
-    zCell(row: number, col: number): boolean;
+    z(row: number, col: number): boolean;
 
     tetrominoCell(row: number, col: number, type: TetrominoType): boolean;
 
@@ -43,25 +43,29 @@ const PlayFieldVue = {
         return {};
     },
     methods: {
-        iCell(row, col) {
+        i(row, col) {
             return this.tetrominoCell(row, col, TetrominoType.I)
                 || this.garbageCell(row, col, TetrominoType.I);
         },
-        oCell(row, col) {
+        o(row, col) {
             return this.tetrominoCell(row, col, TetrominoType.O)
                 || this.garbageCell(row, col, TetrominoType.O);
         },
-        tCell(row, col) {
+        t(row, col) {
             return this.tetrominoCell(row, col, TetrominoType.T)
                 || this.garbageCell(row, col, TetrominoType.T);
         },
-        sCell(row, col) {
+        s(row, col) {
             return this.tetrominoCell(row, col, TetrominoType.S)
                 || this.garbageCell(row, col, TetrominoType.S);
         },
-        zCell(row, col) {
+        z(row, col) {
             return this.tetrominoCell(row, col, TetrominoType.Z)
                 || this.garbageCell(row, col, TetrominoType.Z);
+        },
+        j(row, col) {
+            return this.tetrominoCell(row, col, TetrominoType.J)
+                || this.garbageCell(row, col, TetrominoType.J);
         },
         tetrominoCell(row, col, type) {
             row--;

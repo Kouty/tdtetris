@@ -1,4 +1,4 @@
-import {IRotation, ORotation, SRotation, TRotation, ZRotation} from '../src/srsRotation';
+import {IRotation, JRotation, ORotation, SRotation, TRotation, ZRotation} from '../src/srsRotation';
 
 describe('SRS Rotation system', function () {
 
@@ -124,6 +124,18 @@ describe('SRS Rotation system', function () {
             expect(zRotation.filledCells()).toContain({col: 1, row: 0});
             expect(zRotation.filledCells()).toContain({col: 1, row: 1});
             expect(zRotation.filledCells()).toContain({col: 2, row: 1});
+        });
+    });
+
+    describe('"J" rotation', function () {
+        it('should spawn with the flat side down', function () {
+            const jRotation = new JRotation();
+
+            expect(jRotation.filledCells().length).toBe(4);
+            expect(jRotation.filledCells()).toContain({col: 0, row: 0});
+            expect(jRotation.filledCells()).toContain({col: 0, row: 1});
+            expect(jRotation.filledCells()).toContain({col: 1, row: 1});
+            expect(jRotation.filledCells()).toContain({col: 2, row: 1});
         });
     });
 

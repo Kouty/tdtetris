@@ -1,7 +1,11 @@
-import {InterfaceRotation, IPosition, IRotation, ORotation, SRotation, TRotation, ZRotation} from './srsRotation';
+import {
+    InterfaceRotation, IPosition, IRotation, JRotation, ORotation, SRotation, TRotation,
+    ZRotation
+} from './srsRotation';
 
 export enum TetrominoType {
     I,
+    J,
     O,
     T,
     S,
@@ -75,8 +79,18 @@ class Z extends ZRotation implements ITetromino {
     public readonly type = TetrominoType.Z;
 }
 
+class J extends JRotation implements ITetromino {
+
+    public static create() {
+        return new J();
+    }
+
+    public readonly type = TetrominoType.J;
+}
+
 const Tetrominoes = {
     I,
+    J,
     O,
     S,
     T,
