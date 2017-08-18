@@ -79,7 +79,6 @@ describe('Playfield bounds', function () {
 
         it('should not rotate if it causes the tetromino to be outside bottom bound', function () {
             playField.tetromino.moveDown();
-            playField.tetromino.moveDown();
 
             expectInBounds('rotateCounterClockwise');
             expectInBounds('rotateClockwise');
