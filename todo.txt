@@ -8,8 +8,7 @@ Tetris
 
 TODO:
 - Add other tetrominoes
--- Add "J"*
--- Add "L"
+-- Add "L"*
 
 - By testing rotation algorithm, there is no need to test rotations on every tetromino
 - pause
@@ -20,6 +19,7 @@ DONE:
 -- Add "T"
 -- Add "S"
 -- Add "Z"
+-- Add "J"
 
 
 CONSIDERATIONS:

@@ -7,10 +7,10 @@ import {TetrominoType} from './tetromino';
 const template = `<div>
 <table class="play-field">
   <tbody>
-    <tr v-for="row in area.numRows" v-show="row > 1">
-      <td v-for="col in area.numCols">
+    <tr v-for="r in area.numRows" v-show="r > 1">
+      <td v-for="c in area.numCols">
         <div class="cell"
-          :class="{'I':i(row,col),'O':o(row,col),'T':t(row,col),'S':s(row,col),'Z':z(row,col), 'J':j(row,col)}">
+          :class="{'I':i(r,c),'O':o(r,c),'T':t(r,c),'S':s(r,c),'Z':z(r,c),'J':j(r,c),'L':l(r,c)}">
         </div>
       </td>  
     </tr>
@@ -32,6 +32,8 @@ interface IPlayFieldVue extends Vue {
     s(row: number, col: number): boolean;
 
     z(row: number, col: number): boolean;
+
+    l(row: number, col: number): boolean;
 
     tetrominoCell(row: number, col: number, type: TetrominoType): boolean;
 
@@ -66,6 +68,10 @@ const PlayFieldVue = {
         j(row, col) {
             return this.tetrominoCell(row, col, TetrominoType.J)
                 || this.garbageCell(row, col, TetrominoType.J);
+        },
+        l(row, col) {
+            return this.tetrominoCell(row, col, TetrominoType.L)
+                || this.garbageCell(row, col, TetrominoType.L);
         },
         tetrominoCell(row, col, type) {
             row--;

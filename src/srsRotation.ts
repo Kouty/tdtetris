@@ -131,3 +131,14 @@ export class JRotation extends AbstractRotation {
             0, 0, 0], JRotation.width);
     }
 }
+
+export class LRotation extends AbstractRotation {
+    private static readonly width: number = 3;
+
+    constructor() {
+        super([
+            0, 0, 1,
+            1, 1, 1,
+            0, 0, 0], LRotation.width);
+    }
+}

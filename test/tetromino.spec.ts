@@ -1,4 +1,4 @@
-import {IRotation, JRotation, ORotation, SRotation, TRotation, ZRotation} from '../src/srsRotation';
+import {IRotation, JRotation, LRotation, ORotation, SRotation, TRotation, ZRotation} from '../src/srsRotation';
 import {Tetrominoes, TetrominoType} from '../src/tetromino';
 
 describe('Tetromino', function () {
@@ -84,6 +84,20 @@ describe('Tetromino', function () {
             const tetrominoJ = Tetrominoes.J.create();
 
             expect(tetrominoJ instanceof JRotation).toBe(true);
+        });
+    });
+
+    describe('L', function () {
+        it('should be of type L', function () {
+            const tetrominoL = Tetrominoes.L.create();
+
+            expect(tetrominoL.type).toBe(TetrominoType.L);
+        });
+
+        it('should extends LRotation', function () {
+            const tetrominoL = Tetrominoes.L.create();
+
+            expect(tetrominoL instanceof LRotation).toBe(true);
         });
     });
 });
