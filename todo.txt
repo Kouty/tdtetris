@@ -15,6 +15,7 @@ TODO:
 -- Keyboard events to rotate
 -- Rotation bounds
 
+- pause
 
 DONE:
 - Get rid of test warnings

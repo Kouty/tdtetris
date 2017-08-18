@@ -20,10 +20,23 @@ interface ITetrisVue extends Vue {
     restartTimer(): void;
 }
 
+// http://www.tetrisfriends.com/help/tips_appendix.php#controls
+// Move Left	LEFT Arrow	Numpad 4
+// Move Right	RIGHT Arrow	Numpad 6
+// Hard Drop	Space Bar	Numpad 8
+// Soft Drop	DOWN Arrow	Numpad 2
+// Rotate Right	UP Arrow, X	Numpad 1, 5, 9
+// Rotate Left	Control, Z	Numpad 3, 7
+// Pause	    ESC, F1, P
+
 const keyMap = {
+    17: 'onRotateCounterClockwise', // ctrl
+    38: 'onRotateClockwise', // arrow up
     39: 'onRight', // arrow right
     37: 'onLeft', // arrow left
     40: 'onDown', // arrow down
+    88: 'onRotateClockwise', // X key
+    90: 'onRotateCounterClockwise', // X key
 };
 const NULL_FUNCT = () => null;
 
@@ -48,6 +61,12 @@ const tetrisVue = {
             const key = evt.which || evt.keyCode;
             (this[keyMap[key]] || NULL_FUNCT)();
             this.area = this.calcArea();
+        },
+        onRotateClockwise() {
+            this.tetris.rotateClockwise();
+        },
+        onRotateCounterClockwise() {
+            this.tetris.rotateCounterClockwise();
         },
         onRight() {
             this.tetris.moveRight();
