@@ -12,7 +12,10 @@ export interface InterfaceRotation {
 }
 
 class AbstractRotation implements InterfaceRotation {
-    constructor(private matrix: number[], readonly width: number) {
+    public readonly height;
+
+    constructor(private matrix: number[], public readonly width: number) {
+        this.height = this.matrix.length / this.width;
     }
 
     public filledCells() {

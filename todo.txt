@@ -7,8 +7,8 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
+-- Width and height should be inherited from rotation system
 - Add other tetrominoes
--- Add "T"*
 -- Add "S"
 -- Add "Z"
 -- Add "J"
@@ -25,6 +25,8 @@ DONE:
 - fix O span position
 - Add other tetrominoes
 -- Add "O" Done
+-- Add "T" Done
+
 
 CONSIDERATIONS:
 - Make clear algorithm (naive, or sticky) pluggable.

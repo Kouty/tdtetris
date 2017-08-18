@@ -33,8 +33,6 @@ class I extends IRotation implements ITetromino {
         return new I();
     }
 
-    public readonly width = 4;
-    public readonly height = 4;
     public readonly type = TetrominoType.I;
 
 }
@@ -45,8 +43,6 @@ class O extends ORotation implements ITetromino {
         return new O();
     }
 
-    public readonly width = 2;
-    public readonly height = 2;
     public readonly type = TetrominoType.O;
 }
 
@@ -56,8 +52,6 @@ class T extends TRotation implements ITetromino {
         return new T();
     }
 
-    public readonly width = 3;
-    public readonly height = 3;
     public readonly type = TetrominoType.T;
 }
 

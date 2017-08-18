@@ -92,7 +92,7 @@ describe('SRS Rotation system', function () {
     });
 
     describe('"T" rotation', function () {
-        it('should spawn with the flat sidd down', function () {
+        it('should spawn with the flat side down', function () {
             const tRotation = new TRotation();
 
             expect(tRotation.filledCells().length).toBe(4);
