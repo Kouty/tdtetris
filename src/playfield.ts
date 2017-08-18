@@ -118,7 +118,7 @@ class PlacedTetromino implements IPlacedTetromino {
     }
 
     private outsideBounds() {
-        return this.outsideLeftBound() || this.outsideRightBound();
+        return this.outsideLeftBound() || this.outsideRightBound() || this.outsideBottomBound();
     }
 
     private outsideLeftBound(): boolean {

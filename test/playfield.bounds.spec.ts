@@ -51,7 +51,12 @@ describe('Playfield bounds', function () {
 
     describe('Rotation restrictions', function () {
         let playField;
+
         beforeEach(function () {
+            // |    |
+            // |IIII|
+            // |    |
+            // |    |
             playField = new PlayField(4, 4);
             playField.spawn(Tetrominoes.I.create());
         });
@@ -67,6 +72,14 @@ describe('Playfield bounds', function () {
         it('should not rotate if it causes the tetromino to be outside right bound', function () {
             playField.tetromino.rotateClockwise();
             playField.tetromino.moveRight();
+
+            expectInBounds('rotateCounterClockwise');
+            expectInBounds('rotateClockwise');
+        });
+
+        it('should not rotate if it causes the tetromino to be outside bottom bound', function () {
+            playField.tetromino.moveDown();
+            playField.tetromino.moveDown();
 
             expectInBounds('rotateCounterClockwise');
             expectInBounds('rotateClockwise');
