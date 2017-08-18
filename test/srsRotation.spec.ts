@@ -72,13 +72,13 @@ describe('SRS Rotation system', function () {
             const oRotation = new ORotation();
 
             expect(oRotation.filledCells().length).toBe(4);
+            expect(oRotation.filledCells()).toContain({col: 0, row: 0});
+            expect(oRotation.filledCells()).toContain({col: 1, row: 0});
             expect(oRotation.filledCells()).toContain({col: 0, row: 1});
             expect(oRotation.filledCells()).toContain({col: 1, row: 1});
-            expect(oRotation.filledCells()).toContain({col: 0, row: 2});
-            expect(oRotation.filledCells()).toContain({col: 1, row: 2});
         });
 
-        xit('should not change filled cells when rotations', function () {
+        it('should not change filled cells when rotations', function () {
             const oRotation = new ORotation();
 
             oRotation.rotateClockwise();

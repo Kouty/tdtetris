@@ -7,10 +7,10 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- fix O span position
+- Undo O spawn, http://tetris.wikia.com/wiki/SRS. All tetrominoes start in the first 2 rows*
+- Changing number of rows hidden from 2 to 1, so that all tetrominoes are partially visible
 
 - Add other tetrominoes
--- Add "O" Done
 -- Add "T"
 -- Add "S"
 -- Add "Z"
@@ -21,6 +21,9 @@ TODO:
 
 DONE:
 - there are 2 hidden rows at the top of the playfield
+- fix O span position
+- Add other tetrominoes
+-- Add "O" Done
 
 CONSIDERATIONS:
 - Make clear algorithm (naive, or sticky) pluggable.
