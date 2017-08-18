@@ -1,4 +1,4 @@
-import {InterfaceRotation, IPosition, IRotation, ORotation} from './srsRotation';
+import {InterfaceRotation, IPosition, IRotation, ORotation, TRotation} from './srsRotation';
 
 export enum TetrominoType {
     I,
@@ -50,14 +50,14 @@ class O extends ORotation implements ITetromino {
     public readonly type = TetrominoType.O;
 }
 
-class T extends ORotation implements ITetromino {
+class T extends TRotation implements ITetromino {
 
     public static create() {
         return new T();
     }
 
-    public readonly width = 4;
-    public readonly height = 4;
+    public readonly width = 3;
+    public readonly height = 3;
     public readonly type = TetrominoType.T;
 }
 

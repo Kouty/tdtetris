@@ -38,8 +38,8 @@ describe('Tetromino', function () {
         it('should have a containing rectangle', function () {
             const tetrominoT = Tetrominoes.T.create();
 
-            expect(tetrominoT.width).toBe(4);
-            expect(tetrominoT.height).toBe(4);
+            expect(tetrominoT.width).toBe(3);
+            expect(tetrominoT.height).toBe(3);
         });
 
         it('should be of type T', function () {

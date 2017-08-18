@@ -1,18 +1,38 @@
 .play-field {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 .cell {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: #E8E8EE;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #E8E8EE;
 }
 
 .I {
-    background-color: red;
+  background-color: cyan;
 }
 
 .O {
-    background-color: blue;
+  background-color: yellow;
+}
+
+.T {
+  background-color: purple;
+}
+
+.S {
+  background-color: green;
+}
+
+.Z {
+  background-color: red;
+}
+
+.J {
+  background-color: blue;
+}
+
+.L {
+  background-color: orange;
 }
