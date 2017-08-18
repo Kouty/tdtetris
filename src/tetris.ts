@@ -39,6 +39,14 @@ export class Tetris {
         this.playField.tetromino.moveLeft();
     }
 
+    public rotateClockwise(): void {
+        this.playField.tetromino.rotateClockwise();
+    }
+
+    public rotateCounterClockwise(): void {
+        this.playField.tetromino.rotateCounterClockwise();
+    }
+
     public gameOver(): boolean {
         return this.gameOverDetected;
     }

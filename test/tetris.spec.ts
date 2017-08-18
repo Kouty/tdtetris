@@ -117,4 +117,26 @@ describe('Tetris', function () {
             undefined, placedTetromino, undefined,
             garbageTetromino, undefined, undefined]);
     });
+
+    it('should rotate clockwise current tetromino', function () {
+        const tetris = new Tetris(10, 3);
+        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneCellTetromino);
+
+        tetris.start();
+        spyOn(tetris.playField.tetromino, 'rotateClockwise');
+        tetris.rotateClockwise();
+
+        expect(tetris.playField.tetromino.rotateClockwise).toHaveBeenCalled();
+    });
+
+    it('should rotate rotateCounterClockwise current tetromino', function () {
+        const tetris = new Tetris(10, 3);
+        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneCellTetromino);
+
+        tetris.start();
+        spyOn(tetris.playField.tetromino, 'rotateCounterClockwise');
+        tetris.rotateCounterClockwise();
+
+        expect(tetris.playField.tetromino.rotateCounterClockwise).toHaveBeenCalled();
+    });
 });
