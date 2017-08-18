@@ -1,5 +1,5 @@
 import {Tetrominoes, TetrominoType} from '../src/tetromino';
-import {IRotation, ORotation, TRotation} from '../src/srsRotation';
+import {IRotation, ORotation, SRotation, TRotation} from '../src/srsRotation';
 
 describe('Tetromino', function () {
 
@@ -42,6 +42,20 @@ describe('Tetromino', function () {
             const tetrominoT = Tetrominoes.T.create();
 
             expect(tetrominoT instanceof TRotation).toBe(true);
+        });
+    });
+
+    describe('S', function () {
+        it('should be of type S', function () {
+            const tetrominoS = Tetrominoes.S.create();
+
+            expect(tetrominoS.type).toBe(TetrominoType.S);
+        });
+
+        it('should extends TRotation', function () {
+            const tetrominoS = Tetrominoes.S.create();
+
+            expect(tetrominoS instanceof SRotation).toBe(true);
         });
     });
 

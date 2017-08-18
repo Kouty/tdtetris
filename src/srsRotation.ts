@@ -98,3 +98,14 @@ export class TRotation extends AbstractRotation {
             0, 0, 0], TRotation.width);
     }
 }
+
+export class SRotation extends AbstractRotation {
+    private static readonly width: number = 3;
+
+    constructor() {
+        super([
+            0, 1, 1,
+            1, 1, 0,
+            0, 0, 0], SRotation.width);
+    }
+}
