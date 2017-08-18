@@ -11,7 +11,8 @@ TODO:
 -- Add "O" Done
 
 - Add rotation system*
--- Rotation bounds*
+-- Rotation restrictions*
+--- Let's just check if after the rotation, the tetromino hits something
 
 - pause
 

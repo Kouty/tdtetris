@@ -48,8 +48,12 @@ class AbstractRotation implements InterfaceRotation {
         for (let i = 0; i < grid.length; i++) {
             const x = i % rowLength;
             const y = Math.floor(i / rowLength);
-            const newX = direction * y + (direction - 1) / 2 * (1 - rowLength);
-            const newY = x;
+            let newX = rowLength - 1 - y;
+            let newY = x;
+            if (direction > 0) {
+                newY = rowLength - 1 - x;
+                newX = y;
+            }
             const newPosition = newY * rowLength + newX;
             newGrid[newPosition] = grid[i];
         }

@@ -54,6 +54,17 @@ describe('SRS Rotation system', function () {
             expect(allIn3rdCol).toBe(true);
         });
 
+        it('rotate clockwise and then rotate counterClockwise should restore initial position', function () {
+            const iRotation = new IRotation();
+
+            const before = iRotation.filledCells();
+            iRotation.rotateClockwise();
+            iRotation.rotateCounterClockwise();
+            const after = iRotation.filledCells();
+
+            expect(before).toEqual(after);
+        });
+
     });
 
     describe('"O" rotation', function () {

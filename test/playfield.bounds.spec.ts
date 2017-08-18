@@ -1,4 +1,5 @@
 import {PlayField} from '../src/playfield';
+import {Tetrominoes} from '../src/tetromino';
 
 describe('Playfield bounds', function () {
     // Test Tetromino
@@ -47,4 +48,23 @@ describe('Playfield bounds', function () {
 
         expect(playField.tetromino.row).toBe(2);
     });
+
+    describe('Rotation restrictions', function () {
+
+        xit('should not rotate if it causes the tetromino to be outside left bound', function () {
+            const playField = new PlayField(4, 4);
+            const iTetromino = Tetrominoes.I.create();
+            playField.spawn(iTetromino);
+            playField.tetromino.rotateCounterClockwise();
+            playField.tetromino.moveLeft();
+
+            const filledCellsBefore = playField.tetromino.filledCells().slice();
+            playField.tetromino.rotateCounterClockwise();
+            const filledCellsAfter = playField.tetromino.filledCells().slice();
+
+
+            expect(filledCellsBefore).toEqual(filledCellsAfter);
+        });
+    });
+
 });

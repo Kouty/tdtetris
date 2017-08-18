@@ -108,4 +108,5 @@ describe('Playfield', function () {
 
         expect(oneCellTetromino.rotateCounterClockwise).toHaveBeenCalled();
     });
+
 });
