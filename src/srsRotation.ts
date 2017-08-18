@@ -109,3 +109,14 @@ export class SRotation extends AbstractRotation {
             0, 0, 0], SRotation.width);
     }
 }
+
+export class ZRotation extends AbstractRotation {
+    private static readonly width: number = 3;
+
+    constructor() {
+        super([
+            1, 1, 0,
+            0, 1, 1,
+            0, 0, 0], ZRotation.width);
+    }
+}

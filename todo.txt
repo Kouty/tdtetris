@@ -8,8 +8,7 @@ Tetris
 
 TODO:
 - Add other tetrominoes
--- Add "S"*
--- Add "Z"
+-- Add "Z"*
 -- Add "J"
 -- Add "L"
 
@@ -17,15 +16,10 @@ TODO:
 - pause
 
 DONE:
--- Width and height should be inherited from rotation system
-- Fix I spawn, it spawns in the 2nd row
-- Undo O spawn, http://tetris.wikia.com/wiki/SRS. All tetrominoes start in the first 2 rows*
-- Changing number of rows hidden from 2 to 1, so that all tetrominoes are partially visible
-- there are 2 hidden rows at the top of the playfield
-- fix O span position
 - Add other tetrominoes
--- Add "O" Done
--- Add "T" Done
+-- Add "O"
+-- Add "T"
+-- Add "S"
 
 
 CONSIDERATIONS:

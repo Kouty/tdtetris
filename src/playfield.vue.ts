@@ -10,7 +10,7 @@ const template = `<div>
     <tr v-for="row in area.numRows" v-show="row > 1">
       <td v-for="col in area.numCols">
         <div class="cell"
-          :class="{'I':iCell(row,col),'O':oCell(row,col),'T':tCell(row,col),'S':sCell(row,col)}">
+          :class="{'I':iCell(row,col),'O':oCell(row,col),'T':tCell(row,col),'S':sCell(row,col),'Z':zCell(row,col)}">
         </div>
       </td>  
     </tr>
@@ -30,6 +30,8 @@ interface IPlayFieldVue extends Vue {
     tCell(row: number, col: number): boolean;
 
     sCell(row: number, col: number): boolean;
+
+    zCell(row: number, col: number): boolean;
 
     tetrominoCell(row: number, col: number, type: TetrominoType): boolean;
 
@@ -56,6 +58,10 @@ const PlayFieldVue = {
         sCell(row, col) {
             return this.tetrominoCell(row, col, TetrominoType.S)
                 || this.garbageCell(row, col, TetrominoType.S);
+        },
+        zCell(row, col) {
+            return this.tetrominoCell(row, col, TetrominoType.Z)
+                || this.garbageCell(row, col, TetrominoType.Z);
         },
         tetrominoCell(row, col, type) {
             row--;
