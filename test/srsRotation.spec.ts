@@ -3,12 +3,12 @@ import {IRotation, ORotation} from '../src/srsRotation';
 describe('SRS Rotation system', function () {
 
     describe('"I" rotation', function () {
-        it('should spawn with  the 3rd row filled', function () {
+        it('should spawn with  the 2nd row filled', function () {
             const iRotation = new IRotation();
 
             const allIn3rdRow = iRotation.filledCells().length > 0 &&
                 iRotation.filledCells().every((cell) => {
-                    return cell.row === 2;
+                    return cell.row === 1;
                 });
 
             expect(allIn3rdRow).toBe(true);
@@ -19,12 +19,12 @@ describe('SRS Rotation system', function () {
 
             iRotation.rotateClockwise();
 
-            const allIn2ndCol = iRotation.filledCells().length > 0 &&
+            const allIn3rdCol = iRotation.filledCells().length > 0 &&
                 iRotation.filledCells().every((cell) => {
-                    return cell.col === 1;
+                    return cell.col === 2;
                 });
 
-            expect(allIn2ndCol).toBe(true);
+            expect(allIn3rdCol).toBe(true);
         });
 
         it('should rotate clockwise twice', function () {
@@ -33,12 +33,12 @@ describe('SRS Rotation system', function () {
             iRotation.rotateClockwise();
             iRotation.rotateClockwise();
 
-            const allIn2nddRow = iRotation.filledCells().length > 0 &&
+            const allIn3rdRow = iRotation.filledCells().length > 0 &&
                 iRotation.filledCells().every((cell) => {
-                    return cell.row === 1;
+                    return cell.row === 2;
                 });
 
-            expect(allIn2nddRow).toBe(true);
+            expect(allIn3rdRow).toBe(true);
         });
 
         it('should rotate counterclockwise', function () {
@@ -46,12 +46,12 @@ describe('SRS Rotation system', function () {
 
             iRotation.rotateCounterClockwise();
 
-            const allIn3rdCol = iRotation.filledCells().length > 0 &&
+            const allIn2ndCol = iRotation.filledCells().length > 0 &&
                 iRotation.filledCells().every((cell) => {
-                    return cell.col === 2;
+                    return cell.col === 1;
                 });
 
-            expect(allIn3rdCol).toBe(true);
+            expect(allIn2ndCol).toBe(true);
         });
 
         it('rotate clockwise and then rotate counterClockwise should restore initial position', function () {

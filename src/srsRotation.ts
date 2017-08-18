@@ -68,8 +68,8 @@ export class IRotation extends AbstractRotation {
     constructor() {
         super([
             0, 0, 0, 0,
-            0, 0, 0, 0,
             1, 1, 1, 1,
+            0, 0, 0, 0,
             0, 0, 0, 0], IRotation.width);
     }
 
