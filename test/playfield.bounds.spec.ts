@@ -50,20 +50,34 @@ describe('Playfield bounds', function () {
     });
 
     describe('Rotation restrictions', function () {
+        let playField;
+        beforeEach(function () {
+            playField = new PlayField(4, 4);
+            playField.spawn(Tetrominoes.I.create());
+        });
 
         it('should not rotate if it causes the tetromino to be outside left bound', function () {
-            const playField = new PlayField(4, 4);
-            const iTetromino = Tetrominoes.I.create();
-            playField.spawn(iTetromino);
             playField.tetromino.rotateCounterClockwise();
             playField.tetromino.moveLeft();
 
-            const filledCellsBefore = playField.tetromino.filledCells().slice();
-            playField.tetromino.rotateCounterClockwise();
-            const filledCellsAfter = playField.tetromino.filledCells().slice();
-
-            expect(filledCellsBefore).toEqual(filledCellsAfter);
+            expectInBounds('rotateCounterClockwise');
+            expectInBounds('rotateClockwise');
         });
+
+        it('should not rotate if it causes the tetromino to be outside right bound', function () {
+            playField.tetromino.rotateClockwise();
+            playField.tetromino.moveRight();
+
+            expectInBounds('rotateCounterClockwise');
+            expectInBounds('rotateClockwise');
+        });
+
+        function expectInBounds(rotationFunction) {
+            const filledCellsBefore = playField.tetromino.filledCells().slice();
+            playField.tetromino[rotationFunction]();
+            const filledCellsAfter = playField.tetromino.filledCells().slice();
+            expect(filledCellsBefore).toEqual(filledCellsAfter);
+        }
     });
 
 });

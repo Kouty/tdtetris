@@ -104,22 +104,21 @@ class PlacedTetromino implements IPlacedTetromino {
 
     public rotateClockwise() {
         this.tetromino.rotateClockwise();
+        if (this.outsideBounds()) {
+            this.tetromino.rotateCounterClockwise();
+        }
     }
 
     public rotateCounterClockwise() {
         this.tetromino.rotateCounterClockwise();
-        if (this.outsideLeftBound()) {
+        if (this.outsideBounds()) {
             this.tetromino.rotateClockwise();
         }
 
     }
 
-    private addTetrominoToGarbageArea() {
-        this.filledCells().forEach((cell) => {
-            this.garbageArea.fill(cell, this.tetromino);
-        });
-
-        this.garbageArea.clearFilledRows();
+    private outsideBounds() {
+        return this.outsideLeftBound() || this.outsideRightBound();
     }
 
     private outsideLeftBound(): boolean {
@@ -138,5 +137,13 @@ class PlacedTetromino implements IPlacedTetromino {
         return this.filledCells().some((cell) => {
             return cell.row < 0;
         });
+    }
+
+    private addTetrominoToGarbageArea() {
+        this.filledCells().forEach((cell) => {
+            this.garbageArea.fill(cell, this.tetromino);
+        });
+
+        this.garbageArea.clearFilledRows();
     }
 }
