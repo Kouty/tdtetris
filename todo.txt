@@ -7,27 +7,22 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
+- there are 2 hidden rows at the top of the playfield*
+
 - Add other tetrominoes
 -- Add "O" Done
-
-- Add rotation system*
--- Rotation restrictions*
---- Let's just check if after the rotation, the tetromino hits something
+-- Add "T"
+-- Add "S"
+-- Add "Z"
+-- Add "J"
+-- Add "L"
 
 - pause
 
 DONE:
-- Add rotation system (in progress)
--- IPlacedTetromino should have rotate functions
--- Keyboard events to rotate
-- Get rid of test warnings
 
 CONSIDERATIONS:
-- spawn is influenced by the rotation system
-- there are 2 hidden rows at the top of the playfield
 - Make clear algorithm (naive, or sticky) pluggable.
 - Study and decide which game over conditions will be implemented
 - Score system
-- Other tetrominoes
-- Random tetromino spawn
 - Tetromino preview box
