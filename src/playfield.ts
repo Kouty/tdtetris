@@ -104,14 +104,14 @@ class PlacedTetromino implements IPlacedTetromino {
 
     public rotateClockwise() {
         this.tetromino.rotateClockwise();
-        if (this.outsideBounds()) {
+        if (this.outsideBounds() || this.garbageAreaContainsTetromino()) {
             this.tetromino.rotateCounterClockwise();
         }
     }
 
     public rotateCounterClockwise() {
         this.tetromino.rotateCounterClockwise();
-        if (this.outsideBounds()) {
+        if (this.outsideBounds() || this.garbageAreaContainsTetromino()) {
             this.tetromino.rotateClockwise();
         }
 

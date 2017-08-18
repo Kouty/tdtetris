@@ -65,26 +65,68 @@ describe('Playfield bounds', function () {
             playField.tetromino.rotateCounterClockwise();
             playField.tetromino.moveLeft();
 
-            expectInBounds('rotateCounterClockwise');
-            expectInBounds('rotateClockwise');
+            expectDidNotRotate('rotateCounterClockwise');
+            expectDidNotRotate('rotateClockwise');
         });
 
         it('should not rotate if it causes the tetromino to be outside right bound', function () {
             playField.tetromino.rotateClockwise();
             playField.tetromino.moveRight();
 
-            expectInBounds('rotateCounterClockwise');
-            expectInBounds('rotateClockwise');
+            expectDidNotRotate('rotateCounterClockwise');
+            expectDidNotRotate('rotateClockwise');
         });
 
         it('should not rotate if it causes the tetromino to be outside bottom bound', function () {
             playField.tetromino.moveDown();
 
-            expectInBounds('rotateCounterClockwise');
-            expectInBounds('rotateClockwise');
+            expectDidNotRotate('rotateCounterClockwise');
+            expectDidNotRotate('rotateClockwise');
         });
 
-        function expectInBounds(rotationFunction) {
+        it('should not rotate if it causes the tetromino to be overlap garbage area', function () {
+            // |    |
+            // |    |
+            // |OO  |
+            // |OO  |
+            playField.spawn(Tetrominoes.O.create());
+            playField.tetromino.moveLeft();
+            playField.tetromino.moveDown();
+            playField.tetromino.moveDown();
+            playField.tetromino.moveDown();
+
+            // |  I |
+            // |  I |
+            // |OOI |
+            // |OOI |
+            playField.spawn(Tetrominoes.I.create());
+            playField.tetromino.rotateClockwise();
+
+            expectDidNotRotate('rotateClockwise');
+        });
+
+        it('should not rotate if it causes the tetromino to be overlap garbage area', function () {
+            // |    |
+            // |    |
+            // |  OO|
+            // |  OO|
+            playField.spawn(Tetrominoes.O.create());
+            playField.tetromino.moveRight();
+            playField.tetromino.moveDown();
+            playField.tetromino.moveDown();
+            playField.tetromino.moveDown();
+
+            // | I  |
+            // | I  |
+            // | IOO|
+            // | IOO|
+            playField.spawn(Tetrominoes.I.create());
+            playField.tetromino.rotateCounterClockwise();
+
+            expectDidNotRotate('rotateCounterClockwise');
+        });
+
+        function expectDidNotRotate(rotationFunction) {
             const filledCellsBefore = playField.tetromino.filledCells().slice();
             playField.tetromino[rotationFunction]();
             const filledCellsAfter = playField.tetromino.filledCells().slice();
