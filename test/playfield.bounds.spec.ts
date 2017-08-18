@@ -51,7 +51,7 @@ describe('Playfield bounds', function () {
 
     describe('Rotation restrictions', function () {
 
-        xit('should not rotate if it causes the tetromino to be outside left bound', function () {
+        it('should not rotate if it causes the tetromino to be outside left bound', function () {
             const playField = new PlayField(4, 4);
             const iTetromino = Tetrominoes.I.create();
             playField.spawn(iTetromino);
@@ -61,7 +61,6 @@ describe('Playfield bounds', function () {
             const filledCellsBefore = playField.tetromino.filledCells().slice();
             playField.tetromino.rotateCounterClockwise();
             const filledCellsAfter = playField.tetromino.filledCells().slice();
-
 
             expect(filledCellsBefore).toEqual(filledCellsAfter);
         });
