@@ -7,11 +7,10 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- Add other tetrominoes
--- Add "L"*
+- pause
+- Next tetromino preview box
 
 - By testing rotation algorithm, there is no need to test rotations on every tetromino
-- pause
 
 DONE:
 - Add other tetrominoes
@@ -20,10 +19,10 @@ DONE:
 -- Add "S"
 -- Add "Z"
 -- Add "J"
+-- Add "L"
 
 
 CONSIDERATIONS:
 - Make clear algorithm (naive, or sticky) pluggable.
 - Study and decide which game over conditions will be implemented
 - Score system
-- Tetromino preview box
