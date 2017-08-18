@@ -11,13 +11,14 @@ TODO:
 -- Add "O" Done
 
 - Add rotation system*
--- IPlacedTetromino should have rotate functions Done
--- Keyboard events to rotate
--- Rotation bounds
+-- Rotation bounds*
 
 - pause
 
 DONE:
+- Add rotation system (in progress)
+-- IPlacedTetromino should have rotate functions
+-- Keyboard events to rotate
 - Get rid of test warnings
 
 CONSIDERATIONS:
