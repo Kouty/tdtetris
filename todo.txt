@@ -14,6 +14,7 @@ TODO:
 -- Add "J"
 -- Add "L"
 
+- By testing rotation algorithm, there is no need to test rotations on every tetromino
 - pause
 
 DONE:
