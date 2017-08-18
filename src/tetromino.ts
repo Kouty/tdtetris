@@ -3,6 +3,7 @@ import {InterfaceRotation, IPosition, IRotation, ORotation} from './srsRotation'
 export enum TetrominoType {
     I,
     O,
+    T,
 }
 
 export interface ITetromino extends InterfaceRotation {
@@ -49,8 +50,20 @@ class O extends ORotation implements ITetromino {
     public readonly type = TetrominoType.O;
 }
 
+class T extends ORotation implements ITetromino {
+
+    public static create() {
+        return new T();
+    }
+
+    public readonly width = 4;
+    public readonly height = 4;
+    public readonly type = TetrominoType.T;
+}
+
 const Tetrominoes = {
     I,
     O,
+    T,
 };
 export {Tetrominoes};

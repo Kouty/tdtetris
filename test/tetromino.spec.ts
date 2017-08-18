@@ -34,4 +34,20 @@ describe('Tetromino', function () {
 
     });
 
+    describe('T', function () {
+        it('should have a containing rectangle', function () {
+            const tetrominoT = Tetrominoes.T.create();
+
+            expect(tetrominoT.width).toBe(4);
+            expect(tetrominoT.height).toBe(4);
+        });
+
+        it('should be of type T', function () {
+            const tetrominoT = Tetrominoes.T.create();
+
+            expect(tetrominoT.type).toBe(TetrominoType.T);
+        });
+
+    });
+
 });
