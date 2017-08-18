@@ -80,7 +80,9 @@ export class ORotation extends AbstractRotation {
 
     constructor() {
         super([
+            0, 0,
             1, 1,
-            1, 1], ORotation.width);
+            1, 1,
+            0, 0], ORotation.width);
     }
 }

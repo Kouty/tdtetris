@@ -26,15 +26,12 @@ describe('Tetromino', function () {
             expect(tetrominoO.height).toBe(2);
         });
 
-        it('should fill all its area', function () {
+        it('should be of type O', function () {
             const tetrominoO = Tetrominoes.O.create();
 
-            expect(tetrominoO.filledCells().length).toBe(4);
-            expect(tetrominoO.filledCells()).toContain({row: 0, col: 0});
-            expect(tetrominoO.filledCells()).toContain({row: 1, col: 0});
-            expect(tetrominoO.filledCells()).toContain({row: 0, col: 1});
-            expect(tetrominoO.filledCells()).toContain({row: 1, col: 1});
+            expect(tetrominoO.type).toBe(TetrominoType.O);
         });
+
     });
 
 });
