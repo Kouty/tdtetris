@@ -7,10 +7,8 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- Fix I spawn, it spawns in the 2nd row*
-
 - Add other tetrominoes
--- Add "T"
+-- Add "T"*
 -- Add "S"
 -- Add "Z"
 -- Add "J"
@@ -19,6 +17,7 @@ TODO:
 - pause
 
 DONE:
+- Fix I spawn, it spawns in the 2nd row
 - Undo O spawn, http://tetris.wikia.com/wiki/SRS. All tetrominoes start in the first 2 rows*
 - Changing number of rows hidden from 2 to 1, so that all tetrominoes are partially visible
 - there are 2 hidden rows at the top of the playfield
