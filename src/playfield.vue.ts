@@ -7,7 +7,7 @@ import {TetrominoType} from './tetromino';
 const template = `<div>
 <table class="play-field">
   <tbody>
-    <tr v-for="row in area.numRows" v-show="row > 2">
+    <tr v-for="row in area.numRows" v-show="row > 1">
       <td v-for="col in area.numCols">
         <div class="cell"
           :class="{'I':iCell(row,col), 'O':oCell(row,col)}">
