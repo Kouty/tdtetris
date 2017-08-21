@@ -6,6 +6,7 @@ interface ITetrisVue extends Vue {
     tetris: Tetris;
     area: IPlayFieldModel;
     timerId: any;
+    paused: boolean;
 
     calcArea(): IPlayFieldModel;
 
@@ -17,7 +18,11 @@ interface ITetrisVue extends Vue {
 
     moveDown(): void;
 
+    onPause(): void;
+
     restartTimer(): void;
+
+    clearTimer(): void;
 
     update(): void;
 }
@@ -33,10 +38,12 @@ interface ITetrisVue extends Vue {
 
 const keyMap = {
     17: 'onRotateCounterClockwise', // ctrl
+    27: 'onPause', // ESC
     38: 'onRotateClockwise', // arrow up
     39: 'onRight', // arrow right
     37: 'onLeft', // arrow left
     40: 'onDown', // arrow down
+    80: 'onPause', // P
     88: 'onRotateClockwise', // X key
     90: 'onRotateCounterClockwise', // X key
 };
@@ -44,6 +51,7 @@ const NULL_FUNCT = () => null;
 
 const tetrisVue = {
     created() {
+        this.paused = false;
         this.tetris.start();
         this.area = this.calcArea();
         this.restartTimer();
@@ -62,6 +70,10 @@ const tetrisVue = {
         onKeyDown(evt) {
             const key = evt.which || evt.keyCode;
             (this[keyMap[key]] || NULL_FUNCT)();
+        },
+        onPause() {
+            this.paused ? this.restartTimer() : this.clearTimer();
+            this.paused = !this.paused;
         },
         onRotateClockwise() {
             this.tetris.rotateClockwise();
@@ -86,7 +98,7 @@ const tetrisVue = {
         moveDown() {
             this.tetris.moveDown();
             if (this.tetris.gameOver()) {
-                clearTimeout(this.timerId);
+                this.clearTimer();
                 setTimeout(() => {
                     alert('Game over!');
                 }, 10);
@@ -94,12 +106,15 @@ const tetrisVue = {
             this.update();
         },
         restartTimer() {
-            clearTimeout(this.timerId);
+            this.clearTimer();
             const moveDown = () => {
                 this.timerId = setTimeout(moveDown, 1500);
                 this.moveDown();
             };
             this.timerId = setTimeout(moveDown, 1500);
+        },
+        clearTimer() {
+            clearTimeout(this.timerId);
         },
         update() {
             this.area = this.calcArea();

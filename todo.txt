@@ -7,13 +7,13 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- Fix bug on move down and update*
-- pause
+- pause*
+-- pause UX
 
 - Next tetromino preview box
 
-
 DONE:
+- Fix bug on move down and update
 - remove code duplication from playfield.vue
 
 
