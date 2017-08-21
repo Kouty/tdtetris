@@ -18,6 +18,8 @@ interface ITetrisVue extends Vue {
     moveDown(): void;
 
     restartTimer(): void;
+
+    update(): void;
 }
 
 // http://www.tetrisfriends.com/help/tips_appendix.php#controls
@@ -60,19 +62,22 @@ const tetrisVue = {
         onKeyDown(evt) {
             const key = evt.which || evt.keyCode;
             (this[keyMap[key]] || NULL_FUNCT)();
-            this.area = this.calcArea();
         },
         onRotateClockwise() {
             this.tetris.rotateClockwise();
+            this.update();
         },
         onRotateCounterClockwise() {
             this.tetris.rotateCounterClockwise();
+            this.update();
         },
         onRight() {
             this.tetris.moveRight();
+            this.update();
         },
         onLeft() {
             this.tetris.moveLeft();
+            this.update();
         },
         onDown() {
             this.restartTimer();
@@ -82,17 +87,22 @@ const tetrisVue = {
             this.tetris.moveDown();
             if (this.tetris.gameOver()) {
                 clearTimeout(this.timerId);
-                alert('Game over!');
+                setTimeout(() => {
+                    alert('Game over!');
+                }, 10);
             }
+            this.update();
         },
         restartTimer() {
             clearTimeout(this.timerId);
             const moveDown = () => {
-                this.area = this.calcArea();
                 this.timerId = setTimeout(moveDown, 1500);
                 this.moveDown();
             };
             this.timerId = setTimeout(moveDown, 1500);
+        },
+        update() {
+            this.area = this.calcArea();
         },
     },
     template: '<div tabindex="1" autofocus @keydown="onKeyDown($event)">' +
