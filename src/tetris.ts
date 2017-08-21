@@ -12,6 +12,7 @@ export class Tetris {
     public readonly playField: PlayField;
     private generator: TetrominoGenerator;
     private gameOverDetected: boolean;
+    private next: ITetromino;
 
     constructor(numRows: number, numCols: number) {
         this.generator = new TetrominoGenerator();
@@ -20,6 +21,7 @@ export class Tetris {
     }
 
     public start(): void {
+        this.next = this.generator.next();
         this.spawnNext();
     }
 
@@ -87,8 +89,13 @@ export class Tetris {
 
     /* tslint:enable member-ordering*/
 
+    public nextTetromino(): ITetromino {
+        return this.next;
+    }
+
     private spawnNext(): void {
-        const spawned = this.playField.spawn(this.generator.next());
+        const spawned = this.playField.spawn(this.next);
+        this.next = this.generator.next();
         this.gameOverDetected = !spawned;
     }
 }

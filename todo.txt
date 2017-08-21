@@ -7,10 +7,12 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- pause*
+- pause
 -- pause UX
 
-- Next tetromino preview box
+- Next tetromino preview box*
+-- next tetromino on tetris*
+-- next UX
 
 DONE:
 - Fix bug on move down and update

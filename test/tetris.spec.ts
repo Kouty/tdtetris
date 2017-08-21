@@ -139,4 +139,17 @@ describe('Tetris', function () {
 
         expect(tetris.playField.tetromino.rotateCounterClockwise).toHaveBeenCalled();
     });
+
+    it('should provide the next Tetromino that will spawn', function () {
+        const tetris = new Tetris(10, 3);
+        const toBeSpawned = [oneCellTetromino, {}];
+        let counter = 0;
+        spyOn(TetrominoGenerator.prototype, 'next').and.callFake(() => {
+            return toBeSpawned[counter++];
+        });
+
+        tetris.start();
+
+        expect(tetris.nextTetromino()).toBe(toBeSpawned[1]);
+    });
 });
