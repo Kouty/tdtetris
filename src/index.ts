@@ -122,9 +122,7 @@ const tetrisVue = {
             this.tetris.moveDown();
             if (this.tetris.gameOver()) {
                 this.clearTimer();
-                setTimeout(() => {
-                    alert('Game over!');
-                }, 10);
+                this.toast.showToast('Game Over!', {timeLife: 6000, theme: 'error'});
             }
             this.update();
         },
