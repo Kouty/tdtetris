@@ -8,16 +8,15 @@ Tetris
 
 TODO:
 - pause
--- pause UX
+-- pause UX*
 
-- Next tetromino preview box*
--- next tetromino on tetris
--- next UX*
+- Score system
+-- Score UX
 
 DONE:
-- Fix bug on move down and update
-- remove code duplication from playfield.vue
-
+- Next tetromino preview box
+-- next tetromino on tetris
+-- next UX
 
 CONSIDERATIONS:
 - Make clear algorithm (naive, or sticky) pluggable.

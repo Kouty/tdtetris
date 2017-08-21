@@ -1,4 +1,6 @@
 import Vue, {ComponentOptions} from 'vue';
+import VueToast from 'vue-toast';
+import 'vue-toast/dist/vue-toast.min.css';
 import {PlayFieldVue} from './playfield.vue';
 import {IPlayFieldModel, Tetris} from './tetris';
 import {TetrominoVue} from './tetromino.vue';
@@ -7,6 +9,7 @@ const template = `
 <div tabindex="1" @keydown="onKeyDown($event)" class="tetris">
     <tetromino :tetromino="tetris.nextTetromino()"></tetromino>
     <play-field :area="area"></play-field>
+    <vue-toast ref='toast'></vue-toast>
 </div>
 `;
 
@@ -15,6 +18,7 @@ interface ITetrisVue extends Vue {
     area: IPlayFieldModel;
     timerId: any;
     paused: boolean;
+    toast: any;
 
     calcArea(): IPlayFieldModel;
 
@@ -66,8 +70,10 @@ const tetrisVue = {
     },
     mounted() {
         this.$el.focus();
+        this.toast = this.$refs.toast;
+        this.toast.setOptions({position: 'top right'});
     },
-    components: {'play-field': PlayFieldVue, 'tetromino': TetrominoVue},
+    components: {'play-field': PlayFieldVue, 'tetromino': TetrominoVue, VueToast},
     data: {
         area: null,
         tetris: new Tetris(20, 10),
@@ -83,7 +89,13 @@ const tetrisVue = {
             (this[keyMap[key]] || NULL_FUNCT)();
         },
         onPause() {
-            this.paused ? this.restartTimer() : this.clearTimer();
+            if (this.paused) {
+                this.restartTimer();
+                this.toast.closeAll();
+            } else {
+                this.clearTimer();
+                this.toast.showToast(' Paused', {timeLife: 1000000, theme: 'info'});
+            }
             this.paused = !this.paused;
         },
         onRotateClockwise() {
