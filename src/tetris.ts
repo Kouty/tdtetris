@@ -6,6 +6,7 @@ export interface IPlayFieldModel {
     numRows: number;
     numCols: number;
     cells: ITetromino[];
+    nextTetromino: ITetromino;
 }
 
 export class Tetris {
@@ -54,11 +55,11 @@ export class Tetris {
     }
 
     public playFieldModel(): IPlayFieldModel {
-        return Tetris.playFieldModel(this.playField);
+        return Tetris.playFieldModel(this.playField, this.nextTetromino());
     }
 
     /* tslint:disable member-ordering*/
-    public static playFieldModel(playField: PlayField): IPlayFieldModel {
+    public static playFieldModel(playField: PlayField, nextTetromino: ITetromino): IPlayFieldModel {
         const cells: ITetromino[] = [];
         const tetromino = playField.tetromino;
         const numCols = playField.numCols;
@@ -82,6 +83,7 @@ export class Tetris {
 
         return {
             cells,
+            nextTetromino,
             numCols: playField.numCols,
             numRows: playField.numRows,
         };

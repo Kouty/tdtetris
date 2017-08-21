@@ -11,8 +11,8 @@ TODO:
 -- pause UX
 
 - Next tetromino preview box*
--- next tetromino on tetris*
--- next UX
+-- next tetromino on tetris
+-- next UX*
 
 DONE:
 - Fix bug on move down and update
