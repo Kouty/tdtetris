@@ -1,6 +1,82 @@
-import {IRotation, JRotation, LRotation, ORotation, SRotation, TRotation, ZRotation} from '../src/srsRotation';
+import {
+    IRotation,
+    JRotation,
+    LRotation,
+    MatrixRotation,
+    ORotation,
+    SRotation,
+    TRotation,
+    ZRotation,
+} from '../src/srsRotation';
 
 describe('SRS Rotation system', function () {
+
+    describe('MatrixRotation', function () {
+        let matrixRotation;
+
+        beforeEach(function () {
+            const testMatrix = [
+                1, 0,
+                0, 0];
+
+            matrixRotation = new MatrixRotation(testMatrix, 2);
+        });
+
+        it('should rotate clockwise', function () {
+            matrixRotation.rotateClockwise();
+
+            expect(matrixRotation.matrix).toEqual([
+                0, 1,
+                0, 0]);
+        });
+
+        it('should rotate clockwise twice', function () {
+            matrixRotation.rotateClockwise();
+            matrixRotation.rotateClockwise();
+
+            expect(matrixRotation.matrix).toEqual([
+                0, 0,
+                0, 1]);
+        });
+
+        it('should rotate clockwise 3 times', function () {
+            matrixRotation.rotateClockwise();
+            matrixRotation.rotateClockwise();
+            matrixRotation.rotateClockwise();
+
+            expect(matrixRotation.matrix).toEqual([
+                0, 0,
+                1, 0]);
+        });
+
+        it('rotating 4 times should be equal to not rotating', function () {
+            matrixRotation.rotateClockwise();
+            matrixRotation.rotateClockwise();
+            matrixRotation.rotateClockwise();
+            matrixRotation.rotateClockwise();
+
+            expect(matrixRotation.matrix).toEqual([
+                1, 0,
+                0, 0]);
+        });
+
+        it('rotate counter clockwise', function () {
+            matrixRotation.rotateCounterClockwise();
+
+            expect(matrixRotation.matrix).toEqual([
+                0, 0,
+                1, 0]);
+        });
+
+        it('rotate clockwise and then rotate counterClockwise should restore initial position', function () {
+            matrixRotation.rotateClockwise();
+            matrixRotation.rotateCounterClockwise();
+
+            expect(matrixRotation.matrix).toEqual([
+                1, 0,
+                0, 0]);
+        });
+    });
 
     describe('"I" rotation', function () {
         it('should spawn with  the 2nd row filled', function () {

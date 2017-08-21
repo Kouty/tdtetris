@@ -11,36 +11,23 @@ export interface InterfaceRotation {
     rotateCounterClockwise(): void;
 }
 
-class AbstractRotation implements InterfaceRotation {
+export class MatrixRotation {
     public readonly height;
 
-    constructor(private matrix: number[], public readonly width: number) {
-        this.height = this.matrix.length / this.width;
-    }
-
-    public filledCells() {
-        return this.toCoordinates();
+    constructor(private crtMatrix: number[], public readonly width: number) {
+        this.height = this.crtMatrix.length / this.width;
     }
 
     public rotateClockwise() {
-        this.matrix = this.rotate90(this.matrix, -1);
+        this.crtMatrix = this.rotate90(this.crtMatrix, -1);
     }
 
     public rotateCounterClockwise() {
-        this.matrix = this.rotate90(this.matrix, +1);
+        this.crtMatrix = this.rotate90(this.crtMatrix, +1);
     }
 
-    private toCoordinates() {
-        const newMatrix: IPosition[] = [];
-        this.matrix.forEach((filled, index) => {
-            if (filled) {
-                const row = Math.floor(index / this.width);
-                const col = index % this.width;
-                newMatrix.push({row, col});
-            }
-        });
-
-        return newMatrix;
+    get matrix(): number[] {
+        return this.crtMatrix;
     }
 
     private rotate90(grid, direction): number[] {
@@ -63,6 +50,31 @@ class AbstractRotation implements InterfaceRotation {
 
         return newGrid;
     }
+}
+
+class AbstractRotation extends MatrixRotation implements InterfaceRotation {
+
+    constructor(matrix: number[], width: number) {
+        super(matrix, width);
+    }
+
+    public filledCells() {
+        return this.toCoordinates();
+    }
+
+    private toCoordinates() {
+        const newMatrix: IPosition[] = [];
+        this.matrix.forEach((filled, index) => {
+            if (filled) {
+                const row = Math.floor(index / this.width);
+                const col = index % this.width;
+                newMatrix.push({row, col});
+            }
+        });
+
+        return newMatrix;
+    }
+
 }
 
 export class IRotation extends AbstractRotation {
