@@ -1,15 +1,14 @@
 import Vue, {ComponentOptions} from 'vue';
 import {PlayFieldVue} from './playfield.vue';
 import {IPlayFieldModel, Tetris} from './tetris';
+import {TetrominoVue} from './tetromino.vue';
 
 const template = `
 <div tabindex="1" @keydown="onKeyDown($event)">
     <play-field :area="area"></play-field>
+    <tetromino :tetromino="tetris.nextTetromino()"></tetromino>
 </div>
 `;
-
-// <!--<tetromino :tetromino="nextTetromino"></tetromino>-->
-
 
 interface ITetrisVue extends Vue {
     tetris: Tetris;
@@ -65,7 +64,7 @@ const tetrisVue = {
         this.area = this.calcArea();
         this.restartTimer();
     },
-    components: {'play-field': PlayFieldVue},
+    components: {'play-field': PlayFieldVue, 'tetromino': TetrominoVue},
     data: {
         area: null,
         tetris: new Tetris(20, 10),

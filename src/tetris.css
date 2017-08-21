@@ -6,7 +6,6 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-color: #E8E8EE;
 }
 
 .I {
@@ -35,4 +34,12 @@
 
 .L {
   background-color: orange;
+}
+
+.empty {
+  background-color: #E8E8EE;
+}
+
+.preview-box {
+  border: 1px solid black;
 }

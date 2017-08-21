@@ -10,7 +10,7 @@ const template = `<div>
     <tr v-for="r in area.numRows" v-show="r > 1">
       <td v-for="c in area.numCols">
         <div class="cell"
-          :class="{'I':i(r,c),'O':o(r,c),'T':t(r,c),'S':s(r,c),'Z':z(r,c),'J':j(r,c),'L':l(r,c)}">
+          :class="classForCell(r,c)">
         </div>
       </td>  
     </tr>
@@ -23,23 +23,9 @@ const template = `<div>
 interface IPlayFieldVue extends Vue {
     area: IPlayFieldModel;
 
-    i(row: number, col: number): boolean;
+    classForCell(row: number, col: number): string;
 
-    o(row: number, col: number): boolean;
-
-    t(row: number, col: number): boolean;
-
-    s(row: number, col: number): boolean;
-
-    z(row: number, col: number): boolean;
-
-    l(row: number, col: number): boolean;
-
-    tetrominoCell(row: number, col: number, type: { new(): ITetromino; }): boolean;
-
-    garbageCell(row: number, col: number, type: { new(): ITetromino; }): boolean;
-
-    filledWith(row: number, col: number, type: { new(): ITetromino; }): boolean;
+    getCellAt(row: number, col: number): ITetromino;
 }
 
 const PlayFieldVue = {
@@ -47,44 +33,15 @@ const PlayFieldVue = {
         return {};
     },
     methods: {
-        i(row, col) {
-            return this.filledWith(row, col, Tetrominoes.I);
+        classForCell(row, col) {
+            const cell = this.getCellAt(row, col) || {type: {name: 'empty'}};
+            return (cell.type as any).name.toString();
         },
-        o(row, col) {
-            return this.filledWith(row, col, Tetrominoes.O);
-        },
-        t(row, col) {
-            return this.filledWith(row, col, Tetrominoes.T);
-        },
-        s(row, col) {
-            return this.filledWith(row, col, Tetrominoes.S);
-        },
-        z(row, col) {
-            return this.filledWith(row, col, Tetrominoes.Z);
-        },
-        j(row, col) {
-            return this.filledWith(row, col, Tetrominoes.J);
-        },
-        l(row, col) {
-            return this.filledWith(row, col, Tetrominoes.L);
-        },
-        filledWith(row, col, type) {
-            return this.tetrominoCell(row, col, type)
-                || this.garbageCell(row, col, type);
-        },
-        tetrominoCell(row, col, type) {
+        getCellAt(row, col) {
             row--;
             col--;
             const numCols = this.area.numCols;
-            const cell = this.area.cells[numCols * row + col];
-            return cell !== undefined && cell.type === type;
-        },
-        garbageCell(row, col, type): boolean {
-            row--;
-            col--;
-            const numCols = this.area.numCols;
-            const cell = this.area.cells[numCols * row + col];
-            return cell !== undefined && cell.type === type;
+            return this.area.cells[numCols * row + col];
         },
     },
     props: ['area'],
