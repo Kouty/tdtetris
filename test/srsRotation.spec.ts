@@ -90,55 +90,10 @@ describe('SRS Rotation system', function () {
             expect(allIn3rdRow).toBe(true);
         });
 
-        it('should rotate clockwise', function () {
+        it('should use MatrixRotation', function () {
             const iRotation = new IRotation();
 
-            iRotation.rotateClockwise();
-
-            const allIn3rdCol = iRotation.filledCells().length > 0 &&
-                iRotation.filledCells().every((cell) => {
-                    return cell.col === 2;
-                });
-
-            expect(allIn3rdCol).toBe(true);
-        });
-
-        it('should rotate clockwise twice', function () {
-            const iRotation = new IRotation();
-
-            iRotation.rotateClockwise();
-            iRotation.rotateClockwise();
-
-            const allIn3rdRow = iRotation.filledCells().length > 0 &&
-                iRotation.filledCells().every((cell) => {
-                    return cell.row === 2;
-                });
-
-            expect(allIn3rdRow).toBe(true);
-        });
-
-        it('should rotate counterclockwise', function () {
-            const iRotation = new IRotation();
-
-            iRotation.rotateCounterClockwise();
-
-            const allIn2ndCol = iRotation.filledCells().length > 0 &&
-                iRotation.filledCells().every((cell) => {
-                    return cell.col === 1;
-                });
-
-            expect(allIn2ndCol).toBe(true);
-        });
-
-        it('rotate clockwise and then rotate counterClockwise should restore initial position', function () {
-            const iRotation = new IRotation();
-
-            const before = iRotation.filledCells();
-            iRotation.rotateClockwise();
-            iRotation.rotateCounterClockwise();
-            const after = iRotation.filledCells();
-
-            expect(before).toEqual(after);
+            expect(iRotation instanceof MatrixRotation).toBe(true);
         });
 
     });
@@ -154,16 +109,10 @@ describe('SRS Rotation system', function () {
             expect(oRotation.filledCells()).toContain({col: 1, row: 1});
         });
 
-        it('should not change filled cells when rotations', function () {
+        it('should use MatrixRotation', function () {
             const oRotation = new ORotation();
 
-            oRotation.rotateClockwise();
-
-            expect(oRotation.filledCells().length).toBe(4);
-            expect(oRotation.filledCells()).toContain({col: 0, row: 0});
-            expect(oRotation.filledCells()).toContain({col: 1, row: 0});
-            expect(oRotation.filledCells()).toContain({col: 0, row: 1});
-            expect(oRotation.filledCells()).toContain({col: 1, row: 1});
+            expect(oRotation instanceof MatrixRotation).toBe(true);
         });
     });
 
@@ -177,6 +126,12 @@ describe('SRS Rotation system', function () {
             expect(tRotation.filledCells()).toContain({col: 1, row: 1});
             expect(tRotation.filledCells()).toContain({col: 2, row: 1});
         });
+
+        it('should use MatrixRotation', function () {
+            const tRotation = new TRotation();
+
+            expect(tRotation instanceof MatrixRotation).toBe(true);
+        });
     });
 
     describe('"S" rotation', function () {
@@ -188,6 +143,12 @@ describe('SRS Rotation system', function () {
             expect(sRotation.filledCells()).toContain({col: 2, row: 0});
             expect(sRotation.filledCells()).toContain({col: 0, row: 1});
             expect(sRotation.filledCells()).toContain({col: 1, row: 1});
+        });
+
+        it('should use MatrixRotation', function () {
+            const sRotation = new SRotation();
+
+            expect(sRotation instanceof MatrixRotation).toBe(true);
         });
     });
 
@@ -201,6 +162,12 @@ describe('SRS Rotation system', function () {
             expect(zRotation.filledCells()).toContain({col: 1, row: 1});
             expect(zRotation.filledCells()).toContain({col: 2, row: 1});
         });
+
+        it('should use MatrixRotation', function () {
+            const zRotation = new ZRotation();
+
+            expect(zRotation instanceof MatrixRotation).toBe(true);
+        });
     });
 
     describe('"J" rotation', function () {
@@ -213,6 +180,12 @@ describe('SRS Rotation system', function () {
             expect(jRotation.filledCells()).toContain({col: 1, row: 1});
             expect(jRotation.filledCells()).toContain({col: 2, row: 1});
         });
+
+        it('should use MatrixRotation', function () {
+            const jRotation = new JRotation();
+
+            expect(jRotation instanceof MatrixRotation).toBe(true);
+        });
     });
 
     describe('"L" rotation', function () {
@@ -224,6 +197,12 @@ describe('SRS Rotation system', function () {
             expect(lRotation.filledCells()).toContain({col: 0, row: 1});
             expect(lRotation.filledCells()).toContain({col: 1, row: 1});
             expect(lRotation.filledCells()).toContain({col: 2, row: 1});
+        });
+
+        it('should use MatrixRotation', function () {
+            const lRotation = new LRotation();
+
+            expect(lRotation instanceof MatrixRotation).toBe(true);
         });
     });
 
