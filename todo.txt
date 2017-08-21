@@ -7,7 +7,7 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- TetrominoType is not necessary, Tetromino classes could be used instead
+- remove code duplication from playfield.vue*
 
 - pause
 - Next tetromino preview box
@@ -15,6 +15,8 @@ TODO:
 
 DONE:
 - By testing rotation algorithm, there is no need to test rotations on every tetromino
+- TetrominoType is not necessary, Tetromino classes could be used instead
+
 
 CONSIDERATIONS:
 - Make clear algorithm (naive, or sticky) pluggable.
