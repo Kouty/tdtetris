@@ -4,9 +4,9 @@ import {IPlayFieldModel, Tetris} from './tetris';
 import {TetrominoVue} from './tetromino.vue';
 
 const template = `
-<div tabindex="1" @keydown="onKeyDown($event)">
-    <play-field :area="area"></play-field>
+<div tabindex="1" @keydown="onKeyDown($event)" class="tetris">
     <tetromino :tetromino="tetris.nextTetromino()"></tetromino>
+    <play-field :area="area"></play-field>
 </div>
 `;
 
@@ -63,6 +63,9 @@ const tetrisVue = {
         this.tetris.start();
         this.area = this.calcArea();
         this.restartTimer();
+    },
+    mounted() {
+        this.$el.focus();
     },
     components: {'play-field': PlayFieldVue, 'tetromino': TetrominoVue},
     data: {

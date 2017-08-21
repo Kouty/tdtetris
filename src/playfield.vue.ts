@@ -4,15 +4,13 @@ import './tetris.css';
 import {ITetromino, Tetrominoes} from './tetromino';
 
 /* tslint:disable no-trailing-whitespace*/
-const template = `<div>
+const template = `<div class="play-field-container">
 <table class="play-field">
   <tbody>
-    <tr v-for="r in area.numRows" v-show="r > 1">
-      <td v-for="c in area.numCols">
-        <div class="cell"
-          :class="classForCell(r,c)">
-        </div>
-      </td>  
+    <tr v-for="row in area.numRows" v-show="row > 1">
+      <td v-for="col in area.numCols">
+        <div class="cell" :class="classForCell(row, col)"></div>
+      </td>
     </tr>
   </tbody>
 </table></div>
