@@ -2,6 +2,15 @@ import Vue, {ComponentOptions} from 'vue';
 import {PlayFieldVue} from './playfield.vue';
 import {IPlayFieldModel, Tetris} from './tetris';
 
+const template = `
+<div tabindex="1" @keydown="onKeyDown($event)">
+    <play-field :area="area"></play-field>
+</div>
+`;
+
+// <!--<tetromino :tetromino="nextTetromino"></tetromino>-->
+
+
 interface ITetrisVue extends Vue {
     tetris: Tetris;
     area: IPlayFieldModel;
@@ -120,9 +129,7 @@ const tetrisVue = {
             this.area = this.calcArea();
         },
     },
-    template: '<div tabindex="1" autofocus @keydown="onKeyDown($event)">' +
-    '<play-field :area="area"></play-field>' +
-    '</div>',
+    template,
 } as ComponentOptions<ITetrisVue>;
 
 const app = new Vue(tetrisVue);

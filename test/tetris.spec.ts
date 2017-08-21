@@ -105,11 +105,10 @@ describe('Tetris', function () {
             tetromino: placedTetromino,
         } as PlayField;
 
-        const model = Tetris.playFieldModel(playFieldMock, oneCellTetromino);
+        const model = Tetris.playFieldModel(playFieldMock);
 
         expect(model.numCols).toBe(playFieldMock.numCols);
         expect(model.numRows).toBe(playFieldMock.numRows);
-        expect(model.nextTetromino).toBe(oneCellTetromino);
 
         // | T |
         // |g  |
