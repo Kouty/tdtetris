@@ -7,22 +7,14 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- By testing rotation algorithm, there is no need to test rotations on every tetromino*
-
+- TetrominoType is not necessary, Tetromino classes could be used instead
 
 - pause
 - Next tetromino preview box
 
 
 DONE:
-- Add other tetrominoes
--- Add "O"
--- Add "T"
--- Add "S"
--- Add "Z"
--- Add "J"
--- Add "L"
-
+- By testing rotation algorithm, there is no need to test rotations on every tetromino
 
 CONSIDERATIONS:
 - Make clear algorithm (naive, or sticky) pluggable.

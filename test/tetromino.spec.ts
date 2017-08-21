@@ -1,5 +1,5 @@
 import {IRotation, JRotation, LRotation, ORotation, SRotation, TRotation, ZRotation} from '../src/srsRotation';
-import {Tetrominoes, TetrominoType} from '../src/tetromino';
+import {Tetrominoes} from '../src/tetromino';
 
 describe('Tetromino', function () {
 
@@ -7,7 +7,7 @@ describe('Tetromino', function () {
         it('should be of type I', function () {
             const tetrominoI = Tetrominoes.I.create();
 
-            expect(tetrominoI.type).toBe(TetrominoType.I);
+            expect(tetrominoI.type).toBe(Tetrominoes.I);
         });
 
         it('should extends IRotation', function () {
@@ -21,7 +21,7 @@ describe('Tetromino', function () {
         it('should be of type O', function () {
             const tetrominoO = Tetrominoes.O.create();
 
-            expect(tetrominoO.type).toBe(TetrominoType.O);
+            expect(tetrominoO.type).toBe(Tetrominoes.O);
         });
 
         it('should extends ORotation', function () {
@@ -35,7 +35,7 @@ describe('Tetromino', function () {
         it('should be of type T', function () {
             const tetrominoT = Tetrominoes.T.create();
 
-            expect(tetrominoT.type).toBe(TetrominoType.T);
+            expect(tetrominoT.type).toBe(Tetrominoes.T);
         });
 
         it('should extends TRotation', function () {
@@ -49,7 +49,7 @@ describe('Tetromino', function () {
         it('should be of type S', function () {
             const tetrominoS = Tetrominoes.S.create();
 
-            expect(tetrominoS.type).toBe(TetrominoType.S);
+            expect(tetrominoS.type).toBe(Tetrominoes.S);
         });
 
         it('should extends TRotation', function () {
@@ -63,7 +63,7 @@ describe('Tetromino', function () {
         it('should be of type Z', function () {
             const tetrominoZ = Tetrominoes.Z.create();
 
-            expect(tetrominoZ.type).toBe(TetrominoType.Z);
+            expect(tetrominoZ.type).toBe(Tetrominoes.Z);
         });
 
         it('should extends ZRotation', function () {
@@ -77,7 +77,7 @@ describe('Tetromino', function () {
         it('should be of type J', function () {
             const tetrominoJ = Tetrominoes.J.create();
 
-            expect(tetrominoJ.type).toBe(TetrominoType.J);
+            expect(tetrominoJ.type).toBe(Tetrominoes.J);
         });
 
         it('should extends JRotation', function () {
@@ -91,7 +91,7 @@ describe('Tetromino', function () {
         it('should be of type L', function () {
             const tetrominoL = Tetrominoes.L.create();
 
-            expect(tetrominoL.type).toBe(TetrominoType.L);
+            expect(tetrominoL.type).toBe(Tetrominoes.L);
         });
 
         it('should extends LRotation', function () {

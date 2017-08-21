@@ -1,22 +1,11 @@
 import {
-    InterfaceRotation, IPosition, IRotation, JRotation, LRotation, ORotation, SRotation, TRotation,
-    ZRotation
+    InterfaceRotation, IPosition, IRotation, JRotation, LRotation, ORotation, SRotation, TRotation, ZRotation,
 } from './srsRotation';
-
-export enum TetrominoType {
-    I,
-    J,
-    L,
-    O,
-    T,
-    S,
-    Z,
-}
 
 export interface ITetromino extends InterfaceRotation {
     width: number;
     height: number;
-    type: TetrominoType;
+    type: { new(): ITetromino; };
 }
 
 export interface IPlacedTetromino extends IPosition, ITetromino {
@@ -40,7 +29,7 @@ class I extends IRotation implements ITetromino {
         return new I();
     }
 
-    public readonly type = TetrominoType.I;
+    public readonly type = I;
 
 }
 
@@ -50,7 +39,7 @@ class O extends ORotation implements ITetromino {
         return new O();
     }
 
-    public readonly type = TetrominoType.O;
+    public readonly type = O;
 }
 
 class T extends TRotation implements ITetromino {
@@ -59,7 +48,7 @@ class T extends TRotation implements ITetromino {
         return new T();
     }
 
-    public readonly type = TetrominoType.T;
+    public readonly type = T;
 }
 
 class S extends SRotation implements ITetromino {
@@ -68,7 +57,7 @@ class S extends SRotation implements ITetromino {
         return new S();
     }
 
-    public readonly type = TetrominoType.S;
+    public readonly type = S;
 }
 
 class Z extends ZRotation implements ITetromino {
@@ -77,7 +66,7 @@ class Z extends ZRotation implements ITetromino {
         return new Z();
     }
 
-    public readonly type = TetrominoType.Z;
+    public readonly type = Z;
 }
 
 class J extends JRotation implements ITetromino {
@@ -86,7 +75,7 @@ class J extends JRotation implements ITetromino {
         return new J();
     }
 
-    public readonly type = TetrominoType.J;
+    public readonly type = J;
 }
 
 class L extends LRotation implements ITetromino {
@@ -95,7 +84,7 @@ class L extends LRotation implements ITetromino {
         return new L();
     }
 
-    public readonly type = TetrominoType.L;
+    public readonly type = L;
 }
 
 const Tetrominoes = {

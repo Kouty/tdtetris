@@ -1,7 +1,7 @@
 import Vue, {ComponentOptions} from 'vue';
 import {IPlayFieldModel} from './tetris';
 import './tetris.css';
-import {TetrominoType} from './tetromino';
+import {ITetromino, Tetrominoes} from './tetromino';
 
 /* tslint:disable no-trailing-whitespace*/
 const template = `<div>
@@ -35,9 +35,9 @@ interface IPlayFieldVue extends Vue {
 
     l(row: number, col: number): boolean;
 
-    tetrominoCell(row: number, col: number, type: TetrominoType): boolean;
+    tetrominoCell(row: number, col: number, type: { new(): ITetromino; }): boolean;
 
-    garbageCell(row: number, col: number, type: TetrominoType): boolean;
+    garbageCell(row: number, col: number, type: { new(): ITetromino; }): boolean;
 }
 
 const PlayFieldVue = {
@@ -46,32 +46,32 @@ const PlayFieldVue = {
     },
     methods: {
         i(row, col) {
-            return this.tetrominoCell(row, col, TetrominoType.I)
-                || this.garbageCell(row, col, TetrominoType.I);
+            return this.tetrominoCell(row, col, Tetrominoes.I)
+                || this.garbageCell(row, col, Tetrominoes.I);
         },
         o(row, col) {
-            return this.tetrominoCell(row, col, TetrominoType.O)
-                || this.garbageCell(row, col, TetrominoType.O);
+            return this.tetrominoCell(row, col, Tetrominoes.O)
+                || this.garbageCell(row, col, Tetrominoes.O);
         },
         t(row, col) {
-            return this.tetrominoCell(row, col, TetrominoType.T)
-                || this.garbageCell(row, col, TetrominoType.T);
+            return this.tetrominoCell(row, col, Tetrominoes.T)
+                || this.garbageCell(row, col, Tetrominoes.T);
         },
         s(row, col) {
-            return this.tetrominoCell(row, col, TetrominoType.S)
-                || this.garbageCell(row, col, TetrominoType.S);
+            return this.tetrominoCell(row, col, Tetrominoes.S)
+                || this.garbageCell(row, col, Tetrominoes.S);
         },
         z(row, col) {
-            return this.tetrominoCell(row, col, TetrominoType.Z)
-                || this.garbageCell(row, col, TetrominoType.Z);
+            return this.tetrominoCell(row, col, Tetrominoes.Z)
+                || this.garbageCell(row, col, Tetrominoes.Z);
         },
         j(row, col) {
-            return this.tetrominoCell(row, col, TetrominoType.J)
-                || this.garbageCell(row, col, TetrominoType.J);
+            return this.tetrominoCell(row, col, Tetrominoes.J)
+                || this.garbageCell(row, col, Tetrominoes.J);
         },
         l(row, col) {
-            return this.tetrominoCell(row, col, TetrominoType.L)
-                || this.garbageCell(row, col, TetrominoType.L);
+            return this.tetrominoCell(row, col, Tetrominoes.L)
+                || this.garbageCell(row, col, Tetrominoes.L);
         },
         tetrominoCell(row, col, type) {
             row--;
