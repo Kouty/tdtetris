@@ -5,15 +5,18 @@ import {ITetromino, Tetrominoes} from './tetromino';
 
 /* tslint:disable no-trailing-whitespace*/
 const template = `<div class="play-field-container">
-<table class="play-field">
-  <tbody>
-    <tr v-for="row in area.numRows" v-show="row > 1">
-      <td v-for="col in area.numCols">
-        <div class="cell" :class="classForCell(row, col)"></div>
-      </td>
-    </tr>
-  </tbody>
-</table></div>
+<div class="play-field">
+    <table >
+      <tbody>
+        <tr v-for="row in area.numRows" v-show="row > 1">
+          <td v-for="col in area.numCols">
+            <div class="cell" :class="classForCell(row, col)"></div>
+          </td>
+        </tr>
+      </tbody>
+</table>
+</div>
+</div>
 `;
 
 /* tslint:enable no-trailing-whitespace*/

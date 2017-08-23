@@ -7,8 +7,8 @@ import {TetrominoVue} from './tetromino.vue';
 
 const template = `
 <div tabindex="1" @keydown="onKeyDown($event)" class="tetris">
-    <tetromino :tetromino="tetris.nextTetromino()"></tetromino>
     <play-field :area="area"></play-field>
+    <tetromino :tetromino="tetris.nextTetromino()"></tetromino>
     <vue-toast ref='toast'></vue-toast>
 </div>
 `;
