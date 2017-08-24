@@ -47,6 +47,21 @@ describe('Garbage area', function () {
         expect(garbageArea.filled({row: 0, col: 0})).toBe(undefined);
     });
 
+    it('should return the number of rows that has been cleared', function () {
+        // |OOO|
+        // |OOO|
+        garbageArea.fill({row: 0, col: 0}, oneCellTetromino);
+        garbageArea.fill({row: 0, col: 1}, oneCellTetromino);
+        garbageArea.fill({row: 0, col: 2}, oneCellTetromino);
+        garbageArea.fill({row: 1, col: 0}, oneCellTetromino);
+        garbageArea.fill({row: 1, col: 1}, oneCellTetromino);
+        garbageArea.fill({row: 1, col: 2}, oneCellTetromino);
+
+        const numCleared = garbageArea.clearFilledRows();
+
+        expect(numCleared).toBe(2);
+    });
+
     it('should use naive clear gravity', function () {
         const A = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}], debug: 'A'};
         const B = {width: 1, height: 1, filledCells: () => [{row: 0, col: 0}], debug: 'B'};

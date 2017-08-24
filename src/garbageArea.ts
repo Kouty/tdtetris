@@ -20,7 +20,8 @@ export class GarbageArea {
         return this.area[this.toIndex(position)];
     }
 
-    public clearFilledRows(): void {
+    public clearFilledRows(): number {
+        let numCleared = 0;
         for (let row = 0; row < Math.ceil(this.area.length / this.numCols); row++) {
             let counter = 0;
             for (let col = 0; col < this.numCols; col++) {
@@ -30,10 +31,13 @@ export class GarbageArea {
             }
 
             if (counter === this.numCols) {
+                numCleared++;
                 this.clearRow(row);
                 row--;
             }
         }
+
+        return numCleared;
     }
 
     private clearRow(row: number) {

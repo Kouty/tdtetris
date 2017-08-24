@@ -7,10 +7,12 @@ export class PlayField {
     private placedTetromino: PlacedTetromino;
     private garbageAreaImpl: GarbageArea;
     private lockListener: (this: void) => void;
+    private clearListener: (this: void, numRowsCleared: number) => void;
 
     constructor(public readonly numRows: number, public readonly numCols: number) {
         this.garbageAreaImpl = new GarbageArea(this.numCols);
         this.lockListener = () => undefined;
+        this.clearListener = () => undefined;
     }
 
     public spawn(tetromino: ITetromino) {
@@ -20,11 +22,11 @@ export class PlayField {
             this.numCols,
             this.garbageAreaImpl,
             {
+                onGarbageRowsClear: (numRowsCleared: number) => {
+                    this.clearListener(numRowsCleared);
+                },
                 onLock: () => {
                     this.lockListener();
-                },
-                onGarbageRowClear() {
-                    // todo
                 },
             });
 
@@ -43,12 +45,16 @@ export class PlayField {
         this.lockListener = lockListener;
     }
 
+    public onGarbageRowsClear(clearListener: (this: void, numRowsCleared: number) => void): void {
+        this.clearListener = clearListener;
+    }
+
 }
 
 interface IEventsHandler {
     onLock(): void;
 
-    onGarbageRowClear(numRowsCleared: number);
+    onGarbageRowsClear(numRowsCleared: number);
 }
 
 class PlacedTetromino implements IPlacedTetromino {
@@ -166,6 +172,8 @@ class PlacedTetromino implements IPlacedTetromino {
         });
         this.eventsHandler.onLock();
 
-        this.garbageArea.clearFilledRows();
+        const numCleared = this.garbageArea.clearFilledRows();
+
+        this.eventsHandler.onGarbageRowsClear(numCleared);
     }
 }

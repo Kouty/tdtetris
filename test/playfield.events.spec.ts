@@ -1,5 +1,4 @@
 import {PlayField} from '../src/playfield';
-import {ITetromino} from '../src/tetromino';
 
 describe('Playfield events', function () {
     let oneCellTetromino;
@@ -17,5 +16,24 @@ describe('Playfield events', function () {
         playfield.tetromino.moveDown();
 
         expect(lockSpy).toHaveBeenCalled();
+    });
+
+    it('should notify when current garbage area rows gets cleared', function () {
+        const playfield = new PlayField(1, 2);
+        playfield.spawn(oneCellTetromino);
+        const clearSpy = jasmine.createSpy('clearSpy');
+        playfield.onGarbageRowsClear(clearSpy);
+
+        // |  |
+        // | O|
+        playfield.tetromino.moveRight();
+        playfield.tetromino.moveDown();
+
+        // |  |
+        // |OO|
+        playfield.spawn(oneCellTetromino);
+        playfield.tetromino.moveDown();
+
+        expect(clearSpy).toHaveBeenCalledWith(1);
     });
 });
