@@ -119,12 +119,14 @@ const tetrisVue = {
             this.moveDown();
         },
         moveDown() {
-            this.tetris.moveDown();
-            if (this.tetris.gameOver()) {
-                this.clearTimer();
-                this.toast.showToast('Game Over!', {timeLife: 6000, theme: 'error'});
+            if (!this.tetris.gameOver()) {
+                this.tetris.moveDown();
+                if (this.tetris.gameOver()) {
+                    this.clearTimer();
+                    this.toast.showToast('Game Over!', {timeLife: 6000, theme: 'error'});
+                }
+                this.update();
             }
-            this.update();
         },
         restartTimer() {
             this.clearTimer();
