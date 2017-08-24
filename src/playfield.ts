@@ -6,17 +6,28 @@ import {IPlacedTetromino} from './tetromino';
 export class PlayField {
     private placedTetromino: PlacedTetromino;
     private garbageAreaImpl: GarbageArea;
+    private lockListener: (this: void) => void;
 
     constructor(public readonly numRows: number, public readonly numCols: number) {
         this.garbageAreaImpl = new GarbageArea(this.numCols);
+        this.lockListener = () => undefined;
     }
 
     public spawn(tetromino: ITetromino) {
         const row: number = this.numRows - 1;
         const col: number = Math.floor((this.numCols - tetromino.width) / 2);
+        const getLockListener = () => this.lockListener;
         this.placedTetromino = new PlacedTetromino(tetromino, {row, col},
             this.numCols,
-            this.garbageAreaImpl);
+            this.garbageAreaImpl,
+            {
+                onLock() {
+                    getLockListener()();
+                },
+                onGarbageRowClear() {
+                    // todo
+                },
+            });
 
         return !this.placedTetromino.garbageAreaContainsTetromino();
     }
@@ -29,14 +40,26 @@ export class PlayField {
         return this.garbageAreaImpl;
     }
 
+    public onLock(lockListener: (this: void) => void): void {
+        this.lockListener = lockListener;
+    }
+
+}
+
+interface IEventsHandler {
+    onLock(): void;
+
+    onGarbageRowClear(numRowsCleared: number);
 }
 
 class PlacedTetromino implements IPlacedTetromino {
     private position: IPosition;
 
     constructor(private tetromino: ITetromino,
-                position: IPosition, private numCols: number,
-                private garbageArea: GarbageArea) {
+                position: IPosition,
+                private numCols: number,
+                private garbageArea: GarbageArea,
+                private eventsHandler: IEventsHandler) {
         this.position = {
             col: position.col,
             row: position.row,
@@ -114,7 +137,6 @@ class PlacedTetromino implements IPlacedTetromino {
         if (this.outsideBounds() || this.garbageAreaContainsTetromino()) {
             this.tetromino.rotateClockwise();
         }
-
     }
 
     private outsideBounds() {
@@ -143,6 +165,7 @@ class PlacedTetromino implements IPlacedTetromino {
         this.filledCells().forEach((cell) => {
             this.garbageArea.fill(cell, this.tetromino);
         });
+        this.eventsHandler.onLock();
 
         this.garbageArea.clearFilledRows();
     }

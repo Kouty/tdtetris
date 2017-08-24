@@ -7,11 +7,11 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- Stop game after game over*
-- Score system
+- Score system*
 -- Score UX
 
 DONE:
+- Stop game after game over
 - pause
 -- pause UX
 - Next tetromino preview box
@@ -21,4 +21,3 @@ DONE:
 CONSIDERATIONS:
 - Make clear algorithm (naive, or sticky) pluggable.
 - Study and decide which game over conditions will be implemented
-- Score system
