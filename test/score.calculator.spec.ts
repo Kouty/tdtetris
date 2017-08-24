@@ -3,7 +3,7 @@ import {ScoreCalculator} from '../src/scoreCalculator';
 describe('ScoreCalculator', () => {
     let calculator;
 
-    beforeEach(function() {
+    beforeEach(function () {
         calculator = new ScoreCalculator();
     });
 

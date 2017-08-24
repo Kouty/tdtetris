@@ -1,4 +1,5 @@
 import {PlayField} from './playfield';
+import {ScoreCalculator} from './scoreCalculator';
 import {ITetromino} from './tetromino';
 import {TetrominoGenerator} from './tetrominoGenerator';
 
@@ -18,6 +19,11 @@ export class Tetris {
         this.generator = new TetrominoGenerator();
         this.playField = new PlayField(numRows, numCols);
         this.gameOverDetected = false;
+
+        const scoreCalculator = new ScoreCalculator();
+        this.playField.onLock(() => {
+            scoreCalculator.addPointsForLock();
+        });
     }
 
     public start(): void {

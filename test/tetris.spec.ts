@@ -1,5 +1,6 @@
 import {IGarbageAreaReadOnly} from '../src/garbageArea';
 import {PlayField} from '../src/playfield';
+import {ScoreCalculator} from '../src/scoreCalculator';
 import {IPosition} from '../src/srsRotation';
 import {Tetris} from '../src/tetris';
 import {IPlacedTetromino} from '../src/tetromino';
@@ -151,5 +152,16 @@ describe('Tetris', function () {
         tetris.start();
 
         expect(tetris.nextTetromino()).toBe(toBeSpawned[1]);
+    });
+
+    it('should call score calculator on tetromino lock', function () {
+        const tetris = new Tetris(1, 2);
+        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneCellTetromino);
+        spyOn(ScoreCalculator.prototype, 'addPointsForLock');
+
+        tetris.start();
+        tetris.moveDown();
+
+        expect(ScoreCalculator.prototype.addPointsForLock).toHaveBeenCalled();
     });
 });

@@ -67,13 +67,13 @@ const TetrominoVue = {
             this.bounds = bounds;
         },
     },
+    props: ['tetromino'],
+    template,
     watch: {
         tetromino() {
             this.updateBounds();
         },
     },
-    props: ['tetromino'],
-    template,
 } as ComponentOptions<ITetrominoVue>;
 
 export {TetrominoVue};
