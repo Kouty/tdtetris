@@ -10,7 +10,7 @@ export class ScoreCalculator {
     }
 
     public addPointsForClear(numRowsCleared: number) {
-        this.pScore += (numRowsCleared * (numRowsCleared + 1) / 2) * 10;
+        this.pScore += (numRowsCleared * (numRowsCleared + 1) / 2) * 5;
     }
 
     get score() {
