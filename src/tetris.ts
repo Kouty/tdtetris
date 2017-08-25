@@ -14,16 +14,25 @@ export class Tetris {
     private generator: TetrominoGenerator;
     private gameOverDetected: boolean;
     private next: ITetromino;
+    private scoreCalculator: ScoreCalculator;
 
     constructor(numRows: number, numCols: number) {
         this.generator = new TetrominoGenerator();
         this.playField = new PlayField(numRows, numCols);
         this.gameOverDetected = false;
 
-        const scoreCalculator = new ScoreCalculator();
+        this.scoreCalculator = new ScoreCalculator();
         this.playField.onLock(() => {
-            scoreCalculator.addPointsForLock();
+            this.scoreCalculator.addPointsForLock();
         });
+
+        this.playField.onGarbageRowsClear((numRowsCleared: number) => {
+            this.scoreCalculator.addPointsForClear(numRowsCleared);
+        });
+    }
+
+    get score() {
+        return this.scoreCalculator.score;
     }
 
     public start(): void {

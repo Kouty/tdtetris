@@ -164,4 +164,35 @@ describe('Tetris', function () {
 
         expect(ScoreCalculator.prototype.addPointsForLock).toHaveBeenCalled();
     });
+
+    it('should call score calculator on garbage area row clear', function () {
+        const tetris = new Tetris(1, 2);
+        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneCellTetromino);
+        spyOn(ScoreCalculator.prototype, 'addPointsForClear');
+
+        // |0 |
+        tetris.start();
+        tetris.moveDown();
+        // |00|
+        tetris.moveRight();
+        tetris.moveDown();
+
+        expect(ScoreCalculator.prototype.addPointsForClear).toHaveBeenCalledWith(1);
+    });
+
+    it('should return the current score, even before start', function () {
+        const tetris = new Tetris(1, 2);
+
+        expect(tetris.score).toBe(0);
+    });
+
+    it('should return the current score', function () {
+        const tetris = new Tetris(1, 2);
+        spyOn(TetrominoGenerator.prototype, 'next').and.returnValue(oneCellTetromino);
+
+        tetris.start();
+        tetris.moveDown();
+
+        expect(tetris.score).toBe(1);
+    });
 });
