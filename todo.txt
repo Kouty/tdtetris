@@ -1,23 +1,6 @@
-Tetris
-- A tetromino spawns at the top of the playfield, in the middle column
-- The upper most 2 rows are not visible to the player
-- Tetromino can rotate, and it can move down, left and right
-- When a tetromino reaches the bottom it is locked, and a new random tetromino spawns
-- When a row is filled of pieces of locked tetrominoes, it gets deleted
-- Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
-
-TODO:
-- Score system
--- Score UX*
-
-DONE:
-- Stop game after game over
-- pause
--- pause UX
-- Next tetromino preview box
--- next tetromino on tetris
--- next UX
-
-CONSIDERATIONS:
-- Make clear algorithm (naive, or sticky) pluggable.
-- Study and decide which game over conditions will be implemented
+POSSIBLE IMPROVEMENTS/FEATURES
+- There are more than one garbage clear algorithm. Now "naive" algorithm is implemented.
+    Other algorithms could be implemented. See http://tetris.wikia.com/wiki/Line_clear
+- Other ame over conditions could be implemented. Now impossibility to spawn the next element will
+    cause game over. See http://tetris.wikia.com/wiki/Top_out
+- Usually tetris games have levels. A level system may be added.
