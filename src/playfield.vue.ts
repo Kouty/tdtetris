@@ -1,7 +1,7 @@
 import Vue, {ComponentOptions} from 'vue';
 import {IPlayFieldModel} from './tetris';
 import './tetris.css';
-import {ITetromino, Tetrominoes} from './tetromino';
+import {ITetromino} from './tetromino';
 
 /* tslint:disable no-trailing-whitespace*/
 const template = `<div class="play-field-container">

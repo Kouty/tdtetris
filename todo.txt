@@ -7,8 +7,8 @@ Tetris
 - Game ends when a tetromino cannot spawn without colliding with locked tetromino pieces
 
 TODO:
-- Score system*
--- Score UX
+- Score system
+-- Score UX*
 
 DONE:
 - Stop game after game over

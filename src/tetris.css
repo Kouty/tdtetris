@@ -54,6 +54,11 @@
   border: 0;
 }
 
+.status-area {
+  position: relative;
+  display: inline-block;
+}
+
 .preview-box {
   border: 4px solid lightgray;
   position: relative;
@@ -73,7 +78,7 @@
 }
 
 @media screen and (max-width: 400px) {
-  .preview-box {
+  .status-area {
     position: absolute;
     right: 0;
     top: 0;
@@ -97,6 +102,11 @@
   display: inline-block;
   width: 100%;
   height: 100%;
+}
+
+.score {
+  font-size: 16px;
+  padding-left: 4px;
 }
 
 .I {

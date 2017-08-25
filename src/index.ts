@@ -2,13 +2,17 @@ import Vue, {ComponentOptions} from 'vue';
 import VueToast from 'vue-toast';
 import 'vue-toast/dist/vue-toast.min.css';
 import {PlayFieldVue} from './playfield.vue';
+import {ScoreVue} from './score.vue';
 import {IPlayFieldModel, Tetris} from './tetris';
 import {TetrominoVue} from './tetromino.vue';
 
 const template = `
 <div tabindex="1" @keydown="onKeyDown($event)" class="tetris">
     <play-field :area="area"></play-field>
-    <tetromino :tetromino="tetris.nextTetromino()"></tetromino>
+    <div class="status-area">
+      <tetromino :tetromino="tetris.nextTetromino()"></tetromino>
+      <score :score="tetris.score"></score>
+    </div>
     <vue-toast ref='toast'></vue-toast>
 </div>
 `;
@@ -73,7 +77,7 @@ const tetrisVue = {
         this.toast = this.$refs.toast;
         this.toast.setOptions({position: 'top right'});
     },
-    components: {'play-field': PlayFieldVue, 'tetromino': TetrominoVue, VueToast},
+    components: {'play-field': PlayFieldVue, 'tetromino': TetrominoVue, VueToast, 'score': ScoreVue},
     data: {
         area: null,
         tetris: new Tetris(20, 10),
