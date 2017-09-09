@@ -41,7 +41,7 @@ so remove completed tasks and everything that is no more relevant to the develop
 
 ## What is the first test?
 ```
-$ git checkout tags/first_test
+$ git checkout tags/first_test_red
 ```
 It's not easy to answer directly to this question. If you move from the first commit to the tag listed above, you will 
 be able to read in the file todo.txt what I was thinking to get the answer to this question. Here a short version of it.
