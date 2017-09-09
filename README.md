@@ -8,13 +8,13 @@ and therefore failing their purpose: make code simple!
 
 So, what if I wrote a whole (HTML) Tetris using TDD? Here it is: **Test Driven Tetris!**
 
-##TDD rules
+## TDD rules
 Uncle Bob states:
 1. You are not allowed to write any production code unless it is to make a failing unit test pass.
 2. You are not allowed to write any more of a unit test than is sufficient to fail; and compilation failures are failures.
 3. You are not allowed to write any more production code than is sufficient to pass the one failing unit te
 
-##Behavioural Driven Development
+## Behavioural Driven Development
 Although it is not completely true, I want to assert:
 
 *Since the word Test in TDD confuses people, it should be substituted with the word __Behaviour__*.
