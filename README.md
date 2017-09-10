@@ -36,14 +36,65 @@ $ git clone https://github.com/Kouty/tdtetris.git
 In order to TDD an application, a todo list is required. It is just a place where to write next steps, doubts and
 whatever you think it is useful to be noted down.
 
-The list will change with commits, always reflecting the current state of the code. It should short enough,
+The list will change with commits, always reflecting the current state of the code. It should be short enough,
 so remove completed tasks and everything that is no more relevant to the developing process.
+
+By moving across commits of the _**todo.txt**_ file, you can read what I was thinking and developing at the commit moment.
 
 ## What is the first test?
 ```
 $ git checkout tags/first_test_red
 ```
-It's not easy to answer directly to this question. If you move from the first commit to the tag listed above, you will 
-be able to read in the file todo.txt what I was thinking to get the answer to this question. Here a short version of it.
+It's not easy to answer directly to this question. If you move from the first commit to the tag _first_test_red_,
+you will be able to read in the file todo.txt what I was thinking to get the answer to this question.
+Here a short version of it.
 
-One way to start 
+Before jumping to the code, I decided to study the Tetris game in more details. I found this site useful:
+[http://tetris.wikia.com/wiki/Gameplay_overview](http://tetris.wikia.com/wiki/Gameplay_overview).
+From there I extracted some useful words:
+- Tetromino
+- Playfield
+- Rotation
+- Piece preview
+- Row clear
+- Locking
+
+In addition, I decided to start with a reduced version of the game:
+
+**One Column Tetris**.
+
+This means that there is just the `I` tetromino (the line), there is no rotation, the tetromino spawns at the top of the
+playfield, it can be moved downwards, and when it reaches te bottom, it gets cleared, and a new tetromino spawns.
+
+Now it is easier to decide where to start. Since Tetris starts by spawning a tetromino in the playfiled, 
+I begun writing a test about spawning the `I` tetromino inside the playfield.
+
+```
+describe('Playfield', function () {
+
+  it('should spawn tetrominoes', function () {
+    const NUM_ROWS = 10;
+    const playField = new PlayField(NUM_ROWS);
+
+    const tetromino = {};
+    playField.spawn(tetromino);
+
+    expect(tetromino.row).toBe(10);
+  });
+
+});
+```
+
+As you can see, it's a simple test, but it has many implications:
+- It states there is a PlayFiled class that needs the number of rows (since we have only 1 column)
+- It states that this PlayField class should have a method spawn(...) that takes a tetromino and gives it a position
+- It asserts that this position is 10, the number of rows of the playfield.
+
+There are 2 weird things here: normally the row should be 9, since usually 0 based coordinates is used, 
+and that the tetromino gets modified, which is unnecessary. In fact, I changed my mind! See the next paragraph.
+
+## First test green
+```
+$ git checkout tags/first_test_green
+```
+
