@@ -16,6 +16,7 @@
   float: left;
   margin-left: 3px;
   width: calc(100% - 120px);
+  max-width: calc(48vh);
 }
 
 .play-field-container:before {
