@@ -129,6 +129,8 @@ Time to remove the 1 column restriction, and focus on the Tetromino and PlacedTe
 
 `tetromino.spec.ts`
 ```typescript
+import {Tetrominoes} from '../src/tetromino';
+
 describe('Tetromino', function () {
 
     describe('I', function () {
@@ -188,7 +190,7 @@ describe('Playfield', function () {
     });
 });
 ```
-Now the `playField.spawn(...);` has to consider the bounding box of the tetromino.
+Now the `playField.spawn(...)` has to consider the bounding box of the tetromino.
 You may have noticed that I didn't use the `I` tetromino implementations.
 Instead I created a `oneSquareTetromino` fake implementation of the ITetromino interface.
 When you test a behaviour, all the dependencies should be fake, and tests must be simple.
