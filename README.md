@@ -112,6 +112,81 @@ In the meanwhile, I decided to switch from JavaScript to TypeScript, since I alw
 Don't pay attention to the namespace TdTetris, it will vanish soon.
 
 OK, in this test we can see that it is the PlayFiled class that owns the placed tetromino, and it can be set through the method
-`	playField.spawn(tetromino);`. This means we have 2 concepts:
+`playField.spawn(tetromino);`. This means we have 2 concepts:
 - Tetromino, which will represent the 7 tetrominoes
 - PlacedTetromino, which is the spawned tetromino and moves inside the PlayField.
+
+## Tetromino
+The previous test allowed me to write some code (remember: _You are not allowed to write any production code unless it is to make a failing unit test pass_). But it didn't allow me to write any code about the tetromino (apart from an ITetromino empty interface).
+So it is time to write tests to implement the `I` tetromino code.
+
+Now another bit of analysis is needed. How can I represent a tetromino? The answer came from this page: [http://tetris.wikia.com/wiki/SRS?file=SRS-pieces.png](http://tetris.wikia.com/wiki/SRS?file=SRS-pieces.png).
+Each tetromino is inside a containing square, and spawning means put the square in the top middle of the PlayField.
+Time to remove the 1 column restriction, and focus on the Tetromino and PlacedTetromino classes.
+
+`tetromino.spec.ts`
+```typescript
+describe('Tetromino', function () {
+
+    describe('I', function () {
+        it('should have a containing rectangle', function () {
+            const tetrominoI = Tetrominoes.I.create();
+
+            expect(tetrominoI.width).toBe(4);
+            expect(tetrominoI.height).toBe(4);
+        });
+
+        it('should fill the 3rd row', function () {
+            const tetrominoI = Tetrominoes.I.create();
+
+            for (let row = 0; row < 4; row++) {
+                for (let col = 0; col < 4; col++) {
+                    const shouldFill = row === 2;
+                    expect(shouldFill).toBe(tetrominoI.fills(row, col));
+                }
+            }
+        });
+    });
+
+});
+```
+OK, the Tetromino class has a width, a height and a method 'tetrominoI.fills(row, col)' to tell if the square inside
+its mask is filled.
+
+`playfield.spec.ts`
+```typescript
+import {PlayField} from '../src/playfield';
+
+describe('Playfield', function () {
+    let oneSquareTetromino;
+
+    beforeEach(function () {
+        oneSquareTetromino = {width: 1, height: 1, fills: () => false};
+    });
+
+    it('should spawn a tetromino at the top row and in the middle column, rounding left', function () {
+        const NUM_ROWS = 20;
+        const playField = new PlayField(NUM_ROWS, 5);
+
+        playField.spawn(oneSquareTetromino);
+
+        expect(playField.tetromino.row).toBe(NUM_ROWS - 1);
+        expect(playField.tetromino.col).toBe(2);
+    });
+
+    it('should consider tetromino width when spawning it', function () {
+        const NUM_ROWS = 20;
+        const playField = new PlayField(NUM_ROWS, 5);
+        const threeSquaresTetromino = Object.assign({}, oneSquareTetromino, {width: 3});
+
+        playField.spawn(threeSquaresTetromino);
+
+        expect(playField.tetromino.col).toBe(1);
+    });
+});
+```
+Now the `playField.spawn(...);` has to consider the bounding box of the tetromino.
+You may have noticed that I didn't use the `I` tetromino implementations.
+Instead I created a `oneSquareTetromino` fake implementation of the ITetromino interface.
+When you test a behaviour, all the dependencies should be fake, and tests must be simple.
+The oneSquareTetromino accomplish both.
