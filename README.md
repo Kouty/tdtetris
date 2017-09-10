@@ -69,7 +69,7 @@ playfield, it can be moved downwards, and when it reaches te bottom, it gets cle
 Now it is easier to decide where to start. Since Tetris starts by spawning a tetromino in the playfiled, 
 I begun writing a test about spawning the `I` tetromino inside the playfield.
 
-```
+```JavaScript
 describe('Playfield', function () {
 
   it('should spawn tetrominoes', function () {
@@ -97,4 +97,21 @@ and that the tetromino gets modified, which is unnecessary. In fact, I changed m
 ```
 $ git checkout tags/first_test_green
 ```
+```typescript
+it('should spawn tetrominoes', function () {
+	const NUM_ROWS = 10;
+	const playField = new TdTetris.PlayField(NUM_ROWS);
 
+	const tetromino: TdTetris.Tetromino = {};
+	playField.spawn(tetromino);
+
+	expect(playField.tetronimo.row).toBe(NUM_ROWS - 1);
+});
+```
+In the meanwhile, I decided to switch from JavaScript to TypeScript, since I always wanted to try it.
+Don't pay attention to the namespace TdTetris, it will vanish soon.
+
+OK, in this test we can see that it is the PlayFiled class that owns the placed tetromino, and it can be set through the method
+`	playField.spawn(tetromino);`. This means we have 2 concepts:
+- Tetromino, which will represent the 7 tetrominoes
+- PlacedTetromino, which is the spawned tetromino and moves inside the PlayField.
