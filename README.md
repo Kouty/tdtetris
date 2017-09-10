@@ -117,6 +117,9 @@ OK, in this test we can see that it is the PlayFiled class that owns the placed 
 - PlacedTetromino, which is the spawned tetromino and moves inside the PlayField.
 
 ## Tetromino
+```
+$ git checkout tags/tetromino_bounding_box
+```
 The previous test allowed me to write some code (remember: _You are not allowed to write any production code unless it is to make a failing unit test pass_). But it didn't allow me to write any code about the tetromino (apart from an ITetromino empty interface).
 So it is time to write tests to implement the `I` tetromino code.
 
