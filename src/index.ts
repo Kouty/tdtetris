@@ -93,6 +93,9 @@ const tetrisVue = {
             }
             this.update();
         });
+        manager.on('panend', (e) => {
+            lastdX = 0;
+        });
 
         manager.on('tap', () => {
             this.tetris.rotateClockwise();
