@@ -1,3 +1,4 @@
+import Hammer from 'hammerjs';
 import Vue, {ComponentOptions} from 'vue';
 import VueToast from 'vue-toast';
 import 'vue-toast/dist/vue-toast.min.css';
@@ -76,6 +77,27 @@ const tetrisVue = {
         this.$el.focus();
         this.toast = this.$refs.toast;
         this.toast.setOptions({position: 'top right'});
+
+        const manager = new Hammer.Manager(this.$el);
+        manager.add(new Hammer.Pan());
+        manager.add(new Hammer.Tap({taps: 1}));
+        let lastdX = 0;
+        manager.on('panmove', (e) => {
+            const amount = 30;
+            if (lastdX - e.deltaX > +amount) {
+                this.tetris.moveLeft();
+                lastdX = e.deltaX;
+            } else if (lastdX - e.deltaX < -amount) {
+                this.tetris.moveRight();
+                lastdX = e.deltaX;
+            }
+            this.update();
+        });
+
+        manager.on('tap', () => {
+            this.tetris.rotateClockwise();
+            this.update();
+        });
     },
     components: {'play-field': PlayFieldVue, 'tetromino': TetrominoVue, VueToast, 'score': ScoreVue},
     data: {
