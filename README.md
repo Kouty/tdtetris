@@ -192,6 +192,6 @@ describe('Playfield', function () {
 ```
 Now the `playField.spawn(...)` has to consider the bounding box of the tetromino.
 You may have noticed that I didn't use the `I` tetromino implementation.
-Instead I created a `oneSquareTetromino` fake implementation of the ITetromino interface.
+Instead I created a `oneSquareTetromino` fake implementation of the Tetromino interface.
 When you test a behaviour, all the dependencies should be fake, and tests must be simple.
 The oneSquareTetromino accomplish both.
