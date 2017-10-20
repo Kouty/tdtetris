@@ -64,7 +64,7 @@ In addition, I decided to start with a reduced version of the game:
 **One Column Tetris**.
 
 This means that there is just the `I` tetromino (the line), there is no rotation, the tetromino spawns at the top of the
-playfield, it can be moved downwards, and when it reaches te bottom, it gets cleared, and a new tetromino spawns.
+playfield, it can be moved downwards, and, when it reaches the bottom, it gets cleared and a new tetromino spawns.
 
 Now it is easier to decide where to start. Since Tetris starts by spawning a tetromino in the playfiled, 
 I begun writing a test about spawning the `I` tetromino inside the playfield.
