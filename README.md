@@ -90,8 +90,8 @@ As you can see, it's a simple test, but it has many implications:
 - It states that this PlayField class should have a method spawn(...) that takes a tetromino and gives it a position
 - It asserts that this position is 10, the number of rows of the playfield.
 
-There are 2 weird things here: normally the row should be 9, since usually 0 based coordinates is used, 
-and that the tetromino gets modified, which is unnecessary. In fact, I changed my mind! See the next paragraph.
+There are 2 weird things here: normally the row should be 9, since usually 0 based coordinates system is used, 
+and the tetromino gets modified, which is unnecessary. In fact I changed my mind! See the next paragraph.
 
 ## First test green
 ```
