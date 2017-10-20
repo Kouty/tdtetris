@@ -17,7 +17,7 @@ Uncle Bob states:
 ## Behavioural Driven Development
 Although it is not completely true, I want to assert:
 
-*Since the word Test in TDD confuses people, it should be substituted with the word __Behaviour__*.
+*Since the word Test in TDD confuses people, it should be replaced with the word __Behaviour__*.
 
 Writing tests first, we actually answer to this question:
 *if the code had already been written, how do I expect it to be used?* In other words, in a test we assert how that
