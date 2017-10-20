@@ -20,7 +20,7 @@ Although it is not completely true, I want to assert:
 *Since the word Test in TDD confuses people, it should be replaced with the word __Behaviour__*.
 
 Writing tests first, we actually answer to this question:
-*if the code had already been written, how do I expect it to be used?* In other words, in a test we assert how that
+*if the code had already been written, how do I expect it to be like?* In other words, in a test we assert how that
 piece of code should behave and what is the easiest way to use it.
 
 This way of thinking has guided me throughout the whole development process, so each test represents a behaviour I
