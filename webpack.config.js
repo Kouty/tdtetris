@@ -16,7 +16,7 @@ module.exports = {
     }
   },
   module: {
-    loaders: [
+    rules: [
       {test: /\.ts$/, loader: "ts-loader"},
       {test: /\.html$/, loader: "html-loader"},
       {test: /\.css$/, use: ['style-loader', 'css-loader']}
