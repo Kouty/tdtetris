@@ -69,6 +69,7 @@ playfield, it can be moved downwards, and, when it reaches the bottom, it gets c
 Now it is easier to decide where to start. Since Tetris starts by spawning a tetromino in the playfiled, 
 I begun writing a test about spawning the `I` tetromino inside the playfield.
 
+`playfield.spec.ts`
 ```JavaScript
 describe('Playfield', function () {
 
@@ -90,20 +91,21 @@ As you can see, it's a simple test, but it has many implications:
 - It states that this PlayField class should have a method spawn(...) that takes a tetromino and gives it a position
 - It asserts that this position is 10, the number of rows of the playfield.
 
-There are 2 weird things here: normally the row should be 9, since usually 0 based coordinates system is used, 
+There are 2 weird things here: normally the row should be 9, since usually 0 based coordinates system is used,
 and the tetromino gets modified, which is unnecessary. In fact I changed my mind! See the next paragraph.
 
 ## First test green
 ```
 $ git checkout tags/first_test_green
 ```
+`playfield.spec.ts`
 ```typescript
 it('should spawn tetrominoes', function () {
 	const NUM_ROWS = 10;
 	const playField = new TdTetris.PlayField(NUM_ROWS);
 
 	const tetromino: TdTetris.Tetromino = {};
-	playField.spawn(tetromino);
+	playField.spawn(tetromino); // Creates a PalcedTetromino
 
 	expect(playField.tetronimo.row).toBe(NUM_ROWS - 1);
 });
@@ -124,7 +126,7 @@ The previous test allowed me to write some code (remember: _You are not allowed 
 So it is time to write tests to implement the `I` tetromino code.
 
 Now another bit of analysis is needed. How can I represent a tetromino? The answer came from this page: [http://tetris.wikia.com/wiki/SRS?file=SRS-pieces.png](http://tetris.wikia.com/wiki/SRS?file=SRS-pieces.png).
-Each tetromino is inside a containing square, and spawning means put the square in the top middle of the PlayField.
+Each tetromino is inside a containing square (AKA bounding box), and spawning means put the square in the top middle of the PlayField.
 Time to remove the 1 column restriction, and focus on the Tetromino and PlacedTetromino classes.
 
 `tetromino.spec.ts`
@@ -156,7 +158,7 @@ describe('Tetromino', function () {
 });
 ```
 OK, the Tetromino class has a width, a height and a method 'tetrominoI.fills(row, col)' to tell if the square inside
-its mask is filled.
+its bounding box is filled. We can now go back to the playfield and implement the spawning system.
 
 `playfield.spec.ts`
 ```typescript
@@ -195,3 +197,52 @@ You may have noticed that I didn't use the `I` tetromino implementation.
 Instead I created a `oneSquareTetromino` fake implementation of the Tetromino interface.
 When you test a behaviour, all the dependencies should be fake, and tests must be simple.
 The oneSquareTetromino accomplish both.
+
+## Moving placed Tetrominoes
+```
+$ git checkout tags/moving_tetrominoes
+```
+Since the `PlacedTetromino` a col and a row fields, which represents its position inside the playfield, we can now move it.
+We can add tests to implement the moveLeft, moveRight and moveDown features. Below the code:
+```typescript
+import {PlayField} from '../src/playfield';
+
+describe('Playfield', function () {
+    let oneSquareTetromino;
+
+    beforeEach(function () {
+        oneSquareTetromino = {width: 1, height: 1, fills: () => false};
+    });
+
+    it('should spawn a tetromino at the top row and in the middle column, rounding left', function (){ /* --- */ });
+
+    it('should consider tetromino width when spawning it', function () { /* --- */ });
+
+    it('should let the player move left the current moving tetromino', function () {
+        const playField = new PlayField(20, 3);
+
+        playField.spawn(oneSquareTetromino);
+        playField.tetromino.moveLeft();
+
+        expect(playField.tetromino.col).toBe(0);
+    });
+
+    it('should let the player move right the current moving tetromino', function () {
+        const playField = new PlayField(20, 3);
+
+        playField.spawn(oneSquareTetromino);
+        playField.tetromino.moveRight();
+
+        expect(playField.tetromino.col).toBe(2);
+    });
+
+    it('should let the player move down the current moving tetromino', function () {
+        const playField = new PlayField(20, 3);
+
+        playField.spawn(oneSquareTetromino);
+        playField.tetromino.moveDown();
+
+        expect(playField.tetromino.row).toBe(18);
+    });
+});
+```
